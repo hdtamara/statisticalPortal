@@ -17,7 +17,7 @@
           </select>
         </div>
 
-        <div class="control-group">
+        <div class="control-group" v-if="metodoMuestreoSeleccionado !== 'cluster'">
           <label for="sample-size">Tamaño de la muestra:</label>
           <input type="number" id="sample-size" min="10" max="100" v-model="tamanoMuestra">
         </div>
@@ -36,7 +36,7 @@
           <label for="visualization-type">Tipo de visualización:</label>
           <select id="visualization-type" v-model="tipoVisualizacion">
             <option value="colors">Colores</option>
-            <option value="numbers">Números</option>
+            <!-- <option value="numbers">Números</option> -->
             <option value="both">Colores y Números</option>
           </select>
         </div>
