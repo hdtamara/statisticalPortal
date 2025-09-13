@@ -30,7 +30,12 @@ const router = createRouter({
       path: '/descriptiva/poblacion-muestra/simulador-muestreo',
       name: 'sampling-simulator',
       component: () => import('@/views/descriptive/SimuladorMuestreoView.vue')
-    }
+    },
+    {
+      path: '/inferencial/distribuciones-muestrales',
+    name: 'sampling-distributions',
+    component: () => import('@/views/inferential/DistribucionesMuestralesView.vue')
+  },
   ]
 });
 

@@ -21,13 +21,13 @@
     <h2 class="section-title">Temas de Estadística Inferencial</h2>
 
     <div class="cards-container">
-      <ContentCard
-        card-type="inferential"
-        title="Proximamente"
-        content="Contenido en desarrollo..."
-        :show-button="false"
-        button-text="Explorar"
-      />
+    <ContentCard
+      title="Distribuciones Muestrales"
+      content="Conceptos fundamentales de muestreo, diferencia entre parámetros y estadísticos, distribución de la media muestral y Teorema del Límite Central."
+      :show-button="true"
+      button-text="Explorar"
+      :router-link="'/inferencial/distribuciones-muestrales'"
+    />
       <!-- <ContentCard
         title="Estimación de Parámetros"
         content="Métodos para estimar valores poblacionales usando datos muestrales, incluyendo estimación puntual e intervalos de confianza."
