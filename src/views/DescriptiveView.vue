@@ -29,6 +29,13 @@
         button-text="Explorar"
         :router-link="'/descriptiva/poblacion-muestra'"
       />
+      <ContentCard
+        title="Tipos de Datos y Tabulación"
+        content="Clasificación de datos cualitativos y cuantitativos, cálculo de frecuencias y organización de datos agrupados."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/descriptiva/tipos-datos'"
+      />
 
       <!-- <ContentCard
         title="Medidas de Tendencia Central"
