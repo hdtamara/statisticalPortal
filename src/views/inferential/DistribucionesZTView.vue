@@ -58,7 +58,7 @@
 
             <div class="probability-types">
               <div class="probability-type">
-                <h4>Probabilidad de que la media sea menor que un valor (P(x̄ < a)):</h4>
+                <h4>Probabilidad de que la media sea menor que un valor (P(x̄ &lt; a)):</h4>
                 <ol>
                   <li>Calculas el puntaje Z para el valor 'a'.</li>
                   <li>Buscas ese Z en la tabla. El valor que encuentras es directamente la probabilidad.</li>
@@ -74,7 +74,7 @@
               </div>
 
               <div class="probability-type">
-                <h4>Probabilidad de que la media esté entre dos valores (P(a < x̄ < b)):</h4>
+                <h4>Probabilidad de que la media esté entre dos valores (P(a &lt; x̄ &lt; b)):</h4>
                 <ol>
                   <li>Calculas el puntaje Z para el valor 'b' (Zb) y para el valor 'a' (Za).</li>
                   <li>Buscas ambas probabilidades en la tabla.</li>
@@ -189,6 +189,49 @@
             <p>La probabilidad de que una muestra de 25 cajas tenga un peso medio inferior a 496 gramos es de 2.28%.</p>
           </div>
         </div>
+
+        <div class="exercises-section">
+          <h3>Ejercicios Prácticos - Distribución Z</h3>
+          <div class="exercise-card">
+            <h4>🎯 Ejercicio 2: Cola Izquierda (P(Z &lt; z))</h4>
+            <p>Un proceso de llenado tiene μ = 1000 ml y σ = 20 ml. En n = 49 botellas, x̄ = 995 ml. ¿Cuál es la probabilidad de observar una media tan baja o menor?</p>
+            <div class="exercise-solution">
+              <h5>Solución:</h5>
+              <ul>
+                <li>Z = (995 - 1000) / (20 / √49) = (-5) / (20 / 7) = (-5) / 2.857 ≈ -1.75</li>
+                <li>P(Z &lt; -1.75) = 0.0401</li>
+                <li>La probabilidad es de 4.01%</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="exercise-card">
+            <h4>🚀 Ejercicio 1: Cola Derecha (P(Z &gt; z))</h4>
+            <p>Un fabricante declara μ = 200 g y σ = 8 g. En n = 36 barras observas x̄ = 203 g. ¿Cuál es la probabilidad de obtener una media tan alta o mayor?</p>
+            <div class="exercise-solution">
+              <h5>Solución:</h5>
+              <ul>
+                <li>Z = (203 - 200) / (8 / √36) = 3 / (8 / 6) = 3 / 1.333 ≈ 2.25</li>
+                <li>P(Z > 2.25) = 1 - P(Z &lt; 2.25) = 1 - 0.9878 = 0.0122</li>
+                <li>La probabilidad es de 1.22%</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exercise-card">
+            <h4>📊 Ejercicio 3: Intervalo (P(a &lt; Z &lt; b))</h4>
+            <p>Un control de calidad tiene μ = 50 kg y σ = 5 kg. En n = 64 paquetes, ¿cuál es la probabilidad de que la media esté entre 48.5 kg y 51.5 kg?</p>
+            <div class="exercise-solution">
+              <h5>Solución:</h5>
+              <ul>
+                <li>Z₁ = (48.5 - 50) / (5 / √64) = (-1.5) / (5 / 8) = (-1.5) / 0.625 = -2.40</li>
+                <li>Z₂ = (51.5 - 50) / (5 / √64) = 1.5 / 0.625 = 2.40</li>
+                <li>P(-2.40 &lt; Z &lt; 2.40) = P(Z &lt; 2.40) - P(Z &lt; -2.40) = 0.9918 - 0.0082 = 0.9836</li>
+                <li>La probabilidad es de 98.36%</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- DISTRIBUCIÓN T -->
@@ -229,11 +272,11 @@
 
             <div class="probability-types">
               <div class="probability-type">
-                <h4>Probabilidad de que la media sea menor que un valor (P(x̄ < a)):</h4>
+                <h4>Probabilidad de que la media sea menor que un valor (P(x̄ &lt; a)):</h4>
                 <ol>
                   <li>Calculas los grados de libertad (gl = n - 1).</li>
                   <li>Calculas el estadístico t para el valor 'a'.</li>
-                  <li>Usas una calculadora o software estadístico para encontrar P(t < t_calculado) con los gl correspondientes.</li>
+                  <li>Usas una calculadora o software estadístico para encontrar P(t &lt; t_calculado) con los gl correspondientes.</li>
                 </ol>
               </div>
 
@@ -241,15 +284,15 @@
                 <h4>Probabilidad de que la media sea mayor que un valor (P(x̄ > a)):</h4>
                 <ol>
                   <li>Calculas los gl y el estadístico t.</li>
-                  <li>Encuentras P(t > t_calculado). Esto a menudo se calcula como 1 - P(t < t_calculado).</li>
+                  <li>Encuentras P(t &gt; t_calculado). Esto a menudo se calcula como 1 - P(t &lt; t_calculado).</li>
                 </ol>
               </div>
 
               <div class="probability-type">
-                <h4>Probabilidad de que la media esté entre dos valores (P(a < x̄ < b)):</h4>
+                <h4>Probabilidad de que la media esté entre dos valores (P(a &lt; x̄ &lt; b)):</h4>
                 <ol>
                   <li>Calculas los gl y los estadísticos t para 'a' y 'b' (ta y tb).</li>
-                  <li>Calculas la probabilidad acumulada para cada uno y restas: P(t < tb) - P(t < ta).</li>
+                  <li>Calculas la probabilidad acumulada para cada uno y restas: P(t &lt; tb) - P(t &lt; ta).</li>
                 </ol>
               </div>
             </div>
@@ -338,6 +381,53 @@
 
             <h4>Respuesta:</h4>
             <p>La probabilidad de que una muestra de 16 estudiantes tenga un tiempo medio de 85 minutos o más es de aproximadamente 5.8%.</p>
+          </div>
+        </div>
+
+        <div class="exercises-section">
+          <h3>Ejercicios Prácticos - Distribución t</h3>
+
+          <div class="exercise-card">
+            <h4>🚀 Ejercicio 1: Cola Izquierda (P(T &lt; t))</h4>
+            <p>Un curso tiene promedio histórico μ = 75. Tomas n = 15 estudiantes y obtienes x̄ = 72 con s = 12. ¿Cuál es la probabilidad de observar una media tan baja o menor?</p>
+            <div class="exercise-solution">
+              <h5>Solución:</h5>
+              <ul>
+                <li>gl = 15 - 1 = 14</li>
+                <li>t = (72 - 75) / (12 / √15) = (-3) / (12 / 3.873) = (-3) / 3.098 ≈ -0.968</li>
+                <li>P(T &lt; -0.968) con 14 gl ≈ 0.174</li>
+                <li>La probabilidad es de 17.4%</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exercise-card">
+            <h4>🎯 Ejercicio 2: Cola Derecha (P(T > t))</h4>
+            <p>Un estudio de rendimiento tiene μ = 85. En n = 20 estudiantes, x̄ = 88 con s = 10. ¿Cuál es la probabilidad de obtener una media tan alta o mayor?</p>
+            <div class="exercise-solution">
+              <h5>Solución:</h5>
+              <ul>
+                <li>gl = 20 - 1 = 19</li>
+                <li>t = (88 - 85) / (10 / √20) = 3 / (10 / 4.472) = 3 / 2.236 ≈ 1.342</li>
+                <li>P(T > 1.342) con 19 gl ≈ 0.097</li>
+                <li>La probabilidad es de 9.7%</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exercise-card">
+            <h4>📊 Ejercicio 3: Intervalo (P(a &lt; T &lt; b))</h4>
+            <p>Un análisis de calidad tiene μ = 100. En n = 12 muestras, x̄ = 98 con s = 8. ¿Cuál es la probabilidad de que la media esté entre 96 y 104?</p>
+            <div class="exercise-solution">
+              <h5>Solución:</h5>
+              <ul>
+                <li>gl = 12 - 1 = 11</li>
+                <li>t₁ = (96 - 100) / (8 / √12) = (-4) / (8 / 3.464) = (-4) / 2.309 ≈ -1.732</li>
+                <li>t₂ = (104 - 100) / (8 / √12) = 4 / 2.309 ≈ 1.732</li>
+                <li>P(-1.732 &lt; T &lt; 1.732) con 11 gl ≈ 0.854</li>
+                <li>La probabilidad es de 85.4%</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -462,6 +552,9 @@
       <div class="navigation-buttons">
         <router-link to="/inferencial" class="btn btn-secondary">
           Volver a Estadística Inferencial
+        </router-link>
+        <router-link to="/inferencial/comandos-python-excel" class="btn btn-primary">
+          Ver Comandos en Python y Excel
         </router-link>
       </div>
     </div>
@@ -996,6 +1089,89 @@ const tInterpretation = computed(() => {
   line-height: 1.6;
 }
 
+/* Estilos para ejercicios */
+.exercises-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e9ecef;
+}
+
+.exercises-section h3 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.exercise-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 5px solid #3498db;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exercise-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(52, 152, 219, 0.15);
+}
+
+.exercise-card h4 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.exercise-card p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  color: #555;
+  font-size: 1.05rem;
+}
+
+.exercise-solution {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  margin-top: 1rem;
+}
+
+.exercise-solution h5 {
+  color: #27ae60;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.exercise-solution ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.exercise-solution li {
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+  color: #2c3e50;
+  position: relative;
+}
+
+.exercise-solution li::marker {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.exercise-solution li:last-child {
+  margin-bottom: 0;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
 /* Estilos para controles */
 .simulator-controls, .calculator-controls {
   display: grid;
@@ -1266,6 +1442,15 @@ const tInterpretation = computed(() => {
   line-height: 1.5;
 }
 
+/* Estilos para botones de navegación */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
 /* Estilos responsivos */
 @media (max-width: 768px) {
   .nav-tabs {
@@ -1297,6 +1482,11 @@ const tInterpretation = computed(() => {
   }
 
   .sample-size-indicator {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .navigation-buttons {
     flex-direction: column;
     gap: 1rem;
   }

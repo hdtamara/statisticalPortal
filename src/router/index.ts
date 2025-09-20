@@ -45,6 +45,11 @@ const router = createRouter({
       path: '/inferencial/distribuciones-z-t',
       name: 'z-t-distributions',
       component: () => import('@/views/inferential/DistribucionesZTView.vue'),
+    },
+    {
+      path: '/inferencial/comandos-python-excel',
+      name: 'python-excel-commands',
+      component: () => import('@/views/inferential/ComandosPythonExcelView.vue'),
     }
   ],
 })
