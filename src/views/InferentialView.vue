@@ -28,6 +28,14 @@
       button-text="Explorar"
       :router-link="'/inferencial/distribuciones-muestrales'"
     />
+
+    <ContentCard
+      title="Distribuciones Z y t"
+      content="Uso de la distribución normal estándar (Z) y la distribución t-Student para inferencias sobre medias poblacionales."
+      :show-button="true"
+      button-text="Explorar"
+      :router-link="'/inferencial/distribuciones-z-t'"
+    />
       <!-- <ContentCard
         title="Estimación de Parámetros"
         content="Métodos para estimar valores poblacionales usando datos muestrales, incluyendo estimación puntual e intervalos de confianza."

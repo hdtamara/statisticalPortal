@@ -41,6 +41,11 @@ const router = createRouter({
       name: 'sampling-distributions',
       component: () => import('@/views/inferential/DistribucionesMuestralesView.vue'),
     },
+    {
+      path: '/inferencial/distribuciones-z-t',
+      name: 'z-t-distributions',
+      component: () => import('@/views/inferential/DistribucionesZTView.vue'),
+    }
   ],
 })
 
