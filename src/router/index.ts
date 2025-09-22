@@ -37,6 +37,16 @@ const router = createRouter({
       component: () => import('@/views/descriptive/TiposDatosView.vue'),
     },
     {
+      path: '/descriptiva/graficos-cualitativos',
+      name: 'qualitative-graphs',
+      component: () => import('@/views/descriptive/GraficosCualitativosView.vue'),
+    },
+    {
+      path: '/descriptiva/graficos-cuantitativos',
+      name: 'quantitative-graphs',
+      component: () => import('@/views/descriptive/GraficosCuantitativosView.vue'),
+    },
+    {
       path: '/inferencial/distribuciones-muestrales',
       name: 'sampling-distributions',
       component: () => import('@/views/inferential/DistribucionesMuestralesView.vue'),

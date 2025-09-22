@@ -36,6 +36,20 @@
         button-text="Explorar"
         :router-link="'/descriptiva/tipos-datos'"
       />
+      <ContentCard
+        title="Gráficos para Datos Cualitativos"
+        content="Diagramas de barras y circulares para representar datos cualitativos. Aprende a crearlos e interpretarlos."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/descriptiva/graficos-cualitativos'"
+      />
+      <ContentCard
+        title="Gráficos para Datos Cuantitativos"
+        content="Histogramas y polígonos de frecuencia para representar datos cuantitativos. Aprende a crearlos e interpretarlos."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/descriptiva/graficos-cuantitativos'"
+      />
 
       <!-- <ContentCard
         title="Medidas de Tendencia Central"
