@@ -22,7 +22,6 @@
 
     <div class="cards-container">
       <ContentCard
-        card-type="descriptive"
         title="Población y Muestra"
         content="Conceptos fundamentales sobre el conjunto completo de elementos de estudio (población) y el subconjunto seleccionado para análisis (muestra)."
         :show-button="true"
