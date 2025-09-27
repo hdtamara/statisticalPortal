@@ -140,12 +140,12 @@
             <h4>Paso 1: Calcular las estadísticas de cada grupo</h4>
             <div class="calculation">
               <p><strong>Fertilizante A:</strong></p>
-              <p>n₁ = 12, x̄₁ = 550 kg/ha, s₁ = 24.49 kg/ha</p>
+              <p>n₁ = 12, x̄₁ = 554 kg/ha, s₁ = 23.26 kg/ha</p>
 
               <p><strong>Fertilizante B:</strong></p>
-              <p>n₂ = 10, x̄₂ = 510 kg/ha, s₂ = 20.00 kg/ha</p>
+              <p>n₂ = 10, x̄₂ = 510 kg/ha, s₂ = 18.97 kg/ha</p>
 
-              <p><strong>Diferencia observada:</strong> 550 - 510 = 40 kg/ha</p>
+              <p><strong>Diferencia observada:</strong> 554 - 510 = 44 kg/ha</p>
             </div>
           </div>
 
@@ -154,17 +154,17 @@
             <div class="calculation">
               <p>Error Estándar = √(s₁²/n₁ + s₂²/n₂)</p>
 
-              <p>Error Estándar = √(24.49²/12 + 20.00²/10)</p>
+              <p>Error Estándar = √(23.26²/12 + 18.97²/10)</p>
 
-              <p>Error Estándar = √(49.98 + 40.00) = √89.98 ≈ <strong>9.49</strong></p>
+              <p>Error Estándar = √(45.08 + 36.00) = √81.08 ≈ <strong>9.00</strong></p>
             </div>
           </div>
         </div>
 
         <div class="interpretation-box">
           <h3>Interpretación de los Resultados</h3>
-          <p>Observamos una diferencia de <strong>40 kg/ha</strong> entre los fertilizantes, con un error estándar de <strong>9.49 kg/ha</strong>.</p>
-          <p>El error estándar nos indica que si repitiéramos este experimento muchas veces con muestras del mismo tamaño, esperaríamos que las diferencias observadas varíen aproximadamente ±9.49 kg/ha alrededor de la diferencia real entre los fertilizantes.</p>
+          <p>Observamos una diferencia de <strong>44 kg/ha</strong> entre los fertilizantes, con un error estándar de <strong>9.00 kg/ha</strong>.</p>
+          <p>El error estándar nos indica que si repitiéramos este experimento muchas veces con muestras del mismo tamaño, esperaríamos que las diferencias observadas varíen aproximadamente ±9.00 kg/ha alrededor de la diferencia real entre los fertilizantes.</p>
           <p>Esta información nos ayuda a entender la <strong>precisión de nuestra estimación</strong> y nos prepara para explorar cómo se comporta esta diferencia cuando repetimos el proceso de muestreo.</p>
         </div>
 
@@ -502,8 +502,8 @@ const ejecutarSimulacion = async () => {
 
   if (tipoSimulacion.value === 'independientes') {
     // Simulación para muestras independientes
-    diferenciaObservada.value = 40; // Diferencia observada en el ejemplo
-    errorEstandarCalculado.value = 9.49; // Error estándar calculado
+    diferenciaObservada.value = 44; // Diferencia observada en el ejemplo
+    errorEstandarCalculado.value = 9.00; // Error estándar calculado
 
     for (let i = 0; i < numeroSimulaciones.value; i++) {
       // Muestreo con reemplazo de fertilizante A
@@ -527,7 +527,7 @@ const ejecutarSimulacion = async () => {
   } else {
     // Simulación para datos pareados
     diferenciaObservada.value = 13.125; // Media de diferencias observada
-    errorEstandarCalculado.value = 2.31; // Error estándar calculado
+    errorEstandarCalculado.value = 2.25; // Error estándar calculado
 
     for (let i = 0; i < numeroSimulaciones.value; i++) {
       // Muestreo con reemplazo de las diferencias
