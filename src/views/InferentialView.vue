@@ -36,6 +36,14 @@
       button-text="Explorar"
       :router-link="'/inferencial/distribuciones-z-t'"
     />
+
+    <ContentCard
+      title="Diferencia de Medias"
+      content="Comparación de dos medias poblacionales: muestras independientes y datos pareados. Aprende cuándo y cómo usar cada método."
+      :show-button="true"
+      button-text="Explorar"
+      :router-link="'/inferencial/diferencia-medias'"
+    />
       <!-- <ContentCard
         title="Estimación de Parámetros"
         content="Métodos para estimar valores poblacionales usando datos muestrales, incluyendo estimación puntual e intervalos de confianza."

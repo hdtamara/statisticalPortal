@@ -60,6 +60,11 @@ const router = createRouter({
       path: '/inferencial/comandos-python-excel',
       name: 'python-excel-commands',
       component: () => import('@/views/inferential/ComandosPythonExcelView.vue'),
+    },
+    {
+      path: '/inferencial/diferencia-medias',
+      name: 'difference-means',
+      component: () => import('@/views/inferential/DiferenciaMediasView.vue'),
     }
   ],
 })
