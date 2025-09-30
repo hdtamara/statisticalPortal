@@ -49,6 +49,13 @@
         button-text="Explorar"
         :router-link="'/descriptiva/graficos-cuantitativos'"
       />
+      <ContentCard
+        title="Instrumentos de Recolección de Datos"
+        content="Encuestas y observación: métodos fundamentales para recopilar información en estudios estadísticos."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/descriptiva/instrumentos-recoleccion-datos'"
+      />
 
       <!-- <ContentCard
         title="Medidas de Tendencia Central"
