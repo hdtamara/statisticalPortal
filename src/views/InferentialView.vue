@@ -44,6 +44,14 @@
       button-text="Explorar"
       :router-link="'/inferencial/diferencia-medias'"
     />
+
+    <ContentCard
+      title="Diferencia de Proporciones"
+      content="Distribución muestral de la diferencia entre dos proporciones. Aprende a comparar porcentajes entre grupos y entender su variabilidad."
+      :show-button="true"
+      button-text="Explorar"
+      :router-link="'/inferencial/diferencia-proporciones'"
+    />
       <!-- <ContentCard
         title="Estimación de Parámetros"
         content="Métodos para estimar valores poblacionales usando datos muestrales, incluyendo estimación puntual e intervalos de confianza."

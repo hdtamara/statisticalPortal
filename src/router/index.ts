@@ -70,6 +70,11 @@ const router = createRouter({
       path: '/inferencial/diferencia-medias',
       name: 'difference-means',
       component: () => import('@/views/inferential/DiferenciaMediasView.vue'),
+    },
+    {
+      path: '/inferencial/diferencia-proporciones',
+      name: 'difference-proportions',
+      component: () => import('@/views/inferential/DiferenciaProporcionesView.vue'),
     }
   ],
 })
