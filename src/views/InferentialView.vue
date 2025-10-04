@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="view-container">
     <div class="hero">
-      <h1>Estadística Inferencial</h1>
+      <h1 class="gradient-text">Estadística Inferencial</h1>
       <p>La estadística inferencial permite hacer generalizaciones sobre una población basándose en el análisis de una muestra.</p>
     </div>
 

@@ -130,16 +130,25 @@
 
           <div class="formula-box">
             <h4>Fórmula del Error Estándar de la Media</h4>
-            <div class="formula">
-              σ<sub>x̄</sub> = σ / √n
+            <div class="formula-display">
+              <div class="katex-equation" v-html="renderLatex('\\sigma_{\\bar{x}} = \\frac{\\sigma}{\\sqrt{n}}')"></div>
             </div>
             <div class="formula-explanation">
-              <p>Donde:</p>
-              <ul>
-                <li>σ<sub>x̄</sub> = Error estándar de la media</li>
-                <li>σ = Desviación estándar poblacional</li>
-                <li>n = Tamaño de la muestra</li>
-              </ul>
+              <h4>¿Qué significa cada símbolo?</h4>
+              <div class="variables-grid">
+                <div class="variable-item">
+                  <span class="variable-symbol">σₓ̄</span>
+                  <span class="variable-desc">Error estándar de la media</span>
+                </div>
+                <div class="variable-item">
+                  <span class="variable-symbol">σ</span>
+                  <span class="variable-desc">Desviación estándar poblacional</span>
+                </div>
+                <div class="variable-item">
+                  <span class="variable-symbol">n</span>
+                  <span class="variable-desc">Tamaño de la muestra</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -156,7 +165,24 @@
           <div class="example-box">
             <h3>Ejemplo de Cálculo</h3>
             <p>Supongamos que la estatura de los adultos tiene una desviación estándar poblacional de σ = 10 cm. Si tomamos una muestra de 100 personas:</p>
-            <p>Error estándor = σ / √n = 10 / √100 = 10 / 10 = 1 cm</p>
+            <div class="calculation-steps">
+              <div class="calc-step">
+                <div class="calc-equation" v-html="renderLatex('\\sigma_{\\bar{x}} = \\frac{\\sigma}{\\sqrt{n}}')"></div>
+                <span class="calc-desc">Aplicamos la fórmula general</span>
+              </div>
+              <div class="calc-step">
+                <div class="calc-equation" v-html="renderLatex('\\sigma_{\\bar{x}} = \\frac{10}{\\sqrt{100}}')"></div>
+                <span class="calc-desc">Sustituimos los valores</span>
+              </div>
+              <div class="calc-step">
+                <div class="calc-equation" v-html="renderLatex('\\sigma_{\\bar{x}} = \\frac{10}{10}')"></div>
+                <span class="calc-desc">Calculamos la raíz cuadrada</span>
+              </div>
+              <div class="calc-step result">
+                <div class="calc-equation" v-html="renderLatex('\\sigma_{\\bar{x}} = \\mathbf{1\\ cm}')"></div>
+                <span class="calc-desc">Resultado final</span>
+              </div>
+            </div>
             <p>Esto significa que esperamos que las medias de diferentes muestras varíen aproximadamente 1 cm alrededor de la media poblacional real.</p>
           </div>
         </div>
@@ -171,22 +197,46 @@
 
           <div class="properties-box">
             <h3>Propiedades de la Distribución Muestral de la Media</h3>
-            <ul>
-              <li>La <strong>media de las medias muestrales</strong> es igual a la media poblacional: μ<sub>x̄</sub> = μ</li>
-              <li>La <strong>desviación estándar de las medias muestrales</strong> (error estándar) es igual a la desviación estándar poblacional dividida por la raíz cuadrada del tamaño de muestra: σ<sub>x̄</sub> = σ/√n</li>
-              <li>Para muestras grandes (n ≥ 30), la distribución de las medias muestrales es aproximadamente normal, <strong>sin importar la forma de la distribución poblacional</strong></li>
-            </ul>
+            <div class="properties-list">
+              <div class="property-item">
+                <div class="property-text">
+                  La <strong>media de las medias muestrales</strong> es igual a la media poblacional:
+                </div>
+                <div class="property-formula" v-html="renderLatex('\\mu_{\\bar{x}} = \\mu')"></div>
+              </div>
+              <div class="property-item">
+                <div class="property-text">
+                  La <strong>desviación estándar de las medias muestrales</strong> (error estándar) es igual a la desviación estándar poblacional dividida por la raíz cuadrada del tamaño de muestra:
+                </div>
+                <div class="property-formula" v-html="renderLatex('\\sigma_{\\bar{x}} = \\frac{\\sigma}{\\sqrt{n}}')"></div>
+              </div>
+              <div class="property-item">
+                <div class="property-text">
+                  Para muestras grandes (n ≥ 30), la distribución de las medias muestrales es aproximadamente normal, <strong>sin importar la forma de la distribución poblacional</strong>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="example-box">
             <h3>Ejemplo Práctico</h3>
             <p>Supongamos que la estatura de los adultos en una ciudad sigue una distribución con media μ = 170 cm y desviación estándar σ = 10 cm. Si tomamos muestras de 100 personas:</p>
-            <ul>
-              <li>La media de las medias muestrales será: μ<sub>x̄</sub> = 170 cm</li>
-              <li>El error estándar será: σ<sub>x̄</sub> = 10/√100 = 1 cm</li>
-              <li>La distribución de las medias muestrales será aproximadamente normal</li>
-              <li>Aproximadamente el 95% de las medias muestrales estarán entre 168 y 172 cm</li>
-            </ul>
+            <div class="example-properties">
+              <div class="property-item">
+                <div class="property-text">La media de las medias muestrales será:</div>
+                <div class="property-formula" v-html="renderLatex('\\mu_{\\bar{x}} = 170\\ \\text{cm}')"></div>
+              </div>
+              <div class="property-item">
+                <div class="property-text">El error estándar será:</div>
+                <div class="property-formula" v-html="renderLatex('\\sigma_{\\bar{x}} = \\frac{10}{\\sqrt{100}} = 1\\ \\text{cm}')"></div>
+              </div>
+              <div class="property-item">
+                <div class="property-text">La distribución de las medias muestrales será aproximadamente normal</div>
+              </div>
+              <div class="property-item">
+                <div class="property-text">Aproximadamente el 95% de las medias muestrales estarán entre 168 y 172 cm</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -322,7 +372,7 @@
               <li>La <strong>media de todas las medias muestrales</strong> ({{ mediaMedias.toFixed(2) }}) se acerca a la media poblacional real ({{ mediaPoblacional }})</li>
               <li>La <strong>variabilidad de las medias</strong> (desviación estándar = {{ desviacionMedias.toFixed(2) }}) es menor que la variabilidad poblacional ({{ desviacionPoblacional }})</li>
               <li>El <strong>error estándar</strong> ({{ errorEstandarTeorico.toFixed(2) }}) nos dice cuánto esperamos que varíen las medias muestrales</li>
-              <li v-if="tamanoMuestra > 1">Con muestras de tamaño {{ tamanoMuestra }}, la variabilidad es aproximadamente {{ desviacionPoblacional }}/√{{ tamanoMuestra }} = {{ errorEstandarTeorico.toFixed(2) }}</li>
+              <li v-if="tamanoMuestra > 1">Con muestras de tamaño {{ tamanoMuestra }}, la variabilidad es aproximadamente <span v-html="renderLatex('\\frac{' + desviacionPoblacional + '}{\\sqrt{' + tamanoMuestra + '}} = ' + errorEstandarTeorico.toFixed(2))"></span></li>
             </ul>
 
             <div class="key-insight">
@@ -402,6 +452,8 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
 import ContentCard from '@/components/common/ContentCard.vue';
 
 // Configuración de pestañas
@@ -550,6 +602,19 @@ const histogramaBarras = computed(() => {
   return barras;
 });
 
+// Función para renderizar LaTeX
+const renderLatex = (latex: string) => {
+  try {
+    return katex.renderToString(latex, {
+      throwOnError: false,
+      displayMode: false
+    });
+  } catch (error) {
+    console.error('Error rendering LaTeX:', error);
+    return latex;
+  }
+};
+
 // Inicializar la simulación
 onMounted(() => {
   generarMuestras();
@@ -577,7 +642,6 @@ onMounted(() => {
 }
 
 .hero h1 {
-  color: #e74c3c;
   margin-bottom: 1rem;
   font-size: 2.2rem;
 }
@@ -609,7 +673,7 @@ onMounted(() => {
 }
 
 .tab.active {
-  background: #e74c3c;
+  background: var(--brand1);
   color: white;
 }
 
@@ -626,9 +690,9 @@ onMounted(() => {
 }
 
 .content-section h2 {
-  color: #e74c3c;
+  color: var(--brand1);
   margin-bottom: 1.5rem;
-  border-bottom: 2px solid #ecf0f1;
+  border-bottom: 2px solid var(--border);
   padding-bottom: 0.5rem;
 }
 
@@ -664,7 +728,7 @@ onMounted(() => {
 }
 
 .comparison-table th {
-  background-color: #e74c3c;
+  background-color: var(--brand1);
   color: white;
 }
 
@@ -695,9 +759,164 @@ onMounted(() => {
   margin: 1rem 0;
 }
 
+.formula-display {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.katex-equation {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.3rem;
+  color: var(--brand1);
+  font-weight: bold;
+}
+
 .formula-explanation {
   text-align: left;
+  margin-top: 1.5rem;
+}
+
+.formula-explanation h4 {
+  color: #27ae60;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.variables-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
   margin-top: 1rem;
+}
+
+.variable-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f8fff8;
+  border-radius: 6px;
+  border: 1px solid #d4edda;
+}
+
+.variable-symbol {
+  font-weight: bold;
+  color: var(--brand1);
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.variable-desc {
+  color: #2c3e50;
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.properties-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.property-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid var(--brand2);
+}
+
+.property-text {
+  color: #2c3e50;
+  line-height: 1.5;
+}
+
+.property-formula {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.2rem;
+  color: var(--brand1);
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.example-properties {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.calculation-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.calc-step {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid var(--brand1);
+  transition: all 0.3s ease;
+}
+
+.calc-step:hover {
+  background: #e8f4f8;
+  transform: translateX(5px);
+}
+
+.calc-step.result {
+  background: #e8f5e8;
+  border-left-color: #2ecc71;
+  font-weight: bold;
+}
+
+.calc-equation {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  flex: 1;
+}
+
+.calc-desc {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  font-style: italic;
+  margin-left: 1rem;
+  min-width: 150px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .calc-step {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .calc-desc {
+    text-align: left;
+    margin-left: 0;
+  }
+
+  .variables-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .property-item {
+    padding: 0.8rem;
+  }
 }
 
 .properties-box {
@@ -815,7 +1034,7 @@ onMounted(() => {
 
 .stat-value {
   font-weight: bold;
-  color: #e74c3c;
+  color: var(--brand1);
 }
 
 .visualization {
@@ -875,7 +1094,7 @@ onMounted(() => {
   position: absolute;
   width: 12px;
   height: 12px;
-  background: #e74c3c;
+  background: var(--brand1);
   border-radius: 50%;
   bottom: 0;
   transform: translateX(-50%);
@@ -892,7 +1111,7 @@ onMounted(() => {
 
 .mean-line .line {
   height: 100%;
-  background: #3498db;
+  background: var(--brand2);
   width: 2px;
 }
 
@@ -903,7 +1122,7 @@ onMounted(() => {
   transform: translateX(-50%);
   white-space: nowrap;
   font-size: 0.8rem;
-  color: #3498db;
+  color: var(--brand2);
   font-weight: bold;
 }
 
@@ -930,7 +1149,7 @@ onMounted(() => {
 
 .histogram-bar {
   flex: 1;
-  background: #2ecc71;
+  background: var(--brand3);
   min-width: 5px;
   position: relative;
   display: flex;
@@ -1001,12 +1220,12 @@ onMounted(() => {
 }
 
 .btn-primary {
-  background: #e74c3c;
+  background: var(--brand1);
   color: white;
 }
 
 .btn-primary:hover {
-  background: #c0392b;
+  background: var(--brand1-dark);
 }
 
 .btn-secondary {

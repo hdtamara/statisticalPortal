@@ -78,12 +78,33 @@
           </div>
 
           <div class="formula-box">
-            <h4>Fórmula de la Diferencia</h4>
-            <div class="formula">
-              Diferencia observada = x̄₁ - x̄₂
+            <h4>Fórmulas para Muestras Independientes</h4>
+            <div class="formula-display">
+              <div class="formula-item">
+                <div class="formula-label">Diferencia observada:</div>
+                <div class="formula-equation" v-html="renderLatex('\\bar{x}_1 - \\bar{x}_2')"></div>
+              </div>
+              <div class="formula-item">
+                <div class="formula-label">Error estándar:</div>
+                <div class="formula-equation" v-html="renderLatex('\\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}}')"></div>
+              </div>
             </div>
-            <div class="formula">
-              Error estándar = √(s₁²/n₁ + s₂²/n₂)
+            <div class="formula-explanation">
+              <h4>¿Qué significa cada símbolo?</h4>
+              <div class="variables-grid">
+                <div class="variable-item">
+                  <span class="variable-symbol">x̄₁, x̄₂</span>
+                  <span class="variable-desc">Medias muestrales de cada grupo</span>
+                </div>
+                <div class="variable-item">
+                  <span class="variable-symbol">s₁, s₂</span>
+                  <span class="variable-desc">Desviaciones estándar muestrales</span>
+                </div>
+                <div class="variable-item">
+                  <span class="variable-symbol">n₁, n₂</span>
+                  <span class="variable-desc">Tamaños de las muestras</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -152,11 +173,24 @@
           <div class="step">
             <h4>Paso 2: Calcular el Error Estándar de la Diferencia</h4>
             <div class="calculation">
-              <p>Error Estándar = √(s₁²/n₁ + s₂²/n₂)</p>
-
-              <p>Error Estándar = √(23.26²/12 + 18.97²/10)</p>
-
-              <p>Error Estándar = √(45.08 + 36.00) = √81.08 ≈ <strong>9.00</strong></p>
+              <div class="calc-steps">
+                <div class="calc-step">
+                  <div class="calc-equation" v-html="renderLatex('SE = \\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}}')"></div>
+                  <span class="calc-desc">Aplicamos la fórmula general</span>
+                </div>
+                <div class="calc-step">
+                  <div class="calc-equation" v-html="renderLatex('SE = \\sqrt{\\frac{23.26^2}{12} + \\frac{18.97^2}{10}}')"></div>
+                  <span class="calc-desc">Sustituimos los valores</span>
+                </div>
+                <div class="calc-step">
+                  <div class="calc-equation" v-html="renderLatex('SE = \\sqrt{45.08 + 36.00}')"></div>
+                  <span class="calc-desc">Calculamos cada fracción</span>
+                </div>
+                <div class="calc-step result">
+                  <div class="calc-equation" v-html="renderLatex('SE = \\sqrt{81.08} \\approx \\mathbf{9.00}')"></div>
+                  <span class="calc-desc">Resultado final</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -203,29 +237,42 @@
             <p>No analizamos los dos grupos por separado. En su lugar, creamos una <strong>nueva variable: la diferencia (d)</strong> para cada par.</p>
 
             <div class="formula-simple">
-              <strong>d = x<sub>después</sub> - x<sub>antes</sub></strong>
+              <div class="katex-equation" v-html="renderLatex('d = x_{\\text{después}} - x_{\\text{antes}}')"></div>
             </div>
 
             <p>Una vez que tenemos esta única columna de diferencias, <strong>nos olvidamos de los datos originales</strong> y realizamos un simple <strong>análisis de una muestra</strong> sobre estas diferencias.</p>
           </div>
 
           <div class="formula-box">
-            <h3>Fórmula para Datos Pareados</h3>
+            <h3>Fórmulas para Datos Pareados</h3>
             <p>Calculamos la media de las diferencias y su error estándar.</p>
-            <div class="formula">
-              Media de diferencias = d̄
-            </div>
-            <div class="formula">
-              Error estándar = s<sub>d</sub>/√n
+            <div class="formula-display">
+              <div class="formula-item">
+                <div class="formula-label">Media de diferencias:</div>
+                <div class="formula-equation" v-html="renderLatex('\\bar{d}')"></div>
+              </div>
+              <div class="formula-item">
+                <div class="formula-label">Error estándar:</div>
+                <div class="formula-equation" v-html="renderLatex('\\frac{s_d}{\\sqrt{n}}')"></div>
+              </div>
             </div>
 
             <div class="formula-explanation">
-              <ul>
-                <li><strong>d̄</strong>: La media de todas las diferencias que calculaste</li>
-                <li><strong>s<sub>d</sub></strong>: La desviación estándar de esas diferencias</li>
-                <li><strong>n</strong>: El número de <strong>pares</strong> (no el número total de observaciones)</li>
-                <li><strong>Error estándar</strong>: Mide la variabilidad en la diferencia media</li>
-              </ul>
+              <h4>¿Qué significa cada símbolo?</h4>
+              <div class="variables-grid">
+                <div class="variable-item">
+                  <span class="variable-symbol">d̄</span>
+                  <span class="variable-desc">Media de todas las diferencias</span>
+                </div>
+                <div class="variable-item">
+                  <span class="variable-symbol">s_d</span>
+                  <span class="variable-desc">Desviación estándar de las diferencias</span>
+                </div>
+                <div class="variable-item">
+                  <span class="variable-symbol">n</span>
+                  <span class="variable-desc">Número de pares (no observaciones totales)</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -281,7 +328,24 @@
           <div class="step">
             <h4>Paso 2: Calcular el Error Estándar de la Diferencia</h4>
             <div class="calculation">
-              <p>Error Estándar = s<sub>d</sub>/√n = 6.35/√8 ≈ 6.35/2.828 ≈ <strong>2.25</strong></p>
+              <div class="calc-steps">
+                <div class="calc-step">
+                  <div class="calc-equation" v-html="renderLatex('SE = \\frac{s_d}{\\sqrt{n}}')"></div>
+                  <span class="calc-desc">Aplicamos la fórmula para datos pareados</span>
+                </div>
+                <div class="calc-step">
+                  <div class="calc-equation" v-html="renderLatex('SE = \\frac{6.35}{\\sqrt{8}}')"></div>
+                  <span class="calc-desc">Sustituimos los valores</span>
+                </div>
+                <div class="calc-step">
+                  <div class="calc-equation" v-html="renderLatex('SE = \\frac{6.35}{2.828} \\approx 2.25')"></div>
+                  <span class="calc-desc">Calculamos la raíz cuadrada</span>
+                </div>
+                <div class="calc-step result">
+                  <div class="calc-equation" v-html="renderLatex('SE \\approx \\mathbf{2.25}')"></div>
+                  <span class="calc-desc">Resultado final</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -392,8 +456,14 @@
               </tr>
               <tr>
                 <td><strong>Fórmula de la diferencia</strong></td>
-                <td>Diferencia = x̄₁ - x̄₂<br>Error estándar = √(s₁²/n₁ + s₂²/n₂)</td>
-                <td>Media de diferencias = d̄<br>Error estándar = s<sub>d</sub>/√n</td>
+                <td>
+                  <div class="table-formula" v-html="renderLatex('\\bar{x}_1 - \\bar{x}_2')"></div>
+                  <div class="table-formula" v-html="renderLatex('\\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}}')"></div>
+                </td>
+                <td>
+                  <div class="table-formula" v-html="renderLatex('\\bar{d}')"></div>
+                  <div class="table-formula" v-html="renderLatex('\\frac{s_d}{\\sqrt{n}}')"></div>
+                </td>
               </tr>
               <tr>
                 <td><strong>Ventaja principal</strong></td>
@@ -481,6 +551,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
 import ContentCard from '@/components/common/ContentCard.vue';
 
 // Configuración de pestañas
@@ -495,6 +567,19 @@ const tabs = [
 ];
 
 const activeTab = ref('introduccion');
+
+// Función para renderizar LaTeX
+const renderLatex = (latex: string) => {
+  try {
+    return katex.renderToString(latex, {
+      throwOnError: false,
+      displayMode: false
+    });
+  } catch (error) {
+    console.error('Error rendering LaTeX:', error);
+    return latex;
+  }
+};
 
 // Función para ejecutar la simulación
 const ejecutarSimulacion = async () => {
@@ -648,7 +733,6 @@ const diferenciasColesterol = [15, 15, 7, 20, 8, 17, 20, 3];
 }
 
 .hero h1 {
-  color: #e74c3c;
   margin-bottom: 1rem;
   font-size: 2.2rem;
 }
@@ -681,7 +765,7 @@ const diferenciasColesterol = [15, 15, 7, 20, 8, 17, 20, 3];
 }
 
 .tab.active {
-  background: #e74c3c;
+  background: var(--brand1);
   color: white;
 }
 
@@ -698,9 +782,9 @@ const diferenciasColesterol = [15, 15, 7, 20, 8, 17, 20, 3];
 }
 
 .content-section h2 {
-  color: #e74c3c;
+  color: var(--brand1);
   margin-bottom: 1.5rem;
-  border-bottom: 2px solid #ecf0f1;
+  border-bottom: 2px solid var(--border);
   padding-bottom: 0.5rem;
 }
 
@@ -996,16 +1080,164 @@ const diferenciasColesterol = [15, 15, 7, 20, 8, 17, 20, 3];
   border-radius: 4px;
 }
 
+.formula-display {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.formula-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  border-left: 3px solid var(--brand1);
+}
+
+.formula-label {
+  font-weight: 500;
+  color: #2c3e50;
+  flex: 1;
+}
+
+.formula-equation {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.2rem;
+  color: var(--brand1);
+  font-weight: bold;
+  flex: 1;
+  text-align: right;
+}
+
+.katex-equation {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.3rem;
+  color: var(--brand1);
+  font-weight: bold;
+}
+
 .formula-explanation {
+  margin-top: 1.5rem;
+}
+
+.formula-explanation h4 {
+  color: #27ae60;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.variables-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
   margin-top: 1rem;
 }
 
-.formula-explanation ul {
-  margin-left: 1.5rem;
+.variable-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f8fff8;
+  border-radius: 6px;
+  border: 1px solid #d4edda;
 }
 
-.formula-explanation li {
-  margin-bottom: 0.5rem;
+.variable-symbol {
+  font-weight: bold;
+  color: var(--brand1);
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.variable-desc {
+  color: #2c3e50;
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.calc-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.calc-step {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid var(--brand1);
+  transition: all 0.3s ease;
+}
+
+.calc-step:hover {
+  background: #e8f4f8;
+  transform: translateX(5px);
+}
+
+.calc-step.result {
+  background: #e8f5e8;
+  border-left-color: #2ecc71;
+  font-weight: bold;
+}
+
+.calc-equation {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  flex: 1;
+}
+
+.calc-desc {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  font-style: italic;
+  margin-left: 1rem;
+  min-width: 150px;
+  text-align: right;
+}
+
+.table-formula {
+  font-family: 'Times New Roman', serif;
+  font-size: 0.9rem;
+  color: var(--brand1);
+  font-weight: bold;
+  margin: 0.2rem 0;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .calc-step {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .calc-desc {
+    text-align: left;
+    margin-left: 0;
+  }
+
+  .formula-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .formula-equation {
+    text-align: left;
+  }
+
+  .variables-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .comparison-table {

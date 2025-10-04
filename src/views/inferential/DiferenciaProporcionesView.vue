@@ -1,8 +1,8 @@
 <template>
   <div class="diferencia-proporciones-view">
-    <div class="container">
+    <div class="view-container">
       <div class="hero">
-        <h1>Distribución Muestral de la Diferencia de Proporciones 📊</h1>
+        <h1 class="gradient-text">Distribución Muestral de la Diferencia de Proporciones 📊</h1>
         <p>Aprende a explorar cómo se comporta la diferencia entre dos proporciones cuando repetimos el proceso de muestreo</p>
       </div>
 
@@ -19,7 +19,7 @@
       </div>
 
       <!-- INTRODUCCIÓN -->
-      <div v-if="activeTab === 'introduccion'" class="content-section">
+      <div v-if="activeTab === 'introduccion'" class="content-section modern-card card-shadow">
         <h2>1. ¿Cuál es la idea principal?</h2>
 
         <div class="intro-content">
@@ -53,7 +53,7 @@
       </div>
 
       <!-- INGREDIENTES CLAVE -->
-      <div v-if="activeTab === 'ingredientes'" class="content-section">
+      <div v-if="activeTab === 'ingredientes'" class="content-section modern-card card-shadow">
         <h2>2. Los Ingredientes Clave</h2>
 
         <div class="theory-content">
@@ -87,7 +87,7 @@
       </div>
 
       <!-- DISTRIBUCIÓN Y VARIABILIDAD -->
-      <div v-if="activeTab === 'distribucion'" class="content-section">
+      <div v-if="activeTab === 'distribucion'" class="content-section modern-card card-shadow">
         <h2>3. La Distribución de las Diferencias y su Variabilidad</h2>
 
         <div class="theory-content">
@@ -133,7 +133,7 @@
       </div>
 
       <!-- EJEMPLO PRÁCTICO -->
-      <div v-if="activeTab === 'ejemplo'" class="content-section">
+      <div v-if="activeTab === 'ejemplo'" class="content-section modern-card card-shadow">
         <h2>4. Ejemplo Práctico: Campaña de Marketing 📧</h2>
 
         <div class="example-scenario">
@@ -216,7 +216,7 @@
       </div>
 
       <!-- SIMULACIÓN -->
-      <div v-if="activeTab === 'simulacion'" class="content-section">
+      <div v-if="activeTab === 'simulacion'" class="content-section modern-card card-shadow">
         <h2>Simulación: Distribución de Diferencias de Proporciones</h2>
 
         <div class="explanation-box">
@@ -445,7 +445,6 @@ const errorEstandarCalculado = ref(0.065);
 }
 
 .hero h1 {
-  color: #e74c3c;
   margin-bottom: 1rem;
   font-size: 2.2rem;
 }
@@ -478,7 +477,7 @@ const errorEstandarCalculado = ref(0.065);
 }
 
 .tab.active {
-  background: #e74c3c;
+  background: var(--brand1);
   color: white;
 }
 
@@ -495,9 +494,9 @@ const errorEstandarCalculado = ref(0.065);
 }
 
 .content-section h2 {
-  color: #e74c3c;
+  color: var(--brand1);
   margin-bottom: 1.5rem;
-  border-bottom: 2px solid #ecf0f1;
+  border-bottom: 2px solid var(--border);
   padding-bottom: 0.5rem;
 }
 
@@ -739,7 +738,7 @@ const errorEstandarCalculado = ref(0.065);
 }
 
 .formula-var {
-  color: #e74c3c;
+  color: var(--brand1);
   font-weight: bold;
 }
 
@@ -843,7 +842,7 @@ const errorEstandarCalculado = ref(0.065);
 
 .data-card h4 {
   margin-top: 0;
-  color: #155724;
+  color: var(--success);
   margin-bottom: 1rem;
 }
 
@@ -1024,7 +1023,7 @@ const errorEstandarCalculado = ref(0.065);
 .stat-value {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #e74c3c;
+  color: var(--brand1);
   margin: 0;
 }
 
@@ -1080,12 +1079,12 @@ const errorEstandarCalculado = ref(0.065);
 }
 
 .btn-primary {
-  background: #e74c3c;
+  background: var(--brand1);
   color: white;
 }
 
 .btn-primary:hover {
-  background: #c0392b;
+  background: var(--brand1-dark);
 }
 
 @media (max-width: 768px) {

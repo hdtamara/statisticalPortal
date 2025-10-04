@@ -65,10 +65,10 @@ const buttonClass = computed(() => ({
 </script>
 <style scoped>
 .card-descriptive .card-header {
-  background: var(--secondary);
+  background: var(--brand2); /* Índigo */
 }
 
 .card-inferential .card-header {
-  background: var(--accent);
+  background: var(--brand3); /* Teal */
 }
 </style>

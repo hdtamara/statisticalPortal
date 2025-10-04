@@ -40,7 +40,7 @@
 
 <style scoped>
 header {
-  background: linear-gradient(135deg, var(--primary), var(--dark));
+  background: var(--brand-gradient);
   color: white;
   padding: 1.5rem;
   box-shadow: var(--shadow);

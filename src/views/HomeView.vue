@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="view-container">
     <div class="hero">
-      <h1>Bienvenido al Portal de Estadística</h1>
+      <h1 class="gradient-text">Bienvenido al Portal de Estadística</h1>
       <p>Descubre los fundamentos de la estadística y cómo se aplica en la investigación y el análisis de datos. Explora los diferentes tipos de estadística y sus aplicaciones prácticas.</p>
     </div>
 
