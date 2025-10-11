@@ -75,6 +75,11 @@ const router = createRouter({
       path: '/inferencial/diferencia-proporciones',
       name: 'difference-proportions',
       component: () => import('@/views/inferential/DiferenciaProporcionesView.vue'),
+    },
+    {
+      path: '/inferencial/estimacion-parametros',
+      name: 'parameter-estimation',
+      component: () => import('@/views/inferential/EstimacionParametrosView.vue'),
     }
   ],
 })

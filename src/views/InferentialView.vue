@@ -52,12 +52,15 @@
       button-text="Explorar"
       :router-link="'/inferencial/diferencia-proporciones'"
     />
-      <!-- <ContentCard
-        title="Estimación de Parámetros"
-        content="Métodos para estimar valores poblacionales usando datos muestrales, incluyendo estimación puntual e intervalos de confianza."
-        :show-button="true"
-        button-text="Explorar"
-      />
+
+    <ContentCard
+      title="Estimación de Parámetros"
+      content="Métodos para estimar valores poblacionales usando datos muestrales. Aprende sobre estimación puntual vs intervalos de confianza, y cómo construir intervalos para la media poblacional con σ conocida y desconocida."
+      :show-button="true"
+      button-text="Explorar"
+      :router-link="'/inferencial/estimacion-parametros'"
+    />
+      <!--
 
       <ContentCard
         title="Pruebas de Hipótesis"
