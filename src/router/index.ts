@@ -52,6 +52,21 @@ const router = createRouter({
       component: () => import('@/views/descriptive/InstrumentosRecoleccionDatosView.vue'),
     },
     {
+      path: '/descriptiva/medidas-tendencia-central',
+      name: 'central-tendency-measures',
+      component: () => import('@/views/descriptive/MedidasTendenciaCentralView.vue'),
+    },
+    {
+      path: '/descriptiva/medidas-dispersion',
+      name: 'dispersion-measures',
+      component: () => import('@/views/descriptive/MedidasDispersionView.vue'),
+    },
+    {
+      path: '/descriptiva/ejercicio-completo',
+      name: 'complete-exercise',
+      component: () => import('@/views/descriptive/EjercicioCompletoView.vue'),
+    },
+    {
       path: '/inferencial/distribuciones-muestrales',
       name: 'sampling-distributions',
       component: () => import('@/views/inferential/DistribucionesMuestralesView.vue'),
@@ -80,7 +95,7 @@ const router = createRouter({
       path: '/inferencial/estimacion-parametros',
       name: 'parameter-estimation',
       component: () => import('@/views/inferential/EstimacionParametrosView.vue'),
-    }
+    },
   ],
 })
 

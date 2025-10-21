@@ -2,12 +2,20 @@
   <div class="container">
     <div class="hero">
       <h1>Estadística Descriptiva</h1>
-      <p>La estadística descriptiva se encarga de resumir, organizar y presentar datos de manera significativa para facilitar su interpretación.</p>
+      <p>
+        La estadística descriptiva se encarga de resumir, organizar y presentar datos de manera
+        significativa para facilitar su interpretación.
+      </p>
     </div>
 
     <div class="intro-content">
       <h2>¿Qué es la Estadística Descriptiva?</h2>
-      <p>La estadística descriptiva es la rama de la estadística que se dedica a describir y resumir conjuntos de datos. Utiliza diversas técnicas para organizar la información, calcular medidas representativas y crear visualizaciones que permitan comprender las características principales de los datos.</p>
+      <p>
+        La estadística descriptiva es la rama de la estadística que se dedica a describir y resumir
+        conjuntos de datos. Utiliza diversas técnicas para organizar la información, calcular
+        medidas representativas y crear visualizaciones que permitan comprender las características
+        principales de los datos.
+      </p>
 
       <h3>Técnicas principales</h3>
       <ul>
@@ -57,16 +65,25 @@
         :router-link="'/descriptiva/instrumentos-recoleccion-datos'"
       />
 
-      <!-- <ContentCard
+      <ContentCard
         title="Medidas de Tendencia Central"
-        content="Valores que representan el centro de un conjunto de datos: media, mediana y moda."
+        content="Valores que representan el centro de un conjunto de datos: media, mediana y moda. Aprende cuándo usar cada una."
         :show-button="true"
         button-text="Explorar"
-      /> -->
+        :router-link="'/descriptiva/medidas-tendencia-central'"
+      />
+
+      <ContentCard
+        title="Medidas de Dispersión"
+        content="Indicadores de variabilidad de los datos: rango, varianza y desviación estándar. Comprende la dispersión de tus datos."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/descriptiva/medidas-dispersion'"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import ContentCard from '@/components/common/ContentCard.vue';
+import ContentCard from '@/components/common/ContentCard.vue'
 </script>

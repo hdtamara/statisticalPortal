@@ -4,8 +4,9 @@
       <div class="hero">
         <h1>Estimación de Parámetros e Intervalos de Confianza</h1>
         <p>
-          La estimación estadística nos permite hacer inferencias sobre parámetros poblacionales desconocidos usando información de una muestra.
-          Aprende la diferencia entre estimación puntual e intervalos de confianza, y cómo construir intervalos para la media poblacional.
+          La estimación estadística nos permite hacer inferencias sobre parámetros poblacionales
+          desconocidos usando información de una muestra. Aprende la diferencia entre estimación
+          puntual e intervalos de confianza, y cómo construir intervalos para la media poblacional.
         </p>
       </div>
 
@@ -24,7 +25,11 @@
       <!-- INTRODUCCIÓN A LA ESTIMACIÓN -->
       <div v-if="activeTab === 'introduccion'" class="content-section">
         <h2>Introducción a la Estimación</h2>
-        <p>En estadística inferencial, rara vez conocemos los parámetros poblacionales exactos (como μ, σ, p). La estimación nos permite usar datos muestrales para hacer conjeturas educadas sobre estos valores desconocidos.</p>
+        <p>
+          En estadística inferencial, rara vez conocemos los parámetros poblacionales exactos (como
+          μ, σ, p). La estimación nos permite usar datos muestrales para hacer conjeturas educadas
+          sobre estos valores desconocidos.
+        </p>
 
         <div class="theory-content">
           <div class="definition-box">
@@ -32,7 +37,10 @@
             <div class="parameter-comparison">
               <div class="parameter-card">
                 <h4>📊 Parámetro</h4>
-                <p><strong>Definición:</strong> Valor numérico que describe una característica de toda la población.</p>
+                <p>
+                  <strong>Definición:</strong> Valor numérico que describe una característica de
+                  toda la población.
+                </p>
                 <p><strong>Ejemplos:</strong></p>
                 <ul>
                   <li>μ (mu): Media poblacional</li>
@@ -44,7 +52,10 @@
 
               <div class="parameter-card">
                 <h4>🎯 Estadístico</h4>
-                <p><strong>Definición:</strong> Valor numérico calculado a partir de datos muestrales.</p>
+                <p>
+                  <strong>Definición:</strong> Valor numérico calculado a partir de datos
+                  muestrales.
+                </p>
                 <p><strong>Ejemplos:</strong></p>
                 <ul>
                   <li>x̄ (x-barra): Media muestral</li>
@@ -61,7 +72,10 @@
             <div class="estimation-cards">
               <div class="estimation-card">
                 <h4>🎯 Estimación Puntual</h4>
-                <p><strong>¿Qué es?</strong> Un solo valor que se usa como la "mejor conjetura" del parámetro poblacional.</p>
+                <p>
+                  <strong>¿Qué es?</strong> Un solo valor que se usa como la "mejor conjetura" del
+                  parámetro poblacional.
+                </p>
                 <p><strong>Ejemplo:</strong> Si x̄ = 85, entonces estimamos que μ = 85</p>
                 <div class="pros-cons">
                   <div class="pros">
@@ -85,7 +99,10 @@
 
               <div class="estimation-card">
                 <h4>📏 Estimación por Intervalos</h4>
-                <p><strong>¿Qué es?</strong> Un rango de valores plausibles para el parámetro poblacional, junto con un nivel de confianza.</p>
+                <p>
+                  <strong>¿Qué es?</strong> Un rango de valores plausibles para el parámetro
+                  poblacional, junto con un nivel de confianza.
+                </p>
                 <p><strong>Ejemplo:</strong> "Estamos 95% seguros de que μ está entre 82 y 88"</p>
                 <div class="pros-cons">
                   <div class="pros">
@@ -117,17 +134,26 @@
                 <p>El valor esperado del estimador es igual al parámetro que estima.</p>
                 <p><strong>Matemáticamente:</strong></p>
                 <div class="formula-display">
-                  <div class="katex-equation" v-html="renderLatex('E[\\hat{\\theta}] = \\theta')"></div>
+                  <div
+                    class="katex-equation"
+                    v-html="renderLatex('E[\\hat{\\theta}] = \\theta')"
+                  ></div>
                 </div>
                 <p><strong>Ejemplo:</strong> x̄ es un estimador insesgado de μ</p>
               </div>
 
               <div class="property-card">
                 <h4>🎪 Consistente</h4>
-                <p>A medida que aumenta el tamaño de la muestra, el estimador se acerca al parámetro verdadero.</p>
+                <p>
+                  A medida que aumenta el tamaño de la muestra, el estimador se acerca al parámetro
+                  verdadero.
+                </p>
                 <p><strong>Ejemplo:</strong></p>
                 <div class="formula-display">
-                  <div class="katex-equation" v-html="renderLatex('n \\to \\infty \\implies \\bar{x} \\to \\mu')"></div>
+                  <div
+                    class="katex-equation"
+                    v-html="renderLatex('n \\to \\infty \\implies \\bar{x} \\to \\mu')"
+                  ></div>
                 </div>
               </div>
 
@@ -143,7 +169,10 @@
         <div class="examples-section">
           <h3>Ejemplo Práctico: Estimación Puntual</h3>
           <div class="example-scenario">
-            <p><strong>Escenario:</strong> Una empresa quiere estimar el tiempo promedio que sus empleados tardan en completar una tarea específica.</p>
+            <p>
+              <strong>Escenario:</strong> Una empresa quiere estimar el tiempo promedio que sus
+              empleados tardan en completar una tarea específica.
+            </p>
 
             <div class="example-details">
               <h4>Datos de la muestra:</h4>
@@ -167,7 +196,11 @@
 
               <div class="interpretation">
                 <h4>Interpretación:</h4>
-                <p>Basándose en esta muestra, estimamos que el tiempo promedio poblacional para completar la tarea es de 24.5 minutos. Sin embargo, esta es solo nuestra "mejor conjetura" - el valor real podría ser diferente.</p>
+                <p>
+                  Basándose en esta muestra, estimamos que el tiempo promedio poblacional para
+                  completar la tarea es de 24.5 minutos. Sin embargo, esta es solo nuestra "mejor
+                  conjetura" - el valor real podría ser diferente.
+                </p>
               </div>
             </div>
           </div>
@@ -177,12 +210,20 @@
       <!-- INTERVALOS DE CONFIANZA -->
       <div v-if="activeTab === 'intervalos'" class="content-section">
         <h2>Intervalos de Confianza para la Media Poblacional</h2>
-        <p>Un intervalo de confianza proporciona un rango de valores plausibles para un parámetro poblacional, junto con un nivel de confianza que indica qué tan seguros estamos de que el parámetro verdadero esté dentro de ese rango.</p>
+        <p>
+          Un intervalo de confianza proporciona un rango de valores plausibles para un parámetro
+          poblacional, junto con un nivel de confianza que indica qué tan seguros estamos de que el
+          parámetro verdadero esté dentro de ese rango.
+        </p>
 
         <div class="theory-content">
           <div class="definition-box">
             <h3>¿Qué significa "95% de confianza"?</h3>
-            <p>Si construyéramos 100 intervalos de confianza del 95% usando diferentes muestras de la misma población, esperaríamos que aproximadamente 95 de esos intervalos contengan el parámetro poblacional verdadero.</p>
+            <p>
+              Si construyéramos 100 intervalos de confianza del 95% usando diferentes muestras de la
+              misma población, esperaríamos que aproximadamente 95 de esos intervalos contengan el
+              parámetro poblacional verdadero.
+            </p>
 
             <div class="confidence-visualization">
               <h4>Visualización Conceptual:</h4>
@@ -194,7 +235,10 @@
                 <div class="interval-line correct">Intervalo 5: [22.9, 27.7] ✓</div>
                 <div class="true-mean">μ verdadero = 25.0</div>
               </div>
-              <p class="visualization-note">En este ejemplo, 4 de 5 intervalos (80%) contienen μ = 25.0. Con más intervalos, esperaríamos que aproximadamente 95% lo contengan.</p>
+              <p class="visualization-note">
+                En este ejemplo, 4 de 5 intervalos (80%) contienen μ = 25.0. Con más intervalos,
+                esperaríamos que aproximadamente 95% lo contengan.
+              </p>
             </div>
           </div>
 
@@ -229,10 +273,22 @@
             <div class="formula-section">
               <div class="formula-container">
                 <div class="formula">
-                  <div class="katex-equation" v-html="renderLatex('\\text{IC} = \\text{Estimador} \\pm \\text{Margen de Error}')"></div>
+                  <div
+                    class="katex-equation"
+                    v-html="
+                      renderLatex('\\text{IC} = \\text{Estimador} \\pm \\text{Margen de Error}')
+                    "
+                  ></div>
                 </div>
                 <div class="formula-detailed">
-                  <div class="katex-equation" v-html="renderLatex('\\text{IC} = \\bar{x} \\pm (\\text{Valor Crítico} \\times \\text{Error Estándar})')"></div>
+                  <div
+                    class="katex-equation"
+                    v-html="
+                      renderLatex(
+                        '\\text{IC} = \\bar{x} \\pm (\\text{Valor Crítico} \\times \\text{Error Estándar})',
+                      )
+                    "
+                  ></div>
                 </div>
               </div>
             </div>
@@ -263,23 +319,48 @@
       <!-- CASO SIGMA CONOCIDA -->
       <div v-if="activeTab === 'sigma-conocida'" class="content-section">
         <h2>Intervalos de Confianza: σ Conocida (Distribución Z)</h2>
-        <p>Cuando conocemos la desviación estándar poblacional (σ), usamos la distribución normal estándar (Z) para construir intervalos de confianza.</p>
+        <p>
+          Cuando conocemos la desviación estándar poblacional (σ), usamos la distribución normal
+          estándar (Z) para construir intervalos de confianza.
+        </p>
 
         <div class="theory-content">
           <div class="formula-section">
             <h3>Fórmula del Intervalo de Confianza (σ conocida)</h3>
             <div class="formula-container">
               <div class="formula">
-                <div class="katex-equation" v-html="renderLatex('\\text{IC} = \\bar{x} \\pm Z_{\\alpha/2} \\times \\left(\\frac{\\sigma}{\\sqrt{n}}\\right)')"></div>
+                <div
+                  class="katex-equation"
+                  v-html="
+                    renderLatex(
+                      '\\text{IC} = \\bar{x} \\pm Z_{\\alpha/2} \\times \\left(\\frac{\\sigma}{\\sqrt{n}}\\right)',
+                    )
+                  "
+                ></div>
               </div>
               <div class="formula-explanation">
                 <p>Donde:</p>
                 <ul>
-                  <li><strong><span v-html="renderLatex('\\bar{x}')"></span></strong> = Media muestral</li>
-                  <li><strong><span v-html="renderLatex('Z_{\\alpha/2}')"></span></strong> = Valor crítico de Z para el nivel de confianza deseado</li>
-                  <li><strong><span v-html="renderLatex('\\sigma')"></span></strong> = Desviación estándar poblacional (conocida)</li>
-                  <li><strong><span v-html="renderLatex('n')"></span></strong> = Tamaño de la muestra</li>
-                  <li><strong><span v-html="renderLatex('\\frac{\\sigma}{\\sqrt{n}}')"></span></strong> = Error estándar de la media</li>
+                  <li>
+                    <strong><span v-html="renderLatex('\\bar{x}')"></span></strong> = Media muestral
+                  </li>
+                  <li>
+                    <strong><span v-html="renderLatex('Z_{\\alpha/2}')"></span></strong> = Valor
+                    crítico de Z para el nivel de confianza deseado
+                  </li>
+                  <li>
+                    <strong><span v-html="renderLatex('\\sigma')"></span></strong> = Desviación
+                    estándar poblacional (conocida)
+                  </li>
+                  <li>
+                    <strong><span v-html="renderLatex('n')"></span></strong> = Tamaño de la muestra
+                  </li>
+                  <li>
+                    <strong
+                      ><span v-html="renderLatex('\\frac{\\sigma}{\\sqrt{n}}')"></span
+                    ></strong>
+                    = Error estándar de la media
+                  </li>
                 </ul>
               </div>
             </div>
@@ -325,17 +406,17 @@
             <div class="calculator-controls">
               <div class="control-group">
                 <label for="z-sample-mean">Media Muestral (x̄):</label>
-                <input type="number" id="z-sample-mean" v-model="zSampleMean" step="0.1">
+                <input type="number" id="z-sample-mean" v-model="zSampleMean" step="0.1" />
               </div>
 
               <div class="control-group">
                 <label for="z-sigma">Desviación Estándar Poblacional (σ):</label>
-                <input type="number" id="z-sigma" v-model="zSigma" step="0.1" min="0.1">
+                <input type="number" id="z-sigma" v-model="zSigma" step="0.1" min="0.1" />
               </div>
 
               <div class="control-group">
                 <label for="z-sample-size">Tamaño de Muestra (n):</label>
-                <input type="number" id="z-sample-size" v-model="zSampleSize" min="1">
+                <input type="number" id="z-sample-size" v-model="zSampleSize" min="1" />
               </div>
 
               <div class="control-group">
@@ -356,7 +437,9 @@
                   <span class="result-value">{{ standardError.toFixed(4) }}</span>
                 </div>
                 <div class="result-item">
-                  <span class="result-label">Valor Crítico (<span v-html="renderLatex('Z_{\\alpha/2}')"></span>):</span>
+                  <span class="result-label"
+                    >Valor Crítico (<span v-html="renderLatex('Z_{\\alpha/2}')"></span>):</span
+                  >
                   <span class="result-value">{{ criticalValue.toFixed(3) }}</span>
                 </div>
                 <div class="result-item">
@@ -365,10 +448,16 @@
                 </div>
                 <div class="result-item interval-result">
                   <span class="result-label">Intervalo de Confianza {{ zConfidence }}%:</span>
-                  <span class="result-value">[{{ lowerBound.toFixed(3) }}, {{ upperBound.toFixed(3) }}]</span>
+                  <span class="result-value"
+                    >[{{ lowerBound.toFixed(3) }}, {{ upperBound.toFixed(3) }}]</span
+                  >
                 </div>
                 <div class="interpretation">
-                  <p><strong>Interpretación:</strong> Estamos {{ zConfidence }}% seguros de que la media poblacional (μ) está entre {{ lowerBound.toFixed(3) }} y {{ upperBound.toFixed(3) }}.</p>
+                  <p>
+                    <strong>Interpretación:</strong> Estamos {{ zConfidence }}% seguros de que la
+                    media poblacional (μ) está entre {{ lowerBound.toFixed(3) }} y
+                    {{ upperBound.toFixed(3) }}.
+                  </p>
                 </div>
               </div>
             </div>
@@ -378,7 +467,12 @@
         <div class="examples-section">
           <h3>Ejemplo Paso a Paso (σ conocida)</h3>
           <div class="example-scenario">
-            <p><strong>Problema:</strong> Una máquina llena bolsas de café. Se sabe que la desviación estándar del peso es σ = 2.5 gramos. Una muestra de 36 bolsas tiene un peso promedio de 250.3 gramos. Construye un intervalo de confianza del 95% para el peso promedio poblacional.</p>
+            <p>
+              <strong>Problema:</strong> Una máquina llena bolsas de café. Se sabe que la desviación
+              estándar del peso es σ = 2.5 gramos. Una muestra de 36 bolsas tiene un peso promedio
+              de 250.3 gramos. Construye un intervalo de confianza del 95% para el peso promedio
+              poblacional.
+            </p>
 
             <div class="step-by-step">
               <div class="step">
@@ -413,7 +507,10 @@
 
               <div class="step conclusion">
                 <h4>Conclusión:</h4>
-                <p>Estamos 95% seguros de que el peso promedio poblacional de las bolsas de café está entre 249.48 y 251.12 gramos.</p>
+                <p>
+                  Estamos 95% seguros de que el peso promedio poblacional de las bolsas de café está
+                  entre 249.48 y 251.12 gramos.
+                </p>
               </div>
             </div>
           </div>
@@ -423,23 +520,46 @@
       <!-- CASO SIGMA DESCONOCIDA -->
       <div v-if="activeTab === 'sigma-desconocida'" class="content-section">
         <h2>Intervalos de Confianza: σ Desconocida (Distribución t)</h2>
-        <p>En la mayoría de situaciones reales, no conocemos σ. En estos casos, la estimamos con s (desviación estándar muestral) y usamos la distribución t de Student.</p>
+        <p>
+          En la mayoría de situaciones reales, no conocemos σ. En estos casos, la estimamos con s
+          (desviación estándar muestral) y usamos la distribución t de Student.
+        </p>
 
         <div class="theory-content">
           <div class="formula-section">
             <h3>Fórmula del Intervalo de Confianza (σ desconocida)</h3>
             <div class="formula-container">
               <div class="formula">
-                <div class="katex-equation" v-html="renderLatex('\\text{IC} = \\bar{x} \\pm t_{\\alpha/2,\\text{gl}} \\times \\left(\\frac{s}{\\sqrt{n}}\\right)')"></div>
+                <div
+                  class="katex-equation"
+                  v-html="
+                    renderLatex(
+                      '\\text{IC} = \\bar{x} \\pm t_{\\alpha/2,\\text{gl}} \\times \\left(\\frac{s}{\\sqrt{n}}\\right)',
+                    )
+                  "
+                ></div>
               </div>
               <div class="formula-explanation">
                 <p>Donde:</p>
                 <ul>
-                  <li><strong><span v-html="renderLatex('\\bar{x}')"></span></strong> = Media muestral</li>
-                  <li><strong><span v-html="renderLatex('t_{\\alpha/2,\\text{gl}}')"></span></strong> = Valor crítico de t con gl = n-1 grados de libertad</li>
-                  <li><strong><span v-html="renderLatex('s')"></span></strong> = Desviación estándar muestral</li>
-                  <li><strong><span v-html="renderLatex('n')"></span></strong> = Tamaño de la muestra</li>
-                  <li><strong><span v-html="renderLatex('\\text{gl} = n-1')"></span></strong> = Grados de libertad</li>
+                  <li>
+                    <strong><span v-html="renderLatex('\\bar{x}')"></span></strong> = Media muestral
+                  </li>
+                  <li>
+                    <strong><span v-html="renderLatex('t_{\\alpha/2,\\text{gl}}')"></span></strong>
+                    = Valor crítico de t con gl = n-1 grados de libertad
+                  </li>
+                  <li>
+                    <strong><span v-html="renderLatex('s')"></span></strong> = Desviación estándar
+                    muestral
+                  </li>
+                  <li>
+                    <strong><span v-html="renderLatex('n')"></span></strong> = Tamaño de la muestra
+                  </li>
+                  <li>
+                    <strong><span v-html="renderLatex('\\text{gl} = n-1')"></span></strong> = Grados
+                    de libertad
+                  </li>
                 </ul>
               </div>
             </div>
@@ -450,12 +570,18 @@
             <div class="reason-cards">
               <div class="reason-card">
                 <h4>🎯 Incertidumbre Adicional</h4>
-                <p>Al usar s en lugar de σ, introducimos incertidumbre adicional que debe ser considerada.</p>
+                <p>
+                  Al usar s en lugar de σ, introducimos incertidumbre adicional que debe ser
+                  considerada.
+                </p>
               </div>
 
               <div class="reason-card">
                 <h4>📊 Colas Más Pesadas</h4>
-                <p>La distribución t tiene colas más pesadas que la normal, reflejando mayor variabilidad.</p>
+                <p>
+                  La distribución t tiene colas más pesadas que la normal, reflejando mayor
+                  variabilidad.
+                </p>
               </div>
 
               <div class="reason-card">
@@ -471,17 +597,17 @@
             <div class="calculator-controls">
               <div class="control-group">
                 <label for="t-sample-mean">Media Muestral (x̄):</label>
-                <input type="number" id="t-sample-mean" v-model="tSampleMean" step="0.1">
+                <input type="number" id="t-sample-mean" v-model="tSampleMean" step="0.1" />
               </div>
 
               <div class="control-group">
                 <label for="t-sample-std">Desviación Estándar Muestral (s):</label>
-                <input type="number" id="t-sample-std" v-model="tSampleStd" step="0.1" min="0.1">
+                <input type="number" id="t-sample-std" v-model="tSampleStd" step="0.1" min="0.1" />
               </div>
 
               <div class="control-group">
                 <label for="t-sample-size">Tamaño de Muestra (n):</label>
-                <input type="number" id="t-sample-size" v-model="tSampleSize" min="2">
+                <input type="number" id="t-sample-size" v-model="tSampleSize" min="2" />
               </div>
 
               <div class="control-group">
@@ -506,7 +632,9 @@
                   <span class="result-value">{{ tStandardError.toFixed(4) }}</span>
                 </div>
                 <div class="result-item">
-                  <span class="result-label">Valor Crítico (<span v-html="renderLatex('t_{\\alpha/2}')"></span>):</span>
+                  <span class="result-label"
+                    >Valor Crítico (<span v-html="renderLatex('t_{\\alpha/2}')"></span>):</span
+                  >
                   <span class="result-value">{{ tCriticalValue.toFixed(3) }}</span>
                 </div>
                 <div class="result-item">
@@ -515,10 +643,16 @@
                 </div>
                 <div class="result-item interval-result">
                   <span class="result-label">Intervalo de Confianza {{ tConfidence }}%:</span>
-                  <span class="result-value">[{{ tLowerBound.toFixed(3) }}, {{ tUpperBound.toFixed(3) }}]</span>
+                  <span class="result-value"
+                    >[{{ tLowerBound.toFixed(3) }}, {{ tUpperBound.toFixed(3) }}]</span
+                  >
                 </div>
                 <div class="interpretation">
-                  <p><strong>Interpretación:</strong> Estamos {{ tConfidence }}% seguros de que la media poblacional (μ) está entre {{ tLowerBound.toFixed(3) }} y {{ tUpperBound.toFixed(3) }}.</p>
+                  <p>
+                    <strong>Interpretación:</strong> Estamos {{ tConfidence }}% seguros de que la
+                    media poblacional (μ) está entre {{ tLowerBound.toFixed(3) }} y
+                    {{ tUpperBound.toFixed(3) }}.
+                  </p>
                 </div>
               </div>
             </div>
@@ -528,7 +662,11 @@
         <div class="examples-section">
           <h3>Ejemplo Paso a Paso (σ desconocida)</h3>
           <div class="example-scenario">
-            <p><strong>Problema:</strong> Un investigador quiere estimar el tiempo promedio de reacción en una prueba cognitiva. Toma una muestra de 20 participantes y obtiene x̄ = 0.85 segundos con s = 0.12 segundos. Construye un intervalo de confianza del 95%.</p>
+            <p>
+              <strong>Problema:</strong> Un investigador quiere estimar el tiempo promedio de
+              reacción en una prueba cognitiva. Toma una muestra de 20 participantes y obtiene x̄ =
+              0.85 segundos con s = 0.12 segundos. Construye un intervalo de confianza del 95%.
+            </p>
 
             <div class="step-by-step">
               <div class="step">
@@ -549,7 +687,10 @@
                 <div class="tip-critical-value">
                   <h5>💡 Tip: Cómo calcular el valor crítico</h5>
                   <div class="tip-content">
-                    <p><strong>¿Por qué 0.975?</strong> Para intervalos de confianza de dos colas, usamos 1 - α/2, donde α es el nivel de significancia.</p>
+                    <p>
+                      <strong>¿Por qué 0.975?</strong> Para intervalos de confianza de dos colas,
+                      usamos 1 - α/2, donde α es el nivel de significancia.
+                    </p>
                     <ul>
                       <li>90% confianza: α = 0.10 → 1 - 0.05 = 0.95</li>
                       <li>95% confianza: α = 0.05 → 1 - 0.025 = 0.975</li>
@@ -568,7 +709,10 @@ print(f"Valor crítico: {valor_critico:.3f}")  # 2.093
 # 99%: t.ppf(0.995, 19)</code></pre>
 
                     <p><strong>En Excel:</strong></p>
-                    <p>Usa la función <code>=INV.T.2C(α; grados_libertad)</code> donde α es el nivel de significancia:</p>
+                    <p>
+                      Usa la función <code>=INV.T.2C(α; grados_libertad)</code> donde α es el nivel
+                      de significancia:
+                    </p>
                     <ul>
                       <li>90% confianza: <code>=INV.T.2C(0.10; 19)</code></li>
                       <li>95% confianza: <code>=INV.T.2C(0.05; 19)</code></li>
@@ -585,7 +729,9 @@ print(f"Valor crítico: {valor_critico:.3f}")  # 2.093
 
               <div class="step">
                 <h4>Paso 4: Calcular el margen de error</h4>
-                <p>Margen de error = t<sub>α/2,gl</sub> × Error estándar = 2.093 × 0.0268 = 0.0561</p>
+                <p>
+                  Margen de error = t<sub>α/2,gl</sub> × Error estándar = 2.093 × 0.0268 = 0.0561
+                </p>
               </div>
 
               <div class="step">
@@ -595,7 +741,10 @@ print(f"Valor crítico: {valor_critico:.3f}")  # 2.093
 
               <div class="step conclusion">
                 <h4>Conclusión:</h4>
-                <p>Estamos 95% seguros de que el tiempo promedio de reacción poblacional está entre 0.794 y 0.906 segundos.</p>
+                <p>
+                  Estamos 95% seguros de que el tiempo promedio de reacción poblacional está entre
+                  0.794 y 0.906 segundos.
+                </p>
               </div>
             </div>
           </div>
@@ -694,7 +843,10 @@ print(f"Valor crítico: {valor_critico:.3f}")  # 2.093
                 <li>Niveles de biomarcadores</li>
                 <li>Dosis óptimas de medicamentos</li>
               </ul>
-              <p><strong>Ejemplo:</strong> "El tiempo promedio de recuperación está entre 7.2 y 9.8 días con 95% de confianza"</p>
+              <p>
+                <strong>Ejemplo:</strong> "El tiempo promedio de recuperación está entre 7.2 y 9.8
+                días con 95% de confianza"
+              </p>
             </div>
 
             <div class="application-card">
@@ -705,7 +857,10 @@ print(f"Valor crítico: {valor_critico:.3f}")  # 2.093
                 <li>Tiempo de vida útil</li>
                 <li>Resistencia de materiales</li>
               </ul>
-              <p><strong>Ejemplo:</strong> "El peso promedio de las latas está entre 349.2 y 350.8 gramos"</p>
+              <p>
+                <strong>Ejemplo:</strong> "El peso promedio de las latas está entre 349.2 y 350.8
+                gramos"
+              </p>
             </div>
 
             <div class="application-card">
@@ -716,7 +871,9 @@ print(f"Valor crítico: {valor_critico:.3f}")  # 2.093
                 <li>Gasto promedio por cliente</li>
                 <li>Efectividad de campañas</li>
               </ul>
-              <p><strong>Ejemplo:</strong> "El gasto promedio por cliente está entre $45.30 y $52.70"</p>
+              <p>
+                <strong>Ejemplo:</strong> "El gasto promedio por cliente está entre $45.30 y $52.70"
+              </p>
             </div>
 
             <div class="application-card">
@@ -727,7 +884,9 @@ print(f"Valor crítico: {valor_critico:.3f}")  # 2.093
                 <li>Efectividad de métodos de enseñanza</li>
                 <li>Tasas de graduación</li>
               </ul>
-              <p><strong>Ejemplo:</strong> "La calificación promedio está entre 78.5 y 83.2 puntos"</p>
+              <p>
+                <strong>Ejemplo:</strong> "La calificación promedio está entre 78.5 y 83.2 puntos"
+              </p>
             </div>
           </div>
         </div>
@@ -739,7 +898,9 @@ print(f"Valor crítico: {valor_critico:.3f}")  # 2.093
               <h4>✅ Interpretaciones Correctas:</h4>
               <ul>
                 <li>"Estamos 95% seguros de que μ está entre a y b"</li>
-                <li>"Si repitiéramos el estudio muchas veces, 95% de los intervalos contendrían μ"</li>
+                <li>
+                  "Si repitiéramos el estudio muchas veces, 95% de los intervalos contendrían μ"
+                </li>
                 <li>"El intervalo [a, b] es compatible con los datos observados"</li>
                 <li>"Valores fuera del intervalo son menos plausibles"</li>
               </ul>
@@ -771,82 +932,83 @@ print(f"Valor crítico: {valor_critico:.3f}")  # 2.093
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import katex from 'katex';
-import 'katex/dist/katex.min.css';
+import { ref, computed } from 'vue'
+import katex from 'katex'
+import 'katex/dist/katex.min.css'
 
 const tabs = [
   { id: 'introduccion', label: 'Introducción' },
   { id: 'intervalos', label: 'Intervalos de Confianza' },
   { id: 'sigma-conocida', label: 'σ Conocida (Z)' },
   { id: 'sigma-desconocida', label: 'σ Desconocida (t)' },
-  { id: 'aplicaciones', label: 'Aplicaciones' }
-];
+  { id: 'aplicaciones', label: 'Aplicaciones' },
+]
 
-const activeTab = ref('introduccion');
+const activeTab = ref('introduccion')
 
 // Variables para calculadora Z (σ conocida)
-const zSampleMean = ref(250.3);
-const zSigma = ref(2.5);
-const zSampleSize = ref(36);
-const zConfidence = ref(95);
+const zSampleMean = ref(250.3)
+const zSigma = ref(2.5)
+const zSampleSize = ref(36)
+const zConfidence = ref(95)
 
 // Variables para calculadora t (σ desconocida)
-const tSampleMean = ref(0.85);
-const tSampleStd = ref(0.12);
-const tSampleSize = ref(20);
-const tConfidence = ref(95);
+const tSampleMean = ref(0.85)
+const tSampleStd = ref(0.12)
+const tSampleSize = ref(20)
+const tConfidence = ref(95)
 
 // Calculadora Z (σ conocida)
 const standardError = computed(() => {
-  return zSigma.value / Math.sqrt(zSampleSize.value);
-});
+  return zSigma.value / Math.sqrt(zSampleSize.value)
+})
 
 const criticalValue = computed(() => {
-  const confidence = zConfidence.value;
-  if (confidence === 90) return 1.645;
-  if (confidence === 95) return 1.96;
-  if (confidence === 99) return 2.576;
-  return 1.96;
-});
+  const confidence = zConfidence.value
+  if (confidence === 90) return 1.645
+  if (confidence === 95) return 1.96
+  if (confidence === 99) return 2.576
+  return 1.96
+})
 
 const marginOfError = computed(() => {
-  return criticalValue.value * standardError.value;
-});
+  return criticalValue.value * standardError.value
+})
 
 const lowerBound = computed(() => {
-  return zSampleMean.value - marginOfError.value;
-});
+  return zSampleMean.value - marginOfError.value
+})
 
 const upperBound = computed(() => {
-  return zSampleMean.value + marginOfError.value;
-});
+  return zSampleMean.value + marginOfError.value
+})
 
 // Calculadora t (σ desconocida)
 const degreesOfFreedom = computed(() => {
-  return tSampleSize.value - 1;
-});
+  return tSampleSize.value - 1
+})
 
 const tStandardError = computed(() => {
-  return tSampleStd.value / Math.sqrt(tSampleSize.value);
-});
+  return tSampleStd.value / Math.sqrt(tSampleSize.value)
+})
 
 const tCriticalValue = computed(() => {
   // Valores precisos de t para diferentes niveles de confianza y grados de libertad
-  const df = degreesOfFreedom.value;
-  const confidence = tConfidence.value;
+  const df = degreesOfFreedom.value
+  const confidence = tConfidence.value
 
   // Tabla de valores críticos de t para α/2 (cola superior)
   const tTable = {
-    90: { // 90% confianza (α = 0.10, α/2 = 0.05)
+    90: {
+      // 90% confianza (α = 0.10, α/2 = 0.05)
       1: 6.314,
-      2: 2.920,
+      2: 2.92,
       3: 2.353,
       4: 2.132,
       5: 2.015,
       6: 1.943,
       7: 1.895,
-      8: 1.860,
+      8: 1.86,
       9: 1.833,
       10: 1.812,
       11: 1.796,
@@ -855,7 +1017,7 @@ const tCriticalValue = computed(() => {
       14: 1.761,
       15: 1.753,
       16: 1.746,
-      17: 1.740,
+      17: 1.74,
       18: 1.734,
       19: 1.729,
       20: 1.725,
@@ -868,9 +1030,10 @@ const tCriticalValue = computed(() => {
       27: 1.703,
       28: 1.701,
       29: 1.699,
-      30: 1.697
+      30: 1.697,
     },
-    95: { // 95% confianza (α = 0.05, α/2 = 0.025)
+    95: {
+      // 95% confianza (α = 0.05, α/2 = 0.025)
       1: 12.706,
       2: 4.303,
       3: 3.182,
@@ -883,35 +1046,36 @@ const tCriticalValue = computed(() => {
       10: 2.228,
       11: 2.201,
       12: 2.179,
-      13: 2.160,
+      13: 2.16,
       14: 2.145,
       15: 2.131,
-      16: 2.120,
-      17: 2.110,
+      16: 2.12,
+      17: 2.11,
       18: 2.101,
       19: 2.093,
       20: 2.086,
-      21: 2.080,
+      21: 2.08,
       22: 2.074,
       23: 2.069,
       24: 2.064,
-      25: 2.060,
+      25: 2.06,
       26: 2.056,
       27: 2.052,
       28: 2.048,
       29: 2.045,
-      30: 2.042
+      30: 2.042,
     },
-    99: { // 99% confianza (α = 0.01, α/2 = 0.005)
+    99: {
+      // 99% confianza (α = 0.01, α/2 = 0.005)
       1: 63.657,
       2: 9.925,
       3: 5.841,
       4: 4.604,
       5: 4.032,
       6: 3.707,
-      7: 3.500,
+      7: 3.5,
       8: 3.355,
-      9: 3.250,
+      9: 3.25,
       10: 3.169,
       11: 3.106,
       12: 3.055,
@@ -932,32 +1096,33 @@ const tCriticalValue = computed(() => {
       27: 2.771,
       28: 2.763,
       29: 2.756,
-      30: 2.750
-    }
-  };
+      30: 2.75,
+    },
+  }
 
   // Para df > 30, usar aproximación normal
   if (df > 30) {
-    if (confidence === 90) return 1.645;
-    if (confidence === 95) return 1.96;
-    if (confidence === 99) return 2.576;
+    if (confidence === 90) return 1.645
+    if (confidence === 95) return 1.96
+    if (confidence === 99) return 2.576
   }
 
   // Retornar valor de la tabla o aproximación para df <= 30
-  return tTable[confidence]?.[df] || 2.086; // Default para 95% con df moderado
-});
+  const confidenceTable = tTable[confidence as keyof typeof tTable]
+  return confidenceTable?.[df as keyof typeof confidenceTable] || 2.086 // Default para 95% con df moderado
+})
 
 const tMarginOfError = computed(() => {
-  return tCriticalValue.value * tStandardError.value;
-});
+  return tCriticalValue.value * tStandardError.value
+})
 
 const tLowerBound = computed(() => {
-  return tSampleMean.value - tMarginOfError.value;
-});
+  return tSampleMean.value - tMarginOfError.value
+})
 
 const tUpperBound = computed(() => {
-  return tSampleMean.value + tMarginOfError.value;
-});
+  return tSampleMean.value + tMarginOfError.value
+})
 
 // Función para renderizar LaTeX
 const renderLatex = (latex: string) => {
@@ -966,18 +1131,18 @@ const renderLatex = (latex: string) => {
       throwOnError: false,
       displayMode: false,
       macros: {
-        "\\RR": "\\mathbb{R}",
-        "\\NN": "\\mathbb{N}",
-        "\\ZZ": "\\mathbb{Z}",
-        "\\QQ": "\\mathbb{Q}",
-        "\\CC": "\\mathbb{C}"
-      }
-    });
+        '\\RR': '\\mathbb{R}',
+        '\\NN': '\\mathbb{N}',
+        '\\ZZ': '\\mathbb{Z}',
+        '\\QQ': '\\mathbb{Q}',
+        '\\CC': '\\mathbb{C}',
+      },
+    })
   } catch (error) {
-    console.error('Error rendering LaTeX:', error);
-    return latex;
+    console.error('Error rendering LaTeX:', error)
+    return latex
   }
-};
+}
 </script>
 
 <style scoped>
@@ -1175,7 +1340,8 @@ const renderLatex = (latex: string) => {
   margin-top: 1.5rem;
 }
 
-.pros, .cons {
+.pros,
+.cons {
   padding: 1rem;
   border-radius: 8px;
 }
@@ -1190,17 +1356,20 @@ const renderLatex = (latex: string) => {
   border-left: 4px solid #dc3545;
 }
 
-.pros h5, .cons h5 {
+.pros h5,
+.cons h5 {
   margin-bottom: 0.5rem;
   font-size: 1rem;
 }
 
-.pros ul, .cons ul {
+.pros ul,
+.cons ul {
   margin: 0;
   padding-left: 1.2rem;
 }
 
-.pros li, .cons li {
+.pros li,
+.cons li {
   margin-bottom: 0.3rem;
   font-size: 0.9rem;
   line-height: 1.4;
@@ -1844,7 +2013,8 @@ const renderLatex = (latex: string) => {
   margin-top: 1.5rem;
 }
 
-.dos, .donts {
+.dos,
+.donts {
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -1860,7 +2030,8 @@ const renderLatex = (latex: string) => {
   border-left: 5px solid #dc3545;
 }
 
-.dos h4, .donts h4 {
+.dos h4,
+.donts h4 {
   margin-bottom: 1rem;
   font-size: 1.2rem;
 }
@@ -1873,12 +2044,14 @@ const renderLatex = (latex: string) => {
   color: #721c24;
 }
 
-.dos ul, .donts ul {
+.dos ul,
+.donts ul {
   margin: 0;
   padding-left: 1.5rem;
 }
 
-.dos li, .donts li {
+.dos li,
+.donts li {
   margin-bottom: 0.8rem;
   line-height: 1.5;
 }
