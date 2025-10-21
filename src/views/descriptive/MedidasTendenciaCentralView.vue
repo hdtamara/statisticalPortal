@@ -221,6 +221,16 @@
           </router-link>
         </div>
       </div>
+
+      <!-- Navegación entre pestañas -->
+      <div class="tab-navigation">
+        <router-link to="/descriptiva" class="nav-btn nav-btn-prev">
+          ← Volver a Estadística Descriptiva
+        </router-link>
+        <button @click="activeTab = 'media'" class="nav-btn nav-btn-next">
+          Siguiente: Media →
+        </button>
+      </div>
     </div>
 
     <!-- Media Aritmética -->
@@ -301,9 +311,235 @@
         </div>
       </div>
 
-      <!-- Calculadora Interactiva -->
+      <!-- Media Ponderada -->
+      <div class="theory-box">
+        <h3>Media Ponderada</h3>
+        <p>
+          La <strong>media ponderada</strong> se utiliza cuando diferentes valores tienen diferente
+          importancia o "peso". Es especialmente útil cuando algunos datos son más relevantes que
+          otros.
+        </p>
+
+        <h4>Fórmula</h4>
+        <div class="formula-box">
+          <div
+            v-html="renderLatexDisplay('\\bar{X}_w = \\frac{\\sum (X \\cdot w)}{\\sum w}')"
+          ></div>
+          <p class="formula-note">
+            Donde:<br />
+            X = cada valor<br />
+            w = peso o ponderación de cada valor<br />
+            <span v-html="renderLatex('\\sum (X \\cdot w)')"></span> = suma de cada valor
+            multiplicado por su peso<br />
+            <span v-html="renderLatex('\\sum w')"></span> = suma de todos los pesos
+          </p>
+        </div>
+
+        <h4>¿Cuándo usar Media Ponderada?</h4>
+        <div class="use-cases">
+          <div class="use-case-card">
+            <h5>📚 Calificaciones académicas</h5>
+            <p>Diferentes evaluaciones tienen diferente porcentaje de la nota final</p>
+          </div>
+          <div class="use-case-card">
+            <h5>📊 Índices económicos</h5>
+            <p>Promedios ponderados por población, PIB o participación de mercado</p>
+          </div>
+          <div class="use-case-card">
+            <h5>💼 Evaluación de desempeño</h5>
+            <p>Diferentes competencias tienen distinta importancia en la evaluación</p>
+          </div>
+          <div class="use-case-card">
+            <h5>🏭 Control de calidad</h5>
+            <p>Promedios ponderados por volumen de producción o tamaño de lote</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-section">
+        <h3>Ejemplo Práctico: Calificación Final de un Curso</h3>
+        <p>
+          Una estudiante quiere calcular su calificación final. El curso tiene 4 componentes con
+          diferentes pesos en la nota final:
+        </p>
+
+        <table class="weighted-table">
+          <thead>
+            <tr>
+              <th>Componente</th>
+              <th>Calificación (X)</th>
+              <th>Peso (w)</th>
+              <th>X × w</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tareas</td>
+              <td>85</td>
+              <td>20%</td>
+              <td>{{ (85 * 0.2).toFixed(2) }}</td>
+            </tr>
+            <tr>
+              <td>Proyecto</td>
+              <td>92</td>
+              <td>30%</td>
+              <td>{{ (92 * 0.3).toFixed(2) }}</td>
+            </tr>
+            <tr>
+              <td>Examen Parcial</td>
+              <td>78</td>
+              <td>25%</td>
+              <td>{{ (78 * 0.25).toFixed(2) }}</td>
+            </tr>
+            <tr>
+              <td>Examen Final</td>
+              <td>88</td>
+              <td>25%</td>
+              <td>{{ (88 * 0.25).toFixed(2) }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td><strong>Total</strong></td>
+              <td>-</td>
+              <td><strong>100%</strong></td>
+              <td>
+                <strong>{{ mediaPonderadaEjemplo.toFixed(2) }}</strong>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <div class="solution-steps">
+          <div class="step">
+            <h4>Paso 1: Multiplicar cada calificación por su peso</h4>
+            <div class="calculation">
+              <div v-html="renderLatex('\\text{Tareas: } 85 \\times 0.20 = 17.00')"></div>
+              <div v-html="renderLatex('\\text{Proyecto: } 92 \\times 0.30 = 27.60')"></div>
+              <div v-html="renderLatex('\\text{Parcial: } 78 \\times 0.25 = 19.50')"></div>
+              <div v-html="renderLatex('\\text{Final: } 88 \\times 0.25 = 22.00')"></div>
+            </div>
+          </div>
+
+          <div class="step">
+            <h4>Paso 2: Sumar todos los productos</h4>
+            <div class="calculation">
+              <div v-html="renderLatex('\\sum (X \\cdot w) = 17.00 + 27.60 + 19.50 + 22.00')"></div>
+              <div v-html="renderLatex('\\sum (X \\cdot w) = 86.10')"></div>
+            </div>
+          </div>
+
+          <div class="step">
+            <h4>Paso 3: Dividir entre la suma de pesos</h4>
+            <div class="calculation">
+              <div v-html="renderLatex('\\sum w = 0.20 + 0.30 + 0.25 + 0.25 = 1.00')"></div>
+              <div v-html="renderLatex('\\bar{X}_w = \\frac{86.10}{1.00} = 86.10')"></div>
+            </div>
+          </div>
+
+          <div class="result-box">
+            <strong>Resultado:</strong> La calificación final ponderada es <strong>86.10</strong>
+            <div class="comparison-note">
+              <p>📌 <strong>Nota importante:</strong> La media simple sería:</p>
+              <div
+                v-html="
+                  renderLatex(
+                    '\\bar{X}_{simple} = \\frac{85 + 92 + 78 + 88}{4} = \\frac{343}{4} = 85.75',
+                  )
+                "
+              ></div>
+              <p>
+                La diferencia (86.10 vs 85.75) se debe a que el
+                <strong>Proyecto</strong> (calificación más alta: 92) tiene el mayor peso (30%),
+                mientras que el <strong>Parcial</strong> (calificación más baja: 78) tiene menor
+                peso (25%).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calculadora Interactiva de Media Ponderada -->
       <div class="interactive-section">
-        <h3>Calculadora de Media</h3>
+        <h3>Calculadora de Media Ponderada</h3>
+        <p>Ingresa valores y sus pesos correspondientes:</p>
+
+        <div class="weighted-input-section">
+          <div class="weighted-input-grid">
+            <div
+              class="weighted-input-row"
+              v-for="(item, index) in mediaPonderadaInputs"
+              :key="index"
+            >
+              <input
+                v-model.number="item.valor"
+                type="number"
+                placeholder="Valor"
+                class="data-input"
+              />
+              <input
+                v-model.number="item.peso"
+                type="number"
+                placeholder="Peso"
+                class="data-input"
+              />
+              <button
+                @click="eliminarFilaPonderada(index)"
+                class="btn btn-danger"
+                v-if="mediaPonderadaInputs.length > 2"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button @click="agregarFilaPonderada" class="btn btn-secondary">+ Agregar Fila</button>
+            <button @click="calcularMediaPonderada" class="btn btn-primary">Calcular</button>
+          </div>
+        </div>
+
+        <div v-if="resultadoMediaPonderada !== null" class="result-display">
+          <h4>Resultados:</h4>
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th>Valor (X)</th>
+                <th>Peso (w)</th>
+                <th>X × w</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(item, index) in mediaPonderadaInputs.filter((i) => i.valor && i.peso)"
+                :key="index"
+              >
+                <td>{{ item.valor }}</td>
+                <td>{{ item.peso }}</td>
+                <td>{{ ((item.valor || 0) * (item.peso || 0)).toFixed(4) }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td><strong>Totales:</strong></td>
+                <td>
+                  <strong>{{ sumaMediaPonderadaPesos }}</strong>
+                </td>
+                <td>
+                  <strong>{{ sumaMediaPonderadaProductos.toFixed(4) }}</strong>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+          <p class="result-highlight">
+            <strong>Media Ponderada:</strong> {{ resultadoMediaPonderada.toFixed(4) }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Calculadora Interactiva Media Simple -->
+      <div class="interactive-section">
+        <h3>Calculadora de Media Simple</h3>
         <p>Ingresa tus propios datos separados por comas:</p>
 
         <div class="input-group">
@@ -323,6 +559,16 @@
           <p><strong>Suma:</strong> {{ sumaMedia }}</p>
           <p><strong>Media:</strong> {{ resultadoMedia.toFixed(4) }}</p>
         </div>
+      </div>
+
+      <!-- Navegación entre pestañas -->
+      <div class="tab-navigation">
+        <button @click="activeTab = 'introduccion'" class="nav-btn nav-btn-prev">
+          ← Anterior: Introducción
+        </button>
+        <button @click="activeTab = 'mediana'" class="nav-btn nav-btn-next">
+          Siguiente: Mediana →
+        </button>
       </div>
     </div>
 
@@ -461,6 +707,12 @@
           <p><strong>Número de datos (n):</strong> {{ datosMediana.length }}</p>
           <p><strong>Mediana:</strong> {{ resultadoMediana }}</p>
         </div>
+      </div>
+
+      <!-- Navegación entre pestañas -->
+      <div class="tab-navigation">
+        <button @click="activeTab = 'media'" class="nav-btn nav-btn-prev">← Anterior: Media</button>
+        <button @click="activeTab = 'moda'" class="nav-btn nav-btn-next">Siguiente: Moda →</button>
       </div>
     </div>
 
@@ -613,6 +865,16 @@
           </p>
         </div>
       </div>
+
+      <!-- Navegación entre pestañas -->
+      <div class="tab-navigation">
+        <button @click="activeTab = 'mediana'" class="nav-btn nav-btn-prev">
+          ← Anterior: Mediana
+        </button>
+        <button @click="activeTab = 'comparacion'" class="nav-btn nav-btn-next">
+          Siguiente: Comparación →
+        </button>
+      </div>
     </div>
 
     <!-- Comparación -->
@@ -745,6 +1007,14 @@
             </p>
           </div>
         </div>
+      </div>
+
+      <!-- Navegación entre pestañas -->
+      <div class="tab-navigation">
+        <button @click="activeTab = 'moda'" class="nav-btn nav-btn-prev">← Anterior: Moda</button>
+        <button @click="activeTab = 'interpretacion'" class="nav-btn nav-btn-next">
+          Siguiente: Tips de Interpretación →
+        </button>
       </div>
     </div>
 
@@ -969,6 +1239,16 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Navegación entre pestañas -->
+      <div class="tab-navigation">
+        <button @click="activeTab = 'comparacion'" class="nav-btn nav-btn-prev">
+          ← Anterior: Comparación
+        </button>
+        <button @click="activeTab = 'ejercicio-completo'" class="nav-btn nav-btn-next">
+          Siguiente: Ejercicio Completo →
+        </button>
       </div>
     </div>
 
@@ -1358,6 +1638,16 @@
           </div>
         </div>
       </div>
+
+      <!-- Navegación entre pestañas -->
+      <div class="tab-navigation">
+        <button @click="activeTab = 'interpretacion'" class="nav-btn nav-btn-prev">
+          ← Anterior: Tips de Interpretación
+        </button>
+        <router-link to="/descriptiva/medidas-dispersion" class="nav-btn nav-btn-next">
+          Siguiente Tema: Medidas de Dispersión →
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -1430,6 +1720,59 @@ const calcularMedia = () => {
     datosMedia.value = valores
     sumaMedia.value = valores.reduce((sum, val) => sum + val, 0)
     resultadoMedia.value = sumaMedia.value / valores.length
+  } catch {
+    alert('Error al procesar los datos')
+  }
+}
+
+// Media Ponderada
+const mediaPonderadaEjemplo = ref(85 * 0.2 + 92 * 0.3 + 78 * 0.25 + 88 * 0.25)
+
+const mediaPonderadaInputs = ref<Array<{ valor: number | null; peso: number | null }>>([
+  { valor: null, peso: null },
+  { valor: null, peso: null },
+])
+
+const agregarFilaPonderada = () => {
+  mediaPonderadaInputs.value.push({ valor: null, peso: null })
+}
+
+const eliminarFilaPonderada = (index: number) => {
+  if (mediaPonderadaInputs.value.length > 2) {
+    mediaPonderadaInputs.value.splice(index, 1)
+  }
+}
+
+const resultadoMediaPonderada = ref<number | null>(null)
+const sumaMediaPonderadaPesos = ref(0)
+const sumaMediaPonderadaProductos = ref(0)
+
+const calcularMediaPonderada = () => {
+  try {
+    const datosValidos = mediaPonderadaInputs.value.filter(
+      (item) =>
+        item.valor !== null && item.peso !== null && !isNaN(item.valor) && !isNaN(item.peso),
+    )
+
+    if (datosValidos.length === 0) {
+      alert('Por favor ingresa al menos un par de valor y peso válidos')
+      return
+    }
+
+    const sumaPesos = datosValidos.reduce((sum, item) => sum + (item.peso || 0), 0)
+    const sumaProductos = datosValidos.reduce(
+      (sum, item) => sum + (item.valor || 0) * (item.peso || 0),
+      0,
+    )
+
+    if (sumaPesos === 0) {
+      alert('La suma de los pesos no puede ser cero')
+      return
+    }
+
+    sumaMediaPonderadaPesos.value = sumaPesos
+    sumaMediaPonderadaProductos.value = sumaProductos
+    resultadoMediaPonderada.value = sumaProductos / sumaPesos
   } catch {
     alert('Error al procesar los datos')
   }
@@ -2513,6 +2856,192 @@ const ejercicioCompleto = calcularEjercicioCompleto([
   background: linear-gradient(135deg, #27ae60, var(--accent));
 }
 
+/* Estilos para Media Ponderada */
+.use-cases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.use-case-card {
+  background: var(--light);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary);
+  transition: all 0.3s ease;
+}
+
+.use-case-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.use-case-card h5 {
+  color: var(--secondary);
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.use-case-card p {
+  font-size: 0.95rem;
+  color: var(--gray);
+  margin: 0;
+}
+
+.weighted-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow);
+}
+
+.weighted-table th,
+.weighted-table td {
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid var(--light);
+}
+
+.weighted-table thead th {
+  background: var(--secondary);
+  color: white;
+  font-weight: bold;
+}
+
+.weighted-table tbody tr:hover {
+  background: var(--light);
+}
+
+.weighted-table tfoot td {
+  background: var(--accent);
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.comparison-note {
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  border-radius: 6px;
+  color: #2c3e50;
+}
+
+.comparison-note p {
+  margin: 0.5rem 0;
+}
+
+.weighted-input-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.weighted-input-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.weighted-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  box-shadow: var(--shadow);
+}
+
+.result-table th,
+.result-table td {
+  padding: 0.75rem;
+  text-align: center;
+  border: 1px solid var(--light);
+}
+
+.result-table thead th {
+  background: var(--primary);
+  color: white;
+}
+
+.result-table tfoot td {
+  background: var(--light);
+  font-weight: bold;
+}
+
+.result-highlight {
+  background: linear-gradient(135deg, var(--accent), #27ae60);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.3rem;
+  margin-top: 1rem;
+}
+
+/* Navegación entre pestañas */
+.tab-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--light);
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-btn-prev {
+  background: white;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.nav-btn-prev:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateX(-5px);
+}
+
+.nav-btn-next {
+  background: var(--primary);
+  color: white;
+  border: 2px solid var(--primary);
+  margin-left: auto;
+}
+
+.nav-btn-next:hover {
+  background: var(--primary-dark);
+  transform: translateX(5px);
+}
+
 @media (max-width: 768px) {
   .input-group {
     flex-direction: column;
@@ -2529,6 +3058,27 @@ const ejercicioCompleto = calcularEjercicioCompleto([
 
   .measure-summary {
     grid-template-columns: 1fr;
+  }
+
+  .use-cases {
+    grid-template-columns: 1fr;
+  }
+
+  .weighted-input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .tab-navigation {
+    flex-direction: column;
+  }
+
+  .nav-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-btn-next {
+    margin-left: 0;
   }
 }
 </style>
