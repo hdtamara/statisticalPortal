@@ -96,6 +96,21 @@ const router = createRouter({
       name: 'parameter-estimation',
       component: () => import('@/views/inferential/EstimacionParametrosView.vue'),
     },
+    {
+      path: '/inferencial/intervalos-confianza',
+      name: 'confidence-intervals',
+      component: () => import('@/views/inferential/IntervalosConfianzaView.vue'),
+    },
+    {
+      path: '/inferencial/tamano-muestra',
+      name: 'sample-size',
+      component: () => import('@/views/inferential/TamanoMuestraView.vue'),
+    },
+    {
+      path: '/inferencial/factor-correccion',
+      name: 'correction-factor',
+      component: () => import('@/views/inferential/FactorCorreccionView.vue'),
+    },
   ],
 })
 

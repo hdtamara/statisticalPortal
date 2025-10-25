@@ -2,12 +2,20 @@
   <div class="view-container">
     <div class="hero">
       <h1 class="gradient-text">Estadística Inferencial</h1>
-      <p>La estadística inferencial permite hacer generalizaciones sobre una población basándose en el análisis de una muestra.</p>
+      <p>
+        La estadística inferencial permite hacer generalizaciones sobre una población basándose en
+        el análisis de una muestra.
+      </p>
     </div>
 
     <div class="intro-content">
       <h2>¿Qué es la Estadística Inferencial?</h2>
-      <p>La estadística inferencial es la rama de la estadística que se encarga de hacer inferencias, estimaciones o predicciones sobre una población basándose en los resultados obtenidos de una muestra. A diferencia de la estadística descriptiva que solo describe los datos, la inferencial permite sacar conclusiones que van más allá de los datos inmediatos.</p>
+      <p>
+        La estadística inferencial es la rama de la estadística que se encarga de hacer inferencias,
+        estimaciones o predicciones sobre una población basándose en los resultados obtenidos de una
+        muestra. A diferencia de la estadística descriptiva que solo describe los datos, la
+        inferencial permite sacar conclusiones que van más allá de los datos inmediatos.
+      </p>
 
       <h3>Técnicas principales</h3>
       <ul>
@@ -21,45 +29,69 @@
     <h2 class="section-title">Temas de Estadística Inferencial</h2>
 
     <div class="cards-container">
-    <ContentCard
-      title="Distribuciones Muestrales"
-      content="Conceptos fundamentales de muestreo, diferencia entre parámetros y estadísticos, distribución de la media muestral y Teorema del Límite Central."
-      :show-button="true"
-      button-text="Explorar"
-      :router-link="'/inferencial/distribuciones-muestrales'"
-    />
+      <ContentCard
+        title="Distribuciones Muestrales"
+        content="Conceptos fundamentales de muestreo, diferencia entre parámetros y estadísticos, distribución de la media muestral y Teorema del Límite Central."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/inferencial/distribuciones-muestrales'"
+      />
 
-    <ContentCard
-      title="Distribuciones Z y t"
-      content="Uso de la distribución normal estándar (Z) y la distribución t-Student para inferencias sobre medias poblacionales."
-      :show-button="true"
-      button-text="Explorar"
-      :router-link="'/inferencial/distribuciones-z-t'"
-    />
+      <ContentCard
+        title="Distribuciones Z y t"
+        content="Uso de la distribución normal estándar (Z) y la distribución t-Student para inferencias sobre medias poblacionales."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/inferencial/distribuciones-z-t'"
+      />
 
-    <ContentCard
-      title="Diferencia de Medias"
-      content="Comparación de dos medias poblacionales: muestras independientes y datos pareados. Aprende cuándo y cómo usar cada método."
-      :show-button="true"
-      button-text="Explorar"
-      :router-link="'/inferencial/diferencia-medias'"
-    />
+      <ContentCard
+        title="Diferencia de Medias"
+        content="Comparación de dos medias poblacionales: muestras independientes y datos pareados. Aprende cuándo y cómo usar cada método."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/inferencial/diferencia-medias'"
+      />
 
-    <ContentCard
-      title="Diferencia de Proporciones"
-      content="Distribución muestral de la diferencia entre dos proporciones. Aprende a comparar porcentajes entre grupos y entender su variabilidad."
-      :show-button="true"
-      button-text="Explorar"
-      :router-link="'/inferencial/diferencia-proporciones'"
-    />
+      <ContentCard
+        title="Diferencia de Proporciones"
+        content="Distribución muestral de la diferencia entre dos proporciones. Aprende a comparar porcentajes entre grupos y entender su variabilidad."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/inferencial/diferencia-proporciones'"
+      />
 
-    <ContentCard
-      title="Estimación de Parámetros"
-      content="Métodos para estimar valores poblacionales usando datos muestrales. Aprende sobre estimación puntual vs intervalos de confianza, y cómo construir intervalos para la media poblacional con σ conocida y desconocida."
-      :show-button="true"
-      button-text="Explorar"
-      :router-link="'/inferencial/estimacion-parametros'"
-    />
+      <ContentCard
+        title="Estimación de Parámetros"
+        content="Métodos para estimar valores poblacionales usando datos muestrales. Aprende sobre estimación puntual vs intervalos de confianza, y cómo construir intervalos para la media poblacional con σ conocida y desconocida."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/inferencial/estimacion-parametros'"
+      />
+
+      <ContentCard
+        title="Intervalos de Confianza para Proporciones"
+        content="Aprende a calcular intervalos de confianza para proporciones poblacionales. Comprende la distribución muestral de proporciones y cómo estimar rangos con diferentes niveles de confianza."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/inferencial/intervalos-confianza'"
+      />
+
+      <ContentCard
+        title="Determinación del Tamaño de Muestra"
+        content="Aprende a calcular el tamaño de muestra necesario para estudios estadísticos. Comprende cómo el margen de error, el nivel de confianza y la variabilidad afectan el tamaño muestral para medias y proporciones."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/inferencial/tamano-muestra'"
+      />
+
+      <ContentCard
+        title="Factor de Corrección para Poblaciones Finitas"
+        content="Descubre cuándo y cómo aplicar el factor de corrección al trabajar con poblaciones finitas. Aprende a ajustar intervalos de confianza para obtener estimaciones más precisas."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/inferencial/factor-correccion'"
+      />
       <!--
 
       <ContentCard
@@ -87,5 +119,5 @@
 </template>
 
 <script setup lang="ts">
-import ContentCard from '@/components/common/ContentCard.vue';
+import ContentCard from '@/components/common/ContentCard.vue'
 </script>
