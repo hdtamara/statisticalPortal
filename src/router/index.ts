@@ -57,6 +57,11 @@ const router = createRouter({
       component: () => import('@/views/descriptive/MedidasTendenciaCentralView.vue'),
     },
     {
+      path: '/descriptiva/medidas-posicion',
+      name: 'position-measures',
+      component: () => import('@/views/descriptive/MedidasPosicionView.vue'),
+    },
+    {
       path: '/descriptiva/medidas-dispersion',
       name: 'dispersion-measures',
       component: () => import('@/views/descriptive/MedidasDispersionView.vue'),

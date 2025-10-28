@@ -74,6 +74,14 @@
       />
 
       <ContentCard
+        title="Medidas de Posición: Cuartiles, Deciles y Percentiles"
+        content="Aprende a calcular cuantiles (cuartiles), deciles y percentiles. Incluye ejemplos y una calculadora interactiva para tus datos."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/descriptiva/medidas-posicion'"
+      />
+
+      <ContentCard
         title="Medidas de Dispersión"
         content="Indicadores de variabilidad de los datos: rango, varianza y desviación estándar. Comprende la dispersión de tus datos."
         :show-button="true"
