@@ -33,7 +33,7 @@
           </p>
 
           <div class="definition-box">
-            <h3>📊 Hipótesis</h3>
+            <h3>Hipótesis</h3>
             <p>
               Es una afirmación o enunciado relativo a un parámetro de la población, que está sujeta
               a verificación.
@@ -167,7 +167,7 @@
                   </p>
                   <div class="stat-selection">
                     <div class="stat-option">
-                      <h5>📊 Estadístico Z (Distribución Normal)</h5>
+                      <h5>Estadístico Z (Distribución Normal)</h5>
                       <p><strong>Usar cuando:</strong> σ es conocida</p>
                       <p>Ver la sección <strong>"Pruebas Z"</strong> para la fórmula detallada</p>
                     </div>
@@ -335,7 +335,7 @@
 
       <!-- PRUEBAS Z (σ CONOCIDA) -->
       <div v-if="activeTab === 'pruebas-z'" class="content-section">
-        <h2>📊 Pruebas de Hipótesis z (Desviación Estándar Poblacional Conocida)</h2>
+        <h2>Pruebas de Hipótesis z (Desviación Estándar Poblacional Conocida)</h2>
 
         <div class="intro-box">
           <h3>¿Cuándo usar la distribución Normal (z)?</h3>
@@ -350,7 +350,7 @@
         </div>
 
         <div class="formula-section">
-          <h3>📐 Fórmula del Estadístico z</h3>
+          <h3>Fórmula del Estadístico z</h3>
           <div
             v-html="renderLatexDisplay('z = \\frac{\\bar{x} - \\mu_0}{\\sigma / \\sqrt{n}}')"
           ></div>
@@ -374,7 +374,7 @@
             nivel de significancia α.
           </p>
 
-          <h4>1️⃣ Prueba de Dos Colas (H₁: μ ≠ μ₀)</h4>
+          <h4>1. Prueba de Dos Colas (H₁: μ ≠ μ₀)</h4>
           <p>Dividimos α entre 2 porque la región de rechazo está en ambas colas.</p>
 
           <div class="code-block">
@@ -413,7 +413,7 @@ Región de rechazo: z &lt; -1.96 o z &gt; 1.96</code></pre>
             ></div>
           </div>
 
-          <h4>2️⃣ Prueba de Cola Derecha (H₁: μ &gt; μ₀)</h4>
+          <h4>2. Prueba de Cola Derecha (H₁: μ &gt; μ₀)</h4>
           <p>Toda la región de rechazo está en la cola derecha.</p>
 
           <div class="code-block">
@@ -448,7 +448,7 @@ Región de rechazo: z &gt; 1.645</code></pre>
             ></div>
           </div>
 
-          <h4>3️⃣ Prueba de Cola Izquierda (H₁: μ &lt; μ₀)</h4>
+          <h4>3. Prueba de Cola Izquierda (H₁: μ &lt; μ₀)</h4>
           <p>Toda la región de rechazo está en la cola izquierda.</p>
 
           <div class="code-block">
@@ -485,7 +485,7 @@ Región de rechazo: z &lt; -1.645</code></pre>
         </div>
 
         <div class="examples-section">
-          <h3>📝 Ejemplos Completos con Pruebas z</h3>
+          <h3>Ejemplos Completos con Pruebas z</h3>
 
           <div class="example-box">
             <h3>Ejemplo 1: Prueba de Dos Colas (Paso a Paso)</h3>
@@ -853,7 +853,7 @@ else:
 
       <!-- PRUEBAS t-STUDENT -->
       <div v-if="activeTab === 'pruebas-t'" class="content-section">
-        <h2>📊 Pruebas de Hipótesis con Distribución t-Student</h2>
+        <h2>Pruebas de Hipótesis con Distribución t-Student</h2>
 
         <div class="intro-box">
           <h3>¿Cuándo usar la distribución t-Student?</h3>
@@ -870,7 +870,7 @@ else:
         </div>
 
         <div class="formula-section">
-          <h3>📐 Fórmula del Estadístico t</h3>
+          <h3>Fórmula del Estadístico t</h3>
           <div v-html="renderLatexDisplay('t = \\frac{\\bar{x} - \\mu_0}{s / \\sqrt{n}}')"></div>
 
           <p><strong>Donde:</strong></p>
@@ -895,7 +895,7 @@ else:
             nivel de significancia α. A diferencia de z, no hay un único valor crítico para cada α.
           </p>
 
-          <h4>1️⃣ Prueba de Dos Colas (H₁: μ ≠ μ₀)</h4>
+          <h4>1. Prueba de Dos Colas (H₁: μ ≠ μ₀)</h4>
           <p>Dividimos α entre 2 porque la región de rechazo está en ambas colas.</p>
 
           <div class="code-block">
@@ -935,7 +935,7 @@ Región de rechazo: t &lt; -2.064 o t &gt; 2.064</code></pre>
             ></div>
           </div>
 
-          <h4>2️⃣ Prueba de Cola Derecha (H₁: μ &gt; μ₀)</h4>
+          <h4>2. Prueba de Cola Derecha (H₁: μ &gt; μ₀)</h4>
           <p>Toda la región de rechazo está en la cola derecha.</p>
 
           <div class="code-block">
@@ -975,7 +975,7 @@ Región de rechazo: t &gt; 1.711</code></pre>
             ></div>
           </div>
 
-          <h4>3️⃣ Prueba de Cola Izquierda (H₁: μ &lt; μ₀)</h4>
+          <h4>3. Prueba de Cola Izquierda (H₁: μ &lt; μ₀)</h4>
           <p>Toda la región de rechazo está en la cola izquierda.</p>
 
           <div class="code-block">
@@ -1017,7 +1017,7 @@ Región de rechazo: t &lt; -1.711</code></pre>
         </div>
 
         <div class="examples-section">
-          <h3>📝 Ejemplo Completo: Prueba t de Dos Colas</h3>
+          <h3>Ejemplo Completo: Prueba t de Dos Colas</h3>
 
           <div class="example-box">
             <p><strong>Problema:</strong></p>
@@ -1034,15 +1034,15 @@ Región de rechazo: t &lt; -1.711</code></pre>
             </ul>
             <p>¿Hay evidencia para rechazar la afirmación del fabricante con α = 0.05?</p>
 
-            <h4>📋 Paso 1: Establecer las hipótesis</h4>
+            <h4>Paso 1: Establecer las hipótesis</h4>
             <div v-html="renderLatexDisplay('H_0: \\mu = 500')"></div>
             <div v-html="renderLatexDisplay('H_1: \\mu \\neq 500')"></div>
             <p><em>Es una prueba de dos colas porque H₁ usa ≠</em></p>
 
-            <h4>🎯 Paso 2: Nivel de significancia</h4>
+            <h4>Paso 2: Nivel de significancia</h4>
             <div v-html="renderLatexDisplay('\\alpha = 0.05')"></div>
 
-            <h4>📊 Paso 3: Calcular el estadístico de prueba</h4>
+            <h4>Paso 3: Calcular el estadístico de prueba</h4>
             <div
               v-html="
                 renderLatexDisplay(
@@ -1069,7 +1069,7 @@ print(f"Estadístico t: {t_calculado:.3f}")
 # Resultado: -1.667</code></pre>
             </div>
 
-            <h4>🎲 Paso 4: Determinar el valor crítico</h4>
+            <h4>Paso 4: Determinar el valor crítico</h4>
             <div class="code-block">
               <pre><code>from scipy.stats import t
 
@@ -1089,7 +1089,7 @@ print(f"Valor crítico: ±{t_critico:.3f}")
               <span v-html="renderLatex('t > 2.131')"></span>
             </p>
 
-            <h4>✅ Paso 5: Tomar la decisión</h4>
+            <h4>Paso 5: Tomar la decisión</h4>
             <p><strong>Comparación:</strong></p>
             <div v-html="renderLatexDisplay('|t| = |-1.667| = 1.667')"></div>
             <div v-html="renderLatexDisplay('t_{crítico} = 2.131')"></div>
@@ -1120,7 +1120,7 @@ print(f"Valor crítico: ±{t_critico:.3f}")
             </p>
           </div>
 
-          <h3>📝 Ejemplo 2: Prueba t de Cola Izquierda</h3>
+          <h3>Ejemplo 2: Prueba t de Cola Izquierda</h3>
 
           <div class="example-box">
             <p><strong>Problema:</strong></p>
@@ -1137,15 +1137,15 @@ print(f"Valor crítico: ±{t_critico:.3f}")
             </ul>
             <p>¿Hay evidencia para apoyar la afirmación de la empresa con α = 0.01?</p>
 
-            <h4>📋 Paso 1: Establecer las hipótesis</h4>
+            <h4>Paso 1: Establecer las hipótesis</h4>
             <div v-html="renderLatexDisplay('H_0: \\mu \\geq 15')"></div>
             <div v-html="renderLatexDisplay('H_1: \\mu < 15')"></div>
             <p><em>Es una prueba de cola izquierda porque H₁ usa &lt;</em></p>
 
-            <h4>🎯 Paso 2: Nivel de significancia</h4>
+            <h4>Paso 2: Nivel de significancia</h4>
             <div v-html="renderLatexDisplay('\\alpha = 0.01')"></div>
 
-            <h4>📊 Paso 3: Calcular el estadístico de prueba</h4>
+            <h4>Paso 3: Calcular el estadístico de prueba</h4>
             <div
               v-html="
                 renderLatexDisplay(
@@ -1172,7 +1172,7 @@ print(f"Estadístico t: {t_calculado:.3f}")
 # Resultado: -1.677</code></pre>
             </div>
 
-            <h4>🎲 Paso 4: Determinar el valor crítico</h4>
+            <h4>Paso 4: Determinar el valor crítico</h4>
             <div class="code-block">
               <pre><code>from scipy.stats import t
 
@@ -1191,7 +1191,7 @@ print(f"Valor crítico: {t_critico:.3f}")
               <strong>Región de rechazo:</strong> <span v-html="renderLatex('t < -2.539')"></span>
             </p>
 
-            <h4>✅ Paso 5: Tomar la decisión</h4>
+            <h4>Paso 5: Tomar la decisión</h4>
             <p><strong>Comparación:</strong></p>
             <div v-html="renderLatexDisplay('t = -1.677')"></div>
             <div v-html="renderLatexDisplay('t_{crítico} = -2.539')"></div>
@@ -1222,7 +1222,7 @@ print(f"Valor crítico: {t_critico:.3f}")
         </div>
 
         <div class="tip-section">
-          <h3>🔑 Diferencias Clave: Pruebas z vs Pruebas t</h3>
+          <h3>Diferencias Clave: Pruebas z vs Pruebas t</h3>
 
           <div class="comparison-table">
             <table>
@@ -1285,7 +1285,7 @@ print(f"Valor crítico: {t_critico:.3f}")
         <div class="tip-section">
           <h3>💡 Reglas de Decisión para Pruebas t</h3>
 
-          <h4>1️⃣ Prueba de Dos Colas</h4>
+          <h4>1. Prueba de Dos Colas</h4>
           <div class="decision-rule">
             <div
               v-html="
@@ -1301,7 +1301,7 @@ print(f"Valor crítico: {t_critico:.3f}")
             ></div>
           </div>
 
-          <h4>2️⃣ Prueba de Cola Derecha</h4>
+          <h4>2. Prueba de Cola Derecha</h4>
           <div class="decision-rule">
             <div
               v-html="
@@ -1317,7 +1317,7 @@ print(f"Valor crítico: {t_critico:.3f}")
             ></div>
           </div>
 
-          <h4>3️⃣ Prueba de Cola Izquierda</h4>
+          <h4>3. Prueba de Cola Izquierda</h4>
           <div class="decision-rule">
             <div
               v-html="
@@ -1331,6 +1331,257 @@ print(f"Valor crítico: {t_critico:.3f}")
                 )
               "
             ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRUEBAS DE PROPORCIÓN -->
+      <div v-if="activeTab === 'pruebas-proporcion'" class="content-section">
+        <h2>Pruebas de Hipótesis de Una Proporción</h2>
+
+        <div class="intro-box">
+          <h3>¿Cuándo usar pruebas de proporción?</h3>
+          <p>
+            Las pruebas de hipótesis de una proporción se utilizan cuando queremos probar
+            afirmaciones sobre la proporción de una población que tiene una característica
+            específica (éxito/fracaso, sí/no, etc.).
+          </p>
+          <ul>
+            <li>La variable es <strong>cualitativa dicotómica</strong> (dos categorías)</li>
+            <li>Trabajamos con <strong>proporciones muestrales</strong> (p̂)</li>
+            <li>La distribución muestral es aproximadamente <strong>normal</strong></li>
+            <li>
+              Se cumple la condición: <span v-html="renderLatex('np \\geq 5')"></span> y
+              <span v-html="renderLatex('n(1-p) \\geq 5')"></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="formula-section">
+          <h3>Fórmula del Estadístico z para Proporciones</h3>
+          <div v-html="formulaProporciones"></div>
+
+          <p><strong>Donde:</strong></p>
+          <ul>
+            <li><span v-html="renderLatex('\\bar{p}')"></span> = Proporción muestral</li>
+            <li><span v-html="renderLatex('p_0')"></span> = Proporción hipotética (de H₀)</li>
+            <li><span v-html="renderLatex('n')"></span> = Tamaño de la muestra</li>
+          </ul>
+
+          <div class="important-note">
+            <h4>⚠️ Condiciones de Aplicabilidad</h4>
+            <p>Para usar esta fórmula, se deben cumplir:</p>
+            <div
+              v-html="renderLatexDisplay('np_0 \\geq 5 \\quad \\text{y} \\quad n(1-p_0) \\geq 5')"
+            ></div>
+            <p>Si no se cumplen, considerar pruebas exactas como la prueba binomial.</p>
+          </div>
+        </div>
+
+        <div class="formula-section">
+          <h3>🔍 Cálculo del Valor Crítico z</h3>
+          <p>
+            El valor crítico z se obtiene de la distribución normal estándar, igual que en las
+            pruebas de medias con σ conocida.
+          </p>
+
+          <h4>1. Prueba de Dos Colas (H1: p ≠ p0)</h4>
+          <div class="code-block">
+            <strong>Python:</strong>
+            <pre><code>from scipy.stats import norm
+
+alpha = 0.05
+z_critico = norm.ppf(1 - alpha/2)
+print(f"Valor crítico: ±{z_critico:.3f}")
+# Resultado: ±1.960</code></pre>
+          </div>
+
+          <div class="code-block">
+            <strong>Excel:</strong>
+            <pre><code>=INV.NORM.ESTAND(1-0.05/2)
+Resultado: 1.96</code></pre>
+          </div>
+
+          <h4>2. Prueba de Cola Derecha (H1: p > p0)</h4>
+          <div class="code-block">
+            <strong>Python:</strong>
+            <pre><code>from scipy.stats import norm
+
+alpha = 0.05
+z_critico = norm.ppf(1 - alpha)
+print(f"Valor crítico: +{z_critico:.3f}")
+# Resultado: +1.645</code></pre>
+          </div>
+
+          <div class="code-block">
+            <strong>Excel:</strong>
+            <pre><code>=INV.NORM.ESTAND(1-0.05)
+Resultado: 1.645</code></pre>
+          </div>
+
+          <h4>3. Prueba de Cola Izquierda (H1: p &lt; p0)</h4>
+          <div class="code-block">
+            <strong>Python:</strong>
+            <pre><code>from scipy.stats import norm
+
+alpha = 0.05
+z_critico = norm.ppf(alpha)
+print(f"Valor crítico: {z_critico:.3f}")
+# Resultado: -1.645</code></pre>
+          </div>
+
+          <div class="code-block">
+            <strong>Excel:</strong>
+            <pre><code>=INV.NORM.ESTAND(0.05)
+Resultado: -1.645</code></pre>
+          </div>
+        </div>
+
+        <div class="examples-section">
+          <h3>Ejemplo Completo: Prueba de Proporción</h3>
+
+          <div class="example-box">
+            <p><strong>Problema:</strong></p>
+            <p>
+              Una fábrica afirma que el 85% de sus productos no tienen defectos. Se inspecciona una
+              muestra de 200 productos y se encuentra que 160 no tienen defectos. ¿Hay evidencia
+              para rechazar la afirmación de la fábrica con α = 0.05?
+            </p>
+
+            <h4>Paso 1: Establecer las hipótesis</h4>
+            <div v-html="renderLatexDisplay('H_0: p = 0.85')"></div>
+            <div v-html="renderLatexDisplay('H_1: p \\neq 0.85')"></div>
+            <p><em>Es una prueba de dos colas porque H₁ usa ≠</em></p>
+
+            <h4>Paso 2: Nivel de significancia</h4>
+            <div v-html="renderLatexDisplay('\\alpha = 0.05')"></div>
+
+            <h4>Paso 3: Calcular la proporción muestral</h4>
+            <div v-html="renderLatexDisplay('\\hat{p} = \\frac{160}{200} = 0.80')"></div>
+
+            <h4>🔍 Paso 4: Verificar condiciones</h4>
+            <div v-html="renderLatexDisplay('np_0 = 200 \\times 0.85 = 170 \\geq 5')"></div>
+            <div v-html="renderLatexDisplay('n(1-p_0) = 200 \\times 0.15 = 30 \\geq 5')"></div>
+            <p><em>Las condiciones se cumplen ✓</em></p>
+
+            <h4>Paso 5: Calcular el estadístico de prueba</h4>
+            <div
+              v-html="
+                renderLatexDisplay(
+                  'z = \\frac{0.80 - 0.85}{\\sqrt{\\frac{0.85 \\times 0.15}{200}}} = \\frac{-0.05}{\\sqrt{\\frac{0.1275}{200}}} = \\frac{-0.05}{\\sqrt{0.0006375}} = \\frac{-0.05}{0.02524} = -1.98',
+                )
+              "
+            ></div>
+
+            <div class="code-block">
+              <pre><code>from scipy.stats import norm
+import math
+
+# Datos
+p_hat = 160/200  # 0.80
+p0 = 0.85
+n = 200
+
+# Calcular estadístico z
+z = (p_hat - p0) / math.sqrt(p0 * (1 - p0) / n)
+print(f"Estadístico z: {z:.3f}")
+# Resultado: -1.980</code></pre>
+            </div>
+
+            <h4>Paso 6: Determinar el valor crítico</h4>
+            <div class="code-block">
+              <pre><code>from scipy.stats import norm
+
+alpha = 0.05
+z_critico = norm.ppf(1 - alpha/2)
+print(f"Valor crítico: ±{z_critico:.3f}")
+# Resultado: ±1.960</code></pre>
+            </div>
+
+            <p>
+              <strong>Valor crítico:</strong>
+              <span v-html="renderLatex('z_{\\alpha/2} = \\pm 1.960')"></span>
+            </p>
+            <p>
+              <strong>Región de rechazo:</strong> <span v-html="renderLatex('z < -1.960')"></span> o
+              <span v-html="renderLatex('z > 1.960')"></span>
+            </p>
+
+            <h4>Paso 7: Tomar la decisión</h4>
+            <p><strong>Comparación:</strong></p>
+            <div v-html="renderLatexDisplay('|z| = |-1.98| = 1.98')"></div>
+            <div v-html="renderLatexDisplay('z_{crítico} = 1.96')"></div>
+
+            <div class="decision-rule">
+              <p><strong>Regla de Decisión:</strong></p>
+              <div
+                v-html="
+                  renderLatexDisplay('\\text{Si } |z| > z_{\\alpha/2}, \\text{ se rechaza } H_0')
+                "
+              ></div>
+              <div
+                v-html="
+                  renderLatexDisplay(
+                    '\\text{Si } |z| \\leq z_{\\alpha/2}, \\text{ no se rechaza } H_0',
+                  )
+                "
+              ></div>
+            </div>
+
+            <p><strong>Conclusión:</strong></p>
+            <p>
+              Como <span v-html="renderLatex('1.98 > 1.96')"></span>,
+              <strong>rechazamos H0</strong>. Hay evidencia suficiente para afirmar que la
+              proporción de productos sin defectos es diferente del 85%.
+            </p>
+          </div>
+        </div>
+
+        <div class="tip-section">
+          <h3>Diferencias: Pruebas de Medias vs Pruebas de Proporciones</h3>
+
+          <div class="comparison-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Aspecto</th>
+                  <th>Pruebas de Medias</th>
+                  <th>Pruebas de Proporciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Tipo de Variable</strong></td>
+                  <td>Cuatitativa continua</td>
+                  <td>Cualitativa dicotómica</td>
+                </tr>
+                <tr>
+                  <td><strong>Parámetro</strong></td>
+                  <td>Media poblacional (μ)</td>
+                  <td>Proporción poblacional (p)</td>
+                </tr>
+                <tr>
+                  <td><strong>Estadístico Muestral</strong></td>
+                  <td>Media muestral (x̄)</td>
+                  <td>Proporción muestral (p̂)</td>
+                </tr>
+                <tr>
+                  <td><strong>Distribución</strong></td>
+                  <td>Normal o t-Student</td>
+                  <td>Siempre Normal (z)</td>
+                </tr>
+                <tr>
+                  <td><strong>Condiciones</strong></td>
+                  <td>Normalidad, σ conocido/desconocido</td>
+                  <td>np ≥ 5 y n(1-p) ≥ 5</td>
+                </tr>
+                <tr>
+                  <td><strong>Ejemplos</strong></td>
+                  <td>Peso, altura, ingresos</td>
+                  <td>Porcentaje de aprobación, defectos</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -1453,7 +1704,7 @@ print(f"Valor crítico: {t_critico:.3f}")
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import katex from 'katex'
+import * as katex from 'katex'
 import 'katex/dist/katex.min.css'
 
 // @ts-expect-error - jstat no tiene tipos oficiales
@@ -1496,6 +1747,19 @@ const renderLatexDisplay = (latex: string): string => {
   }
 }
 
+// Computed property para la fórmula de proporciones
+const formulaProporciones = computed(() => {
+  try {
+    return katex.renderToString('z = \\frac{\\bar{p} - p_{0}}{\\sqrt{\\frac{p_{0}(1-p_{0})}{n}}}', {
+      throwOnError: false,
+      displayMode: true,
+    })
+  } catch (error) {
+    console.error('Error rendering formula:', error)
+    return 'z = \\frac{\\bar{p} - p_{0}}{\\sqrt{\\frac{p_{0}(1-p_{0})}{n}}}'
+  }
+})
+
 // Configuración de pestañas
 const tabs = [
   { id: 'introduccion', label: 'Introducción' },
@@ -1503,6 +1767,7 @@ const tabs = [
   { id: 'tipos-pruebas', label: 'Tipos de Pruebas' },
   { id: 'pruebas-z', label: 'Pruebas z (σ conocida)' },
   { id: 'pruebas-t', label: 'Pruebas t-Student (σ desconocida)' },
+  { id: 'pruebas-proporcion', label: 'Pruebas de Proporción' },
   { id: 'calculadora', label: 'Calculadora' },
 ]
 
