@@ -92,15 +92,16 @@
         button-text="Explorar"
         :router-link="'/inferencial/factor-correccion'"
       />
-      <!--
+
 
       <ContentCard
-        title="Pruebas de Hipótesis"
+        title="Introducción a las Pruebas de Hipótesis"
         content="Procedimientos estadísticos para contrastar supuestos sobre parámetros poblacionales y tomar decisiones basadas en evidencia muestral."
         :show-button="true"
         button-text="Explorar"
+        :router-link="'/inferencial/pruebas-hipotesis'"
       />
-
+      <!--
       <ContentCard
         title="Análisis de Regresión"
         content="Técnicas para modelar y analizar relaciones entre variables, permitiendo hacer predicciones y entender dependencias."

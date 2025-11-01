@@ -116,6 +116,11 @@ const router = createRouter({
       name: 'correction-factor',
       component: () => import('@/views/inferential/FactorCorreccionView.vue'),
     },
+    {
+      path: '/inferencial/pruebas-hipotesis',
+      name: 'hypothesis-testing',
+      component: () => import('@/views/inferential/PruebasHipotesisUnaMuestraView.vue'),
+    },
   ],
 })
 
