@@ -121,6 +121,11 @@ const router = createRouter({
       name: 'hypothesis-testing',
       component: () => import('@/views/inferential/PruebasHipotesisUnaMuestraView.vue'),
     },
+    {
+      path: '/inferencial/hipotesis-dos-muestras',
+      name: 'two-sample-hypothesis-testing',
+      component: () => import('@/views/inferential/HipotesisDosMuestrasView.vue'),
+    },
   ],
 })
 

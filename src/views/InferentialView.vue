@@ -93,13 +93,20 @@
         :router-link="'/inferencial/factor-correccion'"
       />
 
-
       <ContentCard
         title="Introducción a las Pruebas de Hipótesis"
         content="Procedimientos estadísticos para contrastar supuestos sobre parámetros poblacionales y tomar decisiones basadas en evidencia muestral."
         :show-button="true"
         button-text="Explorar"
         :router-link="'/inferencial/pruebas-hipotesis'"
+      />
+
+      <ContentCard
+        title="Pruebas de Hipótesis para Dos Muestras"
+        content="Comparación de dos poblaciones: diferencia de medias (independientes y pareadas) y diferencia de proporciones. Incluye calculadora interactiva para realizar pruebas estadísticas."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/inferencial/hipotesis-dos-muestras'"
       />
       <!--
       <ContentCard

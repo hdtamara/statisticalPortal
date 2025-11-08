@@ -1,0 +1,826 @@
+<template>
+  <div class="hipotesis-dos-muestras-view">
+    <div class="container">
+      <div class="hero">
+        <h1>Pruebas de Hipótesis de Dos Muestras</h1>
+        <p>
+          Aprende a comparar dos poblaciones o tratamientos mediante pruebas de hipótesis. Incluye
+          ejemplos prácticos y una calculadora interactiva.
+        </p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button
+          v-for="tab in tabs"
+          :key="tab.id"
+          @click="activeTab = tab.id"
+          :class="['tab-button', { active: activeTab === tab.id }]"
+        >
+          {{ tab.label }}
+        </button>
+      </div>
+
+      <!-- INTRODUCCIÓN -->
+      <div v-if="activeTab === 'introduccion'" class="content-section">
+        <h2>¿Qué son las Pruebas de Hipótesis de Dos Muestras?</h2>
+
+        <div class="intro-content">
+          <p>
+            Las pruebas de hipótesis de dos muestras nos permiten comparar dos poblaciones o
+            tratamientos diferentes para determinar si existe una diferencia significativa entre
+            ellos.
+          </p>
+
+          <div class="definition-box">
+            <h3>🎯 Objetivo Principal</h3>
+            <p>
+              Determinar si la diferencia observada entre dos muestras es lo suficientemente grande
+              como para concluir que existe una diferencia real en las poblaciones de las que
+              provienen.
+            </p>
+          </div>
+
+          <h3>Tipos de Comparaciones</h3>
+          <div class="comparison-grid">
+            <div class="comparison-item">
+              <h4>📊 Comparación de Medias</h4>
+              <p>¿Son diferentes las medias de dos grupos?</p>
+              <ul>
+                <li>Grupos independientes</li>
+                <li>Datos pareados</li>
+                <li>σ conocido/desconocido</li>
+              </ul>
+            </div>
+
+            <div class="comparison-item">
+              <h4>📈 Comparación de Proporciones</h4>
+              <p>¿Son diferentes los porcentajes de dos grupos?</p>
+              <ul>
+                <li>Variables cualitativas dicotómicas</li>
+                <li>Distribución normal</li>
+                <li>Condiciones de aplicabilidad</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIFERENCIA DE MEDIAS -->
+      <div v-if="activeTab === 'diferencia-medias'" class="content-section">
+        <h2>Pruebas de Hipótesis para la Diferencia de Medias</h2>
+
+        <div class="formula-section">
+          <h3>Fórmula General</h3>
+          <div v-html="renderLatexDisplay('H_0: \\mu_1 - \\mu_2 = \\delta_0')"></div>
+          <div v-html="renderLatexDisplay('H_1: \\mu_1 - \\mu_2 \\neq \\delta_0')"></div>
+          <p><em>Donde δ₀ generalmente es 0 (no hay diferencia)</em></p>
+        </div>
+
+        <h3>Estadístico de Prueba</h3>
+        <div class="formula-section">
+          <h4>Muestras Independientes</h4>
+          <div
+            v-html="
+              renderLatexDisplay(
+                't = \\frac{(\\bar{x}_1 - \\bar{x}_2) - \\delta_0}{\\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}}}',
+              )
+            "
+          ></div>
+
+          <h4>Datos Pareados</h4>
+          <div
+            v-html="renderLatexDisplay('t = \\frac{\\bar{d} - \\delta_0}{s_d / \\sqrt{n}}')"
+          ></div>
+          <p><em>Donde d = x₁ - x₂ para cada par</em></p>
+        </div>
+
+        <div class="examples-section">
+          <h3>Ejemplo: Comparación de Métodos de Enseñanza</h3>
+
+          <div class="example-box">
+            <p><strong>Problema:</strong></p>
+            <p>
+              Un profesor quiere comparar dos métodos de enseñanza. Aplica el método A a 15
+              estudiantes (media = 78, desviación = 8) y el método B a 12 estudiantes (media = 82,
+              desviación = 6). ¿Hay diferencia significativa con α = 0.05?
+            </p>
+
+            <h4>Paso 1: Hipótesis</h4>
+            <div v-html="renderLatexDisplay('H_0: \\mu_A - \\mu_B = 0')"></div>
+            <div v-html="renderLatexDisplay('H_1: \\mu_A - \\mu_B \\neq 0')"></div>
+
+            <h4>Paso 2: Estadístico de prueba</h4>
+            <div
+              v-html="
+                renderLatexDisplay(
+                  't = \\frac{(78 - 82) - 0}{\\sqrt{\\frac{8^2}{15} + \\frac{6^2}{12}}} = \\frac{-4}{\\sqrt{\\frac{64}{15} + \\frac{36}{12}}} = \\frac{-4}{\\sqrt{4.27 + 3}} = \\frac{-4}{\\sqrt{7.27}} = \\frac{-4}{2.70} = -1.48',
+                )
+              "
+            ></div>
+
+            <h4>Paso 3: Decisión</h4>
+            <p>Con gl = 15 + 12 - 2 = 25, t₀.₀₂₅ = ±2.060</p>
+            <p>Como |t| = 1.48 &lt; 2.060, <strong>no rechazamos H₀</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIFERENCIA DE PROPORCIONES -->
+      <div v-if="activeTab === 'diferencia-proporciones'" class="content-section">
+        <h2>Pruebas de Hipótesis para la Diferencia de Proporciones</h2>
+
+        <div class="formula-section">
+          <h3>Hipótesis</h3>
+          <div v-html="renderLatexDisplay('H_0: p_1 - p_2 = 0')"></div>
+          <div v-html="renderLatexDisplay('H_1: p_1 - p_2 \\neq 0')"></div>
+        </div>
+
+        <h3>Estadístico de Prueba</h3>
+        <div class="formula-section">
+          <div
+            v-html="
+              renderLatexDisplay(
+                'z = \\frac{(\\hat{p}_1 - \\hat{p}_2) - 0}{\\sqrt{\\hat{p}(1-\\hat{p})(\\frac{1}{n_1} + \\frac{1}{n_2})}}',
+              )
+            "
+          ></div>
+          <p><em>Donde p̂ es la proporción combinada: p̂ = (x₁ + x₂)/(n₁ + n₂)</em></p>
+        </div>
+
+        <div class="examples-section">
+          <h3>Ejemplo: Eficacia de un Tratamiento</h3>
+
+          <div class="example-box">
+            <p><strong>Problema:</strong></p>
+            <p>
+              Se prueba un nuevo tratamiento contra el placebo. Del grupo tratado (n=200), 140
+              mejoran (70%). Del grupo placebo (n=180), 108 mejoran (60%). ¿Es efectivo el
+              tratamiento con α = 0.05?
+            </p>
+
+            <h4>Paso 1: Hipótesis</h4>
+            <div v-html="renderLatexDisplay('H_0: p_T - p_P = 0')"></div>
+            <div v-html="renderLatexDisplay('H_1: p_T - p_P > 0')"></div>
+
+            <h4>Paso 2: Proporción combinada</h4>
+            <div
+              v-html="
+                renderLatexDisplay(
+                  '\\hat{p} = \\frac{140 + 108}{200 + 180} = \\frac{248}{380} = 0.653',
+                )
+              "
+            ></div>
+
+            <h4>Paso 3: Estadístico de prueba</h4>
+            <div
+              v-html="
+                renderLatexDisplay(
+                  'z = \\frac{0.70 - 0.60}{\\sqrt{0.653 \\times 0.347 \\times (\\frac{1}{200} + \\frac{1}{180})}} = \\frac{0.10}{\\sqrt{0.226 \\times 0.00995}} = \\frac{0.10}{\\sqrt{0.00225}} = \\frac{0.10}{0.0474} = 2.11',
+                )
+              "
+            ></div>
+
+            <h4>Paso 4: Decisión</h4>
+            <p>Valor crítico z₀.₀₅ = 1.645</p>
+            <p>Como z = 2.11 > 1.645, <strong>rechazamos H₀</strong></p>
+            <p><strong>Conclusión:</strong> El tratamiento es efectivo</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CALCULADORA INTERACTIVA -->
+      <div v-if="activeTab === 'calculadora'" class="content-section">
+        <h2>Calculadora Interactiva de Pruebas de Dos Muestras</h2>
+
+        <div class="calculator-container">
+          <div class="calculator-form">
+            <h3>Parámetros de la Prueba</h3>
+
+            <div class="form-group">
+              <label>Tipo de Prueba:</label>
+              <select v-model="tipoPrueba">
+                <option value="medias-independientes">Diferencia de Medias (Independientes)</option>
+                <option value="medias-pareadas">Diferencia de Medias (Pareadas)</option>
+                <option value="proporciones">Diferencia de Proporciones</option>
+              </select>
+            </div>
+
+            <!-- Formulario para Medias Independientes -->
+            <div v-if="tipoPrueba === 'medias-independientes'">
+              <h4>Muestra 1</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Media (x̄₁):</label>
+                  <input v-model.number="media1" type="number" step="0.01" />
+                </div>
+                <div class="form-group">
+                  <label>Desviación (s₁):</label>
+                  <input v-model.number="desv1" type="number" step="0.01" />
+                </div>
+                <div class="form-group">
+                  <label>Tamaño (n₁):</label>
+                  <input v-model.number="n1" type="number" />
+                </div>
+              </div>
+
+              <h4>Muestra 2</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Media (x̄₂):</label>
+                  <input v-model.number="media2" type="number" step="0.01" />
+                </div>
+                <div class="form-group">
+                  <label>Desviación (s₂):</label>
+                  <input v-model.number="desv2" type="number" step="0.01" />
+                </div>
+                <div class="form-group">
+                  <label>Tamaño (n₂):</label>
+                  <input v-model.number="n2" type="number" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Formulario para Medias Pareadas -->
+            <div v-if="tipoPrueba === 'medias-pareadas'">
+              <div class="form-group">
+                <label>Media de diferencias (d̄):</label>
+                <input v-model.number="mediaDiferencias" type="number" step="0.01" />
+              </div>
+              <div class="form-group">
+                <label>Desviación de diferencias (s_d):</label>
+                <input v-model.number="desvDiferencias" type="number" step="0.01" />
+              </div>
+              <div class="form-group">
+                <label>Número de pares (n):</label>
+                <input v-model.number="nPares" type="number" />
+              </div>
+            </div>
+
+            <!-- Formulario para Proporciones -->
+            <div v-if="tipoPrueba === 'proporciones'">
+              <h4>Muestra 1</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Éxitos (x₁):</label>
+                  <input v-model.number="exitos1" type="number" />
+                </div>
+                <div class="form-group">
+                  <label>Tamaño (n₁):</label>
+                  <input v-model.number="n1Prop" type="number" />
+                </div>
+              </div>
+
+              <h4>Muestra 2</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Éxitos (x₂):</label>
+                  <input v-model.number="exitos2" type="number" />
+                </div>
+                <div class="form-group">
+                  <label>Tamaño (n₂):</label>
+                  <input v-model.number="n2Prop" type="number" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Nivel de significancia (α):</label>
+              <select v-model="alpha">
+                <option value="0.10">0.10</option>
+                <option value="0.05">0.05</option>
+                <option value="0.01">0.01</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Tipo de hipótesis alternativa:</label>
+              <select v-model="tipoHipotesis">
+                <option value="two-tailed">Dos colas (≠)</option>
+                <option value="left-tailed">Cola izquierda (&lt;)</option>
+                <option value="right-tailed">Cola derecha (>)</option>
+              </select>
+            </div>
+
+            <button @click="calcular" class="calculate-btn">Calcular</button>
+          </div>
+
+          <!-- Resultados -->
+          <div v-if="resultado" class="calculator-results">
+            <h3>Resultados</h3>
+
+            <div class="result-item">
+              <strong>Hipótesis:</strong>
+              <div v-html="resultado.hipotesis"></div>
+            </div>
+
+            <div class="result-item">
+              <strong>Estadístico calculado:</strong>
+              <span v-html="resultado.estadistico"></span>
+            </div>
+
+            <div class="result-item">
+              <strong>Valor crítico:</strong>
+              <span v-html="resultado.valorCritico"></span>
+            </div>
+
+            <div class="result-item">
+              <strong>Región de rechazo:</strong>
+              <span v-html="resultado.regionRechazo"></span>
+            </div>
+
+            <div class="result-item">
+              <strong>Decisión:</strong>
+              <span :class="resultado.decisionClass" v-html="resultado.decision"></span>
+            </div>
+
+            <div v-if="resultado.conclusion" class="result-item">
+              <strong>Conclusión:</strong>
+              <span v-html="resultado.conclusion"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import katex from 'katex'
+import 'katex/dist/katex.min.css'
+
+// @ts-expect-error - jstat no tiene tipos oficiales
+import * as jStat from 'jstat'
+
+// Interfaz para el resultado
+interface ResultadoPrueba {
+  hipotesis: string
+  estadistico: string
+  valorCritico: string
+  regionRechazo: string
+  decision: string
+  decisionClass: string
+  conclusion: string
+}
+
+// Funciones para renderizar LaTeX
+const renderLatex = (latex: string): string => {
+  try {
+    return katex.renderToString(latex, {
+      throwOnError: false,
+      displayMode: false,
+    })
+  } catch (error) {
+    console.error('Error rendering LaTeX:', error)
+    return latex
+  }
+}
+
+const renderLatexDisplay = (latex: string): string => {
+  try {
+    return katex.renderToString(latex, {
+      throwOnError: false,
+      displayMode: true,
+    })
+  } catch (error) {
+    console.error('Error rendering LaTeX:', error)
+    return latex
+  }
+}
+
+// Configuración de pestañas
+const tabs = [
+  { id: 'introduccion', label: 'Introducción' },
+  { id: 'diferencia-medias', label: 'Diferencia de Medias' },
+  { id: 'diferencia-proporciones', label: 'Diferencia de Proporciones' },
+  { id: 'calculadora', label: 'Calculadora' },
+]
+
+const activeTab = ref('introduccion')
+
+// Variables reactivas para la calculadora
+const tipoPrueba = ref('medias-independientes')
+const alpha = ref('0.05')
+const tipoHipotesis = ref('two-tailed')
+
+// Variables para medias independientes
+const media1 = ref(0)
+const desv1 = ref(0)
+const n1 = ref(0)
+const media2 = ref(0)
+const desv2 = ref(0)
+const n2 = ref(0)
+
+// Variables para medias pareadas
+const mediaDiferencias = ref(0)
+const desvDiferencias = ref(0)
+const nPares = ref(0)
+
+// Variables para proporciones
+const exitos1 = ref(0)
+const n1Prop = ref(0)
+const exitos2 = ref(0)
+const n2Prop = ref(0)
+
+const resultado = ref<ResultadoPrueba | null>(null)
+
+// Función para calcular
+const calcular = () => {
+  let estadistico = 0
+  let valorCritico = 0
+  let gradosLibertad = 0
+  let tipoEstadistico = 't'
+
+  if (tipoPrueba.value === 'medias-independientes') {
+    // Cálculo para medias independientes
+    const sp2 =
+      ((n1.value - 1) * desv1.value ** 2 + (n2.value - 1) * desv2.value ** 2) /
+      (n1.value + n2.value - 2)
+    estadistico = (media1.value - media2.value) / Math.sqrt(sp2 / n1.value + sp2 / n2.value)
+    gradosLibertad = n1.value + n2.value - 2
+
+    if (tipoHipotesis.value === 'two-tailed') {
+      valorCritico = jStat.studentt.inv(1 - parseFloat(alpha.value) / 2, gradosLibertad)
+    } else if (tipoHipotesis.value === 'right-tailed') {
+      valorCritico = jStat.studentt.inv(1 - parseFloat(alpha.value), gradosLibertad)
+    } else {
+      valorCritico = -jStat.studentt.inv(1 - parseFloat(alpha.value), gradosLibertad)
+    }
+  } else if (tipoPrueba.value === 'medias-pareadas') {
+    // Cálculo para medias pareadas
+    estadistico = mediaDiferencias.value / (desvDiferencias.value / Math.sqrt(nPares.value))
+    gradosLibertad = nPares.value - 1
+
+    if (tipoHipotesis.value === 'two-tailed') {
+      valorCritico = jStat.studentt.inv(1 - parseFloat(alpha.value) / 2, gradosLibertad)
+    } else if (tipoHipotesis.value === 'right-tailed') {
+      valorCritico = jStat.studentt.inv(1 - parseFloat(alpha.value), gradosLibertad)
+    } else {
+      valorCritico = -jStat.studentt.inv(1 - parseFloat(alpha.value), gradosLibertad)
+    }
+  } else if (tipoPrueba.value === 'proporciones') {
+    // Cálculo para proporciones
+    tipoEstadistico = 'z'
+    const p1 = exitos1.value / n1Prop.value
+    const p2 = exitos2.value / n2Prop.value
+    const p = (exitos1.value + exitos2.value) / (n1Prop.value + n2Prop.value)
+
+    estadistico = (p1 - p2) / Math.sqrt(p * (1 - p) * (1 / n1Prop.value + 1 / n2Prop.value))
+
+    if (tipoHipotesis.value === 'two-tailed') {
+      valorCritico = jStat.normal.inv(1 - parseFloat(alpha.value) / 2, 0, 1)
+    } else if (tipoHipotesis.value === 'right-tailed') {
+      valorCritico = jStat.normal.inv(1 - parseFloat(alpha.value), 0, 1)
+    } else {
+      valorCritico = -jStat.normal.inv(1 - parseFloat(alpha.value), 0, 1)
+    }
+  }
+
+  // Determinar decisión
+  let decision = ''
+  let decisionClass = ''
+  let conclusion = ''
+
+  if (tipoHipotesis.value === 'two-tailed') {
+    if (Math.abs(estadistico) > Math.abs(valorCritico)) {
+      decision = 'Rechazar H₀'
+      decisionClass = 'reject'
+      conclusion = 'Hay evidencia suficiente para concluir que existe una diferencia significativa'
+    } else {
+      decision = 'No rechazar H₀'
+      decisionClass = 'not-reject'
+      conclusion =
+        'No hay evidencia suficiente para concluir que existe una diferencia significativa'
+    }
+  } else {
+    if (tipoHipotesis.value === 'right-tailed' && estadistico > valorCritico) {
+      decision = 'Rechazar H₀'
+      decisionClass = 'reject'
+      conclusion =
+        'Hay evidencia suficiente para concluir que el primer grupo es significativamente mayor'
+    } else if (tipoHipotesis.value === 'left-tailed' && estadistico < valorCritico) {
+      decision = 'Rechazar H₀'
+      decisionClass = 'reject'
+      conclusion =
+        'Hay evidencia suficiente para concluir que el primer grupo es significativamente menor'
+    } else {
+      decision = 'No rechazar H₀'
+      decisionClass = 'not-reject'
+      conclusion =
+        'No hay evidencia suficiente para concluir que existe una diferencia significativa'
+    }
+  }
+
+  // Formatear hipótesis
+  let hipotesis = ''
+  if (tipoPrueba.value.includes('medias')) {
+    hipotesis = renderLatexDisplay('H_0: \\mu_1 - \\mu_2 = 0')
+    if (tipoHipotesis.value === 'two-tailed') {
+      hipotesis += '<br>' + renderLatexDisplay('H_1: \\mu_1 - \\mu_2 \\neq 0')
+    } else if (tipoHipotesis.value === 'right-tailed') {
+      hipotesis += '<br>' + renderLatexDisplay('H_1: \\mu_1 - \\mu_2 > 0')
+    } else {
+      hipotesis += '<br>' + renderLatexDisplay('H_1: \\mu_1 - \\mu_2 < 0')
+    }
+  } else {
+    hipotesis = renderLatexDisplay('H_0: p_1 - p_2 = 0')
+    if (tipoHipotesis.value === 'two-tailed') {
+      hipotesis += '<br>' + renderLatexDisplay('H_1: p_1 - p_2 \\neq 0')
+    } else if (tipoHipotesis.value === 'right-tailed') {
+      hipotesis += '<br>' + renderLatexDisplay('H_1: p_1 - p_2 > 0')
+    } else {
+      hipotesis += '<br>' + renderLatexDisplay('H_1: p_1 - p_2 < 0')
+    }
+  }
+
+  // Formatear región de rechazo
+  let regionRechazo = ''
+  if (tipoHipotesis.value === 'two-tailed') {
+    regionRechazo = renderLatex(
+      `t < -${valorCritico.toFixed(3)} \\text{ o } t > ${valorCritico.toFixed(3)}`,
+    )
+  } else if (tipoHipotesis.value === 'right-tailed') {
+    regionRechazo = renderLatex(`t > ${valorCritico.toFixed(3)}`)
+  } else {
+    regionRechazo = renderLatex(`t < ${valorCritico.toFixed(3)}`)
+  }
+
+  resultado.value = {
+    hipotesis,
+    estadistico: renderLatex(`${tipoEstadistico.toUpperCase()} = ${estadistico.toFixed(4)}`),
+    valorCritico: renderLatex(
+      `${tipoEstadistico.toUpperCase()}_{crítico} = ${tipoHipotesis.value === 'two-tailed' ? '±' : ''}${valorCritico.toFixed(3)}`,
+    ),
+    regionRechazo,
+    decision,
+    decisionClass,
+    conclusion,
+  }
+}
+</script>
+
+<style scoped>
+.hipotesis-dos-muestras-view {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  background: white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tab-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: #666;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.tab-button.active {
+  background: #2196f3;
+  color: white;
+}
+
+.content-section {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.content-section h2 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.intro-content {
+  margin-bottom: 2rem;
+}
+
+.definition-box {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  border-left: 4px solid #2196f3;
+}
+
+.definition-box h3 {
+  color: #2196f3;
+  margin-bottom: 1rem;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.comparison-item {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+
+.comparison-item h4 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.comparison-item ul {
+  margin: 1rem 0 0 0;
+  padding-left: 1.5rem;
+}
+
+.formula-section {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: 2rem 0;
+  border: 1px solid #e0e0e0;
+}
+
+.formula-section h3 {
+  color: #2196f3;
+  margin-bottom: 1.5rem;
+}
+
+.examples-section {
+  margin-top: 2rem;
+}
+
+.example-box {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+
+.example-box h4 {
+  color: #2196f3;
+  margin: 1.5rem 0 1rem 0;
+}
+
+.calculator-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.calculator-form {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+
+.calculator-form h3 {
+  color: #2196f3;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.calculate-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.calculate-btn:hover {
+  background: #1976d2;
+}
+
+.calculator-results {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+
+.calculator-results h3 {
+  color: #2196f3;
+  margin-bottom: 1.5rem;
+}
+
+.result-item {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+}
+
+.result-item strong {
+  color: #333;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.reject {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.not-reject {
+  color: #388e3c;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .tabs {
+    flex-direction: column;
+  }
+
+  .calculator-container {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
