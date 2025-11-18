@@ -74,6 +74,14 @@
       />
 
       <ContentCard
+        title="Combinatoria y Permutaciones"
+        content="Conceptos esenciales de conteo: permutaciones, combinaciones y eventos para entender la probabilidad."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/descriptiva/combinatoria-permutaciones'"
+      />
+
+      <ContentCard
         title="Medidas de Posición: Cuartiles, Deciles y Percentiles"
         content="Aprende a calcular cuantiles (cuartiles), deciles y percentiles. Incluye ejemplos y una calculadora interactiva para tus datos."
         :show-button="true"
