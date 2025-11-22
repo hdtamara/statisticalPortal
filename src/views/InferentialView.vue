@@ -108,14 +108,15 @@
         button-text="Explorar"
         :router-link="'/inferencial/hipotesis-dos-muestras'"
       />
-      <!--
       <ContentCard
-        title="Análisis de Regresión"
-        content="Técnicas para modelar y analizar relaciones entre variables, permitiendo hacer predicciones y entender dependencias."
+        title="Correlación y Regresión Lineal"
+        content="Técnicas para modelar y analizar relaciones entre variables, permitiendo hacer predicciones y entender dependencias. Incluye diagrama de dispersión y cálculo de coeficientes."
         :show-button="true"
         button-text="Explorar"
+        :router-link="'/inferencial/correlacion-regresion'"
       />
 
+      <!--
       <ContentCard
         title="Análisis de Varianza (ANOVA)"
         content="Métodos para comparar medias entre múltiples grupos y determinar si existen diferencias significativas entre ellos."

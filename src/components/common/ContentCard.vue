@@ -7,18 +7,10 @@
       <p>{{ content }}</p>
     </div>
     <div class="card-footer" v-if="showButton">
-      <router-link
-        v-if="routerLink"
-        :to="routerLink"
-        :class="buttonClass"
-      >
+      <router-link v-if="routerLink" :to="routerLink" :class="buttonClass">
         {{ buttonText }}
       </router-link>
-      <button
-        v-else
-        :class="buttonClass"
-        @click="$emit('button-click')"
-      >
+      <button v-else :class="buttonClass" @click="$emit('button-click')">
         {{ buttonText }}
       </button>
     </div>
@@ -26,49 +18,49 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { RouterLink } from 'vue-router';   // 👈 importa RouterLink
+import { computed } from 'vue'
+import { RouterLink } from 'vue-router' // 👈 importa RouterLink
 
 interface Props {
-  title: string;
-  content: string;
-  cardType?: 'default' | 'descriptive' | 'inferential';
-  showButton?: boolean;
-  buttonText?: string;
-  buttonType?: 'default' | 'descriptive' | 'inferential';
-  routerLink?: string;
+  title: string
+  content: string
+  cardType?: 'default' | 'descriptive' | 'inferential'
+  showButton?: boolean
+  buttonText?: string
+  buttonType?: 'default' | 'descriptive' | 'inferential'
+  routerLink?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   cardType: 'default',
   showButton: false,
   buttonText: 'Explorar',
-  buttonType: 'default'
-});
+  buttonType: 'default',
+})
 
 const cardClass = computed(() => ({
   'card-descriptive': props.cardType === 'descriptive',
-  'card-inferential': props.cardType === 'inferential'
-}));
+  'card-inferential': props.cardType === 'inferential',
+}))
 
 const headerClass = computed(() => ({
   'descriptive-header': props.cardType === 'descriptive',
-  'inferential-header': props.cardType === 'inferential'
-}));
+  'inferential-header': props.cardType === 'inferential',
+}))
 
 const buttonClass = computed(() => ({
-  'btn': true,
+  btn: true,
   'btn-primary': props.buttonType === 'default',
   'btn-descriptive': props.buttonType === 'descriptive',
-  'btn-inferential': props.buttonType === 'inferential'
-}));
+  'btn-inferential': props.buttonType === 'inferential',
+}))
 </script>
 <style scoped>
 .card-descriptive .card-header {
-  background: var(--brand2); /* Índigo */
+  background: var(--gradient-secondary);
 }
 
 .card-inferential .card-header {
-  background: var(--brand3); /* Teal */
+  background: var(--gradient-accent);
 }
 </style>

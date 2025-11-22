@@ -1,0 +1,257 @@
+═══════════════════════════════════════════════════════════════════════════
+    EJERCICIOS DE COMBINATORIA Y PERMUTACIONES
+═══════════════════════════════════════════════════════════════════════════
+
+───────────────────────────────────────────────────────────────────────────
+SECCIÓN 1: EXPERIMENTOS ALEATORIOS Y ESPACIO MUESTRAL
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 1: Lanzamiento de Monedas
+────────────────────────────────────
+Se lanzan dos monedas al aire.
+a) Describe el experimento aleatorio
+b) Determina el espacio muestral Ω
+c) ¿Cuántos elementos tiene el espacio muestral?
+d) Define el evento A: "Obtener al menos una cara"
+e) Calcula P(A)
+
+Respuesta:
+a) Experimento: Lanzar dos monedas y observar los resultados
+b) Ω = {(C,C), (C,S), (S,C), (S,S)}
+c) |Ω| = 4 elementos
+d) A = {(C,C), (C,S), (S,C)} → |A| = 3
+e) P(A) = 3/4 = 0.75 = 75%
+
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 2: Dado y Moneda
+───────────────────────────
+Se lanza un dado de 6 caras y una moneda simultáneamente.
+a) ¿Cuántos elementos tiene el espacio muestral?
+b) Define el evento B: "Obtener un número par y cara"
+c) Calcula la probabilidad de B
+
+Respuesta:
+a) |Ω| = 6 × 2 = 12 elementos
+b) B = {(2,C), (4,C), (6,C)} → |B| = 3
+c) P(B) = 3/12 = 1/4 = 0.25 = 25%
+
+───────────────────────────────────────────────────────────────────────────
+SECCIÓN 2: PERMUTACIONES SIN REPETICIÓN
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 3: Posiciones en una Fila
+────────────────────────────────────
+7 estudiantes deben formarse en fila para una fotografía.
+a) ¿De cuántas formas diferentes pueden ordenarse?
+b) Si 2 estudiantes específicos deben estar juntos, ¿cuántas formas hay?
+
+Respuesta:
+a) P(7,7) = 7! = 5,040 formas
+b) Considerar a los 2 como una unidad: 6! × 2! = 720 × 2 = 1,440 formas
+
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 4: Medallas en Competencia
+─────────────────────────────────────
+En una competencia de natación hay 10 participantes.
+a) ¿De cuántas formas se pueden otorgar el oro, plata y bronce?
+b) Si un nadador específico ya ganó el oro, ¿cuántas formas hay para plata y bronce?
+
+Respuesta:
+a) P(10,3) = 10!/(10-3)! = 10 × 9 × 8 = 720 formas
+b) P(9,2) = 9 × 8 = 72 formas
+
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 5: Ordenar Libros
+────────────────────────────
+Tienes 5 libros diferentes de matemáticas y quieres colocar 3 en un estante.
+a) ¿De cuántas formas puedes ordenarlos?
+b) Si uno de los libros DEBE estar en la primera posición, ¿cuántas formas hay?
+
+Respuesta:
+a) P(5,3) = 5!/(5-3)! = 5 × 4 × 3 = 60 formas
+b) 1 × P(4,2) = 1 × 4 × 3 = 12 formas
+
+───────────────────────────────────────────────────────────────────────────
+SECCIÓN 3: PERMUTACIONES CON REPETICIÓN
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 6: Contraseña Numérica
+─────────────────────────────────
+Crear una contraseña de 5 dígitos usando números del 0 al 9.
+a) ¿Cuántas contraseñas diferentes se pueden formar si se permite repetición?
+b) ¿Cuál es la probabilidad de adivinar la contraseña correcta al azar?
+
+Respuesta:
+a) P_rep(10,5) = 10^5 = 100,000 contraseñas
+b) P(correcta) = 1/100,000 = 0.00001 = 0.001%
+
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 7: Placas de Automóvil
+─────────────────────────────────
+Una placa de auto tiene 3 letras (26 letras disponibles) seguidas de 4 dígitos (0-9).
+a) ¿Cuántas placas diferentes se pueden formar?
+b) ¿Cuántas placas hay si la primera letra debe ser A o B?
+
+Respuesta:
+a) 26^3 × 10^4 = 17,576 × 10,000 = 175,760,000 placas
+b) 2 × 26^2 × 10^4 = 2 × 676 × 10,000 = 13,520,000 placas
+
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 8: Código de Candado
+───────────────────────────────
+Un candado tiene 4 ruedas, cada una con dígitos del 0 al 9.
+a) ¿Cuántas combinaciones diferentes existen?
+b) Si intentas 1 código por segundo, ¿cuánto tiempo máximo tardarías en abrirlo?
+
+Respuesta:
+a) 10^4 = 10,000 combinaciones
+b) 10,000 segundos = 166.67 minutos ≈ 2.78 horas
+
+───────────────────────────────────────────────────────────────────────────
+SECCIÓN 4: COMBINACIONES SIN REPETICIÓN
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 9: Comité Escolar
+────────────────────────────
+De un grupo de 12 estudiantes se debe formar un comité de 4 personas.
+a) ¿De cuántas formas se puede formar el comité?
+b) Si 2 estudiantes específicos NO pueden estar juntos en el comité, ¿cuántas formas hay?
+
+Respuesta:
+a) C(12,4) = 12!/(4!×8!) = (12×11×10×9)/(4×3×2×1) = 495 formas
+b) Total - (ambos incluidos) = 495 - C(10,2) = 495 - 45 = 450 formas
+
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 10: Equipo de Baloncesto
+───────────────────────────────────
+Un entrenador tiene 15 jugadores y debe seleccionar 5 para el equipo titular.
+a) ¿De cuántas formas puede hacer la selección?
+b) Si 3 jugadores específicos DEBEN estar en el equipo, ¿cuántas formas hay?
+
+Respuesta:
+a) C(15,5) = 15!/(5!×10!) = 3,003 formas
+b) C(12,2) = 12!/(2!×10!) = 66 formas (elegir los 2 restantes de los 12 disponibles)
+
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 11: Lotería Simple
+─────────────────────────────
+En una lotería debes elegir 6 números del 1 al 49 (sin importar el orden).
+a) ¿Cuántas combinaciones posibles existen?
+b) ¿Cuál es la probabilidad de ganar si compras 1 boleto?
+c) ¿Cuántos boletos necesitas para tener 1% de probabilidad de ganar?
+
+Respuesta:
+a) C(49,6) = 49!/(6!×43!) = 13,983,816 combinaciones
+b) P(ganar) = 1/13,983,816 ≈ 0.0000000715 = 0.00000715%
+c) 0.01 × 13,983,816 = 139,838 boletos (aproximadamente)
+
+───────────────────────────────────────────────────────────────────────────
+SECCIÓN 5: COMBINACIONES CON REPETICIÓN
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 12: Comprar Donas
+────────────────────────────
+En una panadería hay 6 tipos de donas. Quieres comprar 4 donas.
+a) Si puedes repetir tipos, ¿cuántas selecciones diferentes hay?
+b) ¿Cuántas si quieres exactamente 2 del mismo tipo y 2 de tipos diferentes?
+
+Respuesta:
+a) C_rep(6,4) = C(6+4-1,4) = C(9,4) = 126 selecciones
+b) Seleccionar el tipo repetido: 6 formas
+   Seleccionar 2 diferentes de los 5 restantes: C(5,2) = 10
+   Total: 6 × 10 = 60 formas
+
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 13: Distribuir Premios
+─────────────────────────────────
+Se tienen 8 premios idénticos para repartir entre 3 estudiantes.
+a) ¿De cuántas formas se pueden distribuir los premios?
+b) ¿Cuántas formas hay si cada estudiante debe recibir al menos 1 premio?
+
+Respuesta:
+a) C_rep(3,8) = C(3+8-1,8) = C(10,8) = C(10,2) = 45 formas
+b) Dar 1 a cada uno primero, distribuir los 5 restantes:
+   C_rep(3,5) = C(7,5) = C(7,2) = 21 formas
+
+───────────────────────────────────────────────────────────────────────────
+SECCIÓN 6: PROBLEMAS MIXTOS Y APLICACIONES
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 14: Cartas de Póker
+──────────────────────────────
+De una baraja estándar de 52 cartas:
+a) ¿Cuántas manos de 5 cartas se pueden formar?
+b) ¿Cuántas manos tienen exactamente 3 ases?
+c) ¿Cuál es la probabilidad de obtener exactamente 3 ases?
+
+Respuesta:
+a) C(52,5) = 2,598,960 manos
+b) Elegir 3 ases de 4: C(4,3) = 4
+   Elegir 2 cartas de las 48 restantes: C(48,2) = 1,128
+   Total: 4 × 1,128 = 4,512 manos
+c) P(3 ases) = 4,512/2,598,960 ≈ 0.001736 = 0.1736%
+
+───────────────────────────────────────────────────────────────────────────
+
+Ejercicio 15: Problema Integral
+────────────────────────────────
+Un restaurante ofrece un menú con:
+- 5 entradas diferentes
+- 8 platos principales diferentes  
+- 4 postres diferentes
+
+a) ¿De cuántas formas puedes elegir una comida completa (1 entrada, 1 plato, 1 postre)?
+b) Si quieres probar 2 platos principales diferentes (sin importar orden), 
+   ¿cuántas combinaciones de platos hay?
+c) El mesero te recomienda crear un "paquete favorito" eligiendo 3 platos 
+   cualesquiera del menú completo (17 opciones). ¿Cuántos paquetes puedes crear?
+d) Si el restaurante asigna códigos de 3 letras a cada mesa (usando A-Z con 
+   repetición), ¿cuántos códigos diferentes hay?
+
+Respuesta:
+a) Principio multiplicativo: 5 × 8 × 4 = 160 formas
+b) C(8,2) = 28 combinaciones
+c) C(17,3) = 17!/(3!×14!) = 680 paquetes
+d) 26^3 = 17,576 códigos
+
+═══════════════════════════════════════════════════════════════════════════
+
+CÓDIGO PYTHON PARA VERIFICAR RESPUESTAS
+═══════════════════════════════════════════════════════════════════════════
+
+import math
+
+# Funciones útiles
+def P(n, k):
+    """Permutaciones sin repetición"""
+    return math.factorial(n) // math.factorial(n - k)
+
+def C(n, k):
+    """Combinaciones sin repetición"""
+    return math.comb(n, k)
+
+def P_rep(n, k):
+    """Permutaciones con repetición"""
+    return n ** k
+
+def C_rep(n, k):
+    """Combinaciones con repetición"""
+    return math.comb(n + k - 1, k)
+
+# Ejemplos de uso:
+print(f"Ejercicio 4a: P(10,3) = {P(10, 3)}")
+print(f"Ejercicio 6a: P_rep(10,5) = {P_rep(10, 5)}")
+print(f"Ejercicio 9a: C(12,4) = {C(12, 4)}")
+print(f"Ejercicio 12a: C_rep(6,4) = {C_rep(6, 4)}")
+
+═══════════════════════════════════════════════════════════════════════════
+FIN DEL DOCUMENTO
+═══════════════════════════════════════════════════════════════════════════

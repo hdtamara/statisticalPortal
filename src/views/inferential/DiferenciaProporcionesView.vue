@@ -3,7 +3,10 @@
     <div class="view-container">
       <div class="hero">
         <h1 class="gradient-text">Distribución Muestral de la Diferencia de Proporciones 📊</h1>
-        <p>Aprende a explorar cómo se comporta la diferencia entre dos proporciones cuando repetimos el proceso de muestreo</p>
+        <p>
+          Aprende a explorar cómo se comporta la diferencia entre dos proporciones cuando repetimos
+          el proceso de muestreo
+        </p>
       </div>
 
       <div class="nav-tabs">
@@ -23,31 +26,48 @@
         <h2>1. ¿Cuál es la idea principal?</h2>
 
         <div class="intro-content">
-          <p>Hasta ahora hemos comparado cantidades promedio (medias). Pero muchas veces, lo que nos interesa es comparar porcentajes o proporciones de dos grupos diferentes.</p>
+          <p>
+            Hasta ahora hemos comparado cantidades promedio (medias). Pero muchas veces, lo que nos
+            interesa es comparar porcentajes o proporciones de dos grupos diferentes.
+          </p>
 
           <div class="examples-section">
             <h3>Ejemplos cotidianos:</h3>
             <div class="examples-grid">
               <div class="example-card">
                 <h4>📊 Encuestas Políticas</h4>
-                <p>¿Qué porcentaje de votantes apoya al candidato A en la ciudad 1 vs. la ciudad 2?</p>
+                <p>
+                  ¿Qué porcentaje de votantes apoya al candidato A en la ciudad 1 vs. la ciudad 2?
+                </p>
               </div>
 
               <div class="example-card">
                 <h4>🏥 Estudios Médicos</h4>
-                <p>¿Qué proporción de pacientes mejora con el tratamiento A en comparación con el tratamiento B?</p>
+                <p>
+                  ¿Qué proporción de pacientes mejora con el tratamiento A en comparación con el
+                  tratamiento B?
+                </p>
               </div>
 
               <div class="example-card">
                 <h4>📱 Marketing Digital</h4>
-                <p>¿El porcentaje de clics en un anuncio es mayor en la versión roja que en la azul?</p>
+                <p>
+                  ¿El porcentaje de clics en un anuncio es mayor en la versión roja que en la azul?
+                </p>
               </div>
             </div>
           </div>
 
           <div class="key-concept">
             <h3>🤔 La Pregunta Central</h3>
-            <p>En todos estos casos, tomamos dos muestras, calculamos la proporción en cada una y las restamos. La pregunta central que abordamos hoy es: <strong>Si repitiéramos el experimento muchas veces, ¿cómo se comportaría esa diferencia? ¿Cuánto variaría por puro azar?</strong></p>
+            <p>
+              En todos estos casos, tomamos dos muestras, calculamos la proporción en cada una y las
+              restamos. La pregunta central que abordamos hoy es:
+              <strong
+                >Si repitiéramos el experimento muchas veces, ¿cómo se comportaría esa diferencia?
+                ¿Cuánto variaría por puro azar?</strong
+              >
+            </p>
           </div>
         </div>
       </div>
@@ -59,14 +79,24 @@
         <div class="theory-content">
           <div class="definition-box">
             <h3>Proporciones Poblacionales (p₁, p₂)</h3>
-            <p>Son los porcentajes verdaderos y reales en toda la población (por ejemplo, el porcentaje real de todos los hombres que fuman). <strong>Casi nunca las conocemos.</strong></p>
+            <p>
+              Son los porcentajes verdaderos y reales en toda la población (por ejemplo, el
+              porcentaje real de todos los hombres que fuman).
+              <strong>Casi nunca las conocemos.</strong>
+            </p>
           </div>
 
           <div class="definition-box">
             <h3>Proporciones Muestrales (p̂₁, p̂₂)</h3>
-            <p>Son los porcentajes que calculamos a partir de nuestras muestras. Son nuestras mejores estimaciones de las proporciones poblacionales.</p>
+            <p>
+              Son los porcentajes que calculamos a partir de nuestras muestras. Son nuestras mejores
+              estimaciones de las proporciones poblacionales.
+            </p>
             <div class="formula-display">
-              <div class="katex-equation" v-html="renderLatex('\\hat{p} = \\frac{\\text{éxitos en la muestra}}{n}')"></div>
+              <div
+                class="katex-equation"
+                v-html="renderLatex('\\hat{p} = \\frac{\\text{éxitos en la muestra}}{n}')"
+              ></div>
               <div class="formula-note">
                 Donde <span class="formula-var">n</span> es el tamaño de la muestra
               </div>
@@ -77,10 +107,11 @@
             <h3>Diferencia Observada</h3>
             <p>Es simplemente la resta de las proporciones de nuestras dos muestras:</p>
             <div class="formula-display">
-              <div class="katex-equation" v-html="renderLatex('\\text{Diferencia} = \\hat{p}_1 - \\hat{p}_2')"></div>
-              <div class="formula-note">
-                La diferencia entre las proporciones de los dos grupos
-              </div>
+              <div
+                class="katex-equation"
+                v-html="renderLatex('\\text{Diferencia} = \\hat{p}_1 - \\hat{p}_2')"
+              ></div>
+              <div class="formula-note">La diferencia entre las proporciones de los dos grupos</div>
             </div>
           </div>
         </div>
@@ -93,9 +124,17 @@
         <div class="theory-content">
           <div class="concept-explanation">
             <h3>El Teorema del Límite Central</h3>
-            <p>Gracias al Teorema del Límite Central, sabemos que si las muestras son suficientemente grandes, la distribución de las proporciones muestrales se aproxima a una normal. Lo mismo ocurre con su diferencia.</p>
+            <p>
+              Gracias al Teorema del Límite Central, sabemos que si las muestras son suficientemente
+              grandes, la distribución de las proporciones muestrales se aproxima a una normal. Lo
+              mismo ocurre con su diferencia.
+            </p>
 
-            <p>Imagina que tomamos miles de pares de muestras y calculamos la diferencia p̂₁ - p̂₂ para cada par. Si hiciéramos un histograma de todas esas diferencias, veríamos una curva normal.</p>
+            <p>
+              Imagina que tomamos miles de pares de muestras y calculamos la diferencia p̂₁ - p̂₂ para
+              cada par. Si hiciéramos un histograma de todas esas diferencias, veríamos una curva
+              normal.
+            </p>
           </div>
 
           <div class="key-question">
@@ -105,10 +144,21 @@
 
           <div class="formula-box">
             <h3>Fórmula del Error Estándar (SE)</h3>
-            <p>Esta fórmula mide la desviación estándar de la distribución muestral de las diferencias. En otras palabras, nos dice cuánto esperamos que la diferencia entre las proporciones de las muestras varíe por simple azar.</p>
+            <p>
+              Esta fórmula mide la desviación estándar de la distribución muestral de las
+              diferencias. En otras palabras, nos dice cuánto esperamos que la diferencia entre las
+              proporciones de las muestras varíe por simple azar.
+            </p>
 
             <div class="formula-display">
-              <div class="katex-equation" v-html="renderLatex('SE = \\sqrt{\\hat{p}_1(1-\\hat{p}_1)/n_1 + \\hat{p}_2(1-\\hat{p}_2)/n_2}')"></div>
+              <div
+                class="katex-equation"
+                v-html="
+                  renderLatex(
+                    'SE = \\sqrt{\\hat{p}_1(1-\\hat{p}_1)/n_1 + \\hat{p}_2(1-\\hat{p}_2)/n_2}',
+                  )
+                "
+              ></div>
             </div>
 
             <div class="formula-explanation">
@@ -169,15 +219,38 @@
           <div class="step">
             <h4>Paso 1: Calcular las proporciones muestrales (p̂)</h4>
             <div class="calculation">
-              <p><strong>Grupo A:</strong> <span class="calc-equation" v-html="renderLatex('p̂₁ = \\frac{48}{100} = 0.48')"></span> (o 48%)</p>
-              <p><strong>Grupo B:</strong> <span class="calc-equation" v-html="renderLatex('p̂₂ = \\frac{36}{120} = 0.30')"></span> (o 30%)</p>
+              <p>
+                <strong>Grupo A:</strong>
+                <span
+                  class="calc-equation"
+                  v-html="renderLatex('p̂₁ = \\frac{48}{100} = 0.48')"
+                ></span>
+                (o 48%)
+              </p>
+              <p>
+                <strong>Grupo B:</strong>
+                <span
+                  class="calc-equation"
+                  v-html="renderLatex('p̂₂ = \\frac{36}{120} = 0.30')"
+                ></span>
+                (o 30%)
+              </p>
             </div>
           </div>
 
           <div class="step">
             <h4>Paso 2: Calcular la diferencia observada</h4>
             <div class="calculation">
-              <p><strong>Diferencia = <span class="calc-equation" v-html="renderLatex('p̂₁ - p̂₂ = 0.48 - 0.30 = 0.18')"></span></strong> (o una diferencia de 18 puntos porcentuales)</p>
+              <p>
+                <strong
+                  >Diferencia =
+                  <span
+                    class="calc-equation"
+                    v-html="renderLatex('p̂₁ - p̂₂ = 0.48 - 0.30 = 0.18')"
+                  ></span
+                ></strong>
+                (o una diferencia de 18 puntos porcentuales)
+              </p>
             </div>
           </div>
 
@@ -185,23 +258,42 @@
             <h4>Paso 3: Calcular el Error Estándar (SE)</h4>
             <div class="calculation-steps">
               <div class="calc-step">
-                <div class="calc-equation" v-html="renderLatex('SE = \\sqrt{\\hat{p}_1(1-\\hat{p}_1)/n_1 + \\hat{p}_2(1-\\hat{p}_2)/n_2}')"></div>
+                <div
+                  class="calc-equation"
+                  v-html="
+                    renderLatex(
+                      'SE = \\sqrt{\\hat{p}_1(1-\\hat{p}_1)/n_1 + \\hat{p}_2(1-\\hat{p}_2)/n_2}',
+                    )
+                  "
+                ></div>
                 <span class="calc-desc">Aplicamos la fórmula general</span>
               </div>
               <div class="calc-step">
-                <div class="calc-equation" v-html="renderLatex('SE = \\sqrt{0.48(1-0.48)/100 + 0.30(1-0.30)/120}')"></div>
+                <div
+                  class="calc-equation"
+                  v-html="renderLatex('SE = \\sqrt{0.48(1-0.48)/100 + 0.30(1-0.30)/120}')"
+                ></div>
                 <span class="calc-desc">Sustituimos los valores</span>
               </div>
               <div class="calc-step">
-                <div class="calc-equation" v-html="renderLatex('SE = \\sqrt{0.48 \\times 0.52/100 + 0.30 \\times 0.70/120}')"></div>
+                <div
+                  class="calc-equation"
+                  v-html="renderLatex('SE = \\sqrt{0.48 \\times 0.52/100 + 0.30 \\times 0.70/120}')"
+                ></div>
                 <span class="calc-desc">Calculamos los productos</span>
               </div>
               <div class="calc-step">
-                <div class="calc-equation" v-html="renderLatex('SE = \\sqrt{0.002496 + 0.00175}')"></div>
+                <div
+                  class="calc-equation"
+                  v-html="renderLatex('SE = \\sqrt{0.002496 + 0.00175}')"
+                ></div>
                 <span class="calc-desc">Dividimos y sumamos</span>
               </div>
               <div class="calc-step result">
-                <div class="calc-equation" v-html="renderLatex('SE = \\sqrt{0.004246} \\approx \\mathbf{0.065}')"></div>
+                <div
+                  class="calc-equation"
+                  v-html="renderLatex('SE = \\sqrt{0.004246} \\approx \\mathbf{0.065}')"
+                ></div>
                 <span class="calc-desc">Resultado final</span>
               </div>
             </div>
@@ -210,7 +302,12 @@
 
         <div class="interpretation-box">
           <h3>Interpretación (¡La clave!)</h3>
-          <p>Observamos una diferencia del <strong>18%</strong> a favor del Asunto A. El Error Estándar de <strong>0.065</strong> (o 6.5%) nos dice que si repitiéramos este experimento muchas veces, la diferencia que obtengamos variaría típicamente en unos ±6.5% alrededor de la diferencia real solo por el azar del muestreo.</p>
+          <p>
+            Observamos una diferencia del <strong>18%</strong> a favor del Asunto A. El Error
+            Estándar de <strong>0.065</strong> (o 6.5%) nos dice que si repitiéramos este
+            experimento muchas veces, la diferencia que obtengamos variaría típicamente en unos
+            ±6.5% alrededor de la diferencia real solo por el azar del muestreo.
+          </p>
           <p>Esto nos da una idea de qué tan "estable" es nuestra estimación del 18%.</p>
         </div>
       </div>
@@ -221,19 +318,33 @@
 
         <div class="explanation-box">
           <h3>¿Qué demuestra esta simulación?</h3>
-          <p>Esta simulación muestra cómo varían las diferencias de proporciones cuando repetimos el proceso de muestreo. <strong>No prueba nada estadísticamente, solo nos ayuda a visualizar la variabilidad esperada</strong> en las diferencias si repitiéramos el experimento muchas veces con los mismos tamaños de muestra.</p>
+          <p>
+            Esta simulación muestra cómo varían las diferencias de proporciones cuando repetimos el
+            proceso de muestreo.
+            <strong
+              >No prueba nada estadísticamente, solo nos ayuda a visualizar la variabilidad
+              esperada</strong
+            >
+            en las diferencias si repitiéramos el experimento muchas veces con los mismos tamaños de
+            muestra.
+          </p>
         </div>
 
         <div class="simulation-controls">
           <div class="control-group">
             <label for="num-simulaciones">Número de simulaciones:</label>
-            <input type="range" id="num-simulaciones" min="100" max="5000" step="100" v-model="numeroSimulaciones">
+            <input
+              type="range"
+              id="num-simulaciones"
+              min="100"
+              max="5000"
+              step="100"
+              v-model="numeroSimulaciones"
+            />
             <span>{{ numeroSimulaciones }} simulaciones</span>
           </div>
 
-          <button @click="ejecutarSimulacion" class="btn btn-primary">
-            Ejecutar Simulación
-          </button>
+          <button @click="ejecutarSimulacion" class="btn btn-primary">Ejecutar Simulación</button>
         </div>
 
         <div class="simulation-results">
@@ -264,10 +375,20 @@
 
           <div class="interpretation">
             <h4>Interpretación</h4>
-            <p>El histograma muestra cómo se distribuyen las diferencias de proporciones si repitiéramos el muestreo {{ numeroSimulaciones }} veces. La línea roja marca nuestra diferencia observada ({{ diferenciaObservada.toFixed(3) }}).</p>
-            <p>La variabilidad que vemos (desviación estándar = {{ desviacionSimulada.toFixed(3) }}) nos da una idea de cuánto esperaríamos que varíen las diferencias por pura casualidad del muestreo.</p>
+            <p>
+              El histograma muestra cómo se distribuyen las diferencias de proporciones si
+              repitiéramos el muestreo {{ numeroSimulaciones }} veces. La línea roja marca nuestra
+              diferencia observada ({{ diferenciaObservada.toFixed(3) }}).
+            </p>
+            <p>
+              La variabilidad que vemos (desviación estándar = {{ desviacionSimulada.toFixed(3) }})
+              nos da una idea de cuánto esperaríamos que varíen las diferencias por pura casualidad
+              del muestreo.
+            </p>
             <div class="key-insight">
-              <strong>Recuerda:</strong> Esta simulación no es una prueba estadística. Solo ilustra el concepto de variabilidad muestral y nos ayuda a contextualizar qué tan grande es nuestra diferencia observada en relación con la variabilidad esperada.
+              <strong>Recuerda:</strong> Esta simulación no es una prueba estadística. Solo ilustra
+              el concepto de variabilidad muestral y nos ayuda a contextualizar qué tan grande es
+              nuestra diferencia observada en relación con la variabilidad esperada.
             </div>
           </div>
         </div>
@@ -283,9 +404,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import katex from 'katex';
-import 'katex/dist/katex.min.css';
+import { ref } from 'vue'
+import katex from 'katex'
+import 'katex/dist/katex.min.css'
 
 // Configuración de pestañas
 const tabs = [
@@ -293,590 +414,480 @@ const tabs = [
   { id: 'ingredientes', label: 'Ingredientes Clave' },
   { id: 'distribucion', label: 'Distribución y Variabilidad' },
   { id: 'ejemplo', label: 'Ejemplo Práctico' },
-  { id: 'simulacion', label: 'Simulación' }
-];
+  { id: 'simulacion', label: 'Simulación' },
+]
 
-const activeTab = ref('introduccion');
+const activeTab = ref('introduccion')
 
 // Función para ejecutar la simulación
 const ejecutarSimulacion = async () => {
-  diferenciasSimuladas.value = [];
+  diferenciasSimuladas.value = []
 
   // Simulación para diferencias de proporciones
-  diferenciaObservada.value = 0.18; // Diferencia observada en el ejemplo
-  errorEstandarCalculado.value = 0.065; // Error estándar calculado
+  diferenciaObservada.value = 0.18 // Diferencia observada en el ejemplo
+  errorEstandarCalculado.value = 0.065 // Error estándar calculado
 
   // Datos del ejemplo
-  const n1 = 100;
-  const p1 = 0.48;
-  const n2 = 120;
-  const p2 = 0.30;
+  const n1 = 100
+  const p1 = 0.48
+  const n2 = 120
+  const p2 = 0.3
 
   for (let i = 0; i < numeroSimulaciones.value; i++) {
     // Generar muestra bootstrap para grupo 1
-    const muestra1 = [];
+    const muestra1 = []
     for (let j = 0; j < n1; j++) {
-      muestra1.push(Math.random() < p1 ? 1 : 0);
+      muestra1.push(Math.random() < p1 ? 1 : 0)
     }
-    const prop1 = muestra1.reduce((a, b) => a + b, 0) / n1;
+    const prop1 = muestra1.reduce((a, b) => a + b, 0) / n1
 
     // Generar muestra bootstrap para grupo 2
-    const muestra2 = [];
+    const muestra2 = []
     for (let j = 0; j < n2; j++) {
-      muestra2.push(Math.random() < p2 ? 1 : 0);
+      muestra2.push(Math.random() < p2 ? 1 : 0)
     }
-    const prop2 = muestra2.reduce((a, b) => a + b, 0) / n2;
+    const prop2 = muestra2.reduce((a, b) => a + b, 0) / n2
 
     // Calcular diferencia
-    const diferencia = prop1 - prop2;
-    diferenciasSimuladas.value.push(diferencia);
+    const diferencia = prop1 - prop2
+    diferenciasSimuladas.value.push(diferencia)
   }
 
   // Calcular estadísticas
-  mediaSimulada.value = diferenciasSimuladas.value.reduce((a, b) => a + b, 0) / diferenciasSimuladas.value.length;
-  const varianza = diferenciasSimuladas.value.reduce((a, b) => a + Math.pow(b - mediaSimulada.value, 2), 0) / diferenciasSimuladas.value.length;
-  desviacionSimulada.value = Math.sqrt(varianza);
+  mediaSimulada.value =
+    diferenciasSimuladas.value.reduce((a, b) => a + b, 0) / diferenciasSimuladas.value.length
+  const varianza =
+    diferenciasSimuladas.value.reduce((a, b) => a + Math.pow(b - mediaSimulada.value, 2), 0) /
+    diferenciasSimuladas.value.length
+  desviacionSimulada.value = Math.sqrt(varianza)
 
   // Actualizar gráfico
   if (simulacionDiv.value) {
-    const Plotly = await import('plotly.js-basic-dist');
-    Plotly.default.react(simulacionDiv.value, getSimulacionData(), getSimulacionLayout());
+    const Plotly = await import('plotly.js-basic-dist')
+    Plotly.default.react(simulacionDiv.value, getSimulacionData(), getSimulacionLayout())
   }
-};
+}
 
 // Función para obtener datos del histograma de simulación
 const getSimulacionData = () => {
-  const diferencias = diferenciasSimuladas.value;
-  if (diferencias.length === 0) return [];
+  const diferencias = diferenciasSimuladas.value
+  if (diferencias.length === 0) return []
 
   // Crear histograma
-  const min = Math.min(...diferencias);
-  const max = Math.max(...diferencias);
-  const bins = 30;
-  const binWidth = (max - min) / bins;
+  const min = Math.min(...diferencias)
+  const max = Math.max(...diferencias)
+  const bins = 30
+  const binWidth = (max - min) / bins
 
-  const histogram = [];
+  const histogram = []
   for (let i = 0; i < bins; i++) {
-    const binStart = min + i * binWidth;
-    const binEnd = binStart + binWidth;
-    const count = diferencias.filter(d => d >= binStart && d < binEnd).length;
+    const binStart = min + i * binWidth
+    const binEnd = binStart + binWidth
+    const count = diferencias.filter((d) => d >= binStart && d < binEnd).length
     histogram.push({
       x: binStart + binWidth / 2,
-      y: count
-    });
+      y: count,
+    })
   }
 
   return [
     {
-      x: histogram.map(h => h.x),
-      y: histogram.map(h => h.y),
+      x: histogram.map((h) => h.x),
+      y: histogram.map((h) => h.y),
       type: 'bar' as const,
       name: 'Frecuencia',
       marker: { color: 'rgba(52, 152, 219, 0.7)' },
-      width: binWidth * 0.9
+      width: binWidth * 0.9,
     },
     {
       x: [diferenciaObservada.value, diferenciaObservada.value],
-      y: [0, Math.max(...histogram.map(h => h.y))],
+      y: [0, Math.max(...histogram.map((h) => h.y))],
       type: 'scatter' as const,
       mode: 'lines' as const,
       name: 'Diferencia Observada',
-      line: { color: 'red', width: 3 }
-    }
-  ];
-};
+      line: { color: 'red', width: 3 },
+    },
+  ]
+}
 
 // Función para obtener layout del gráfico de simulación
 const getSimulacionLayout = () => ({
   title: {
-    text: `Distribución Simulada de Diferencias de Proporciones`
+    text: `Distribución Simulada de Diferencias de Proporciones`,
   },
   xaxis: {
-    title: { text: 'Diferencia de Proporciones' }
+    title: { text: 'Diferencia de Proporciones' },
   },
   yaxis: {
-    title: { text: 'Frecuencia' }
+    title: { text: 'Frecuencia' },
   },
   showlegend: true,
-  bargap: 0
-});
+  bargap: 0,
+})
 
 // Función para renderizar LaTeX
 const renderLatex = (latex: string) => {
   try {
     return katex.renderToString(latex, {
       throwOnError: false,
-      displayMode: false
-    });
+      displayMode: false,
+    })
   } catch (error) {
-    console.error('Error rendering LaTeX:', error);
-    return latex;
+    console.error('Error rendering LaTeX:', error)
+    return latex
   }
-};
+}
 
 // Variables para la simulación
-const simulacionDiv = ref<HTMLElement>();
-const numeroSimulaciones = ref(1000);
-const diferenciasSimuladas = ref<number[]>([]);
-const diferenciaObservada = ref(0.18);
-const mediaSimulada = ref(0);
-const desviacionSimulada = ref(0);
-const errorEstandarCalculado = ref(0.065);
+const simulacionDiv = ref<HTMLElement>()
+const numeroSimulaciones = ref(1000)
+const diferenciasSimuladas = ref<number[]>([])
+const diferenciaObservada = ref(0.18)
+const mediaSimulada = ref(0)
+const desviacionSimulada = ref(0)
+const errorEstandarCalculado = ref(0.065)
 </script>
 
 <style scoped>
+@import '@/assets/styles/main.css';
+
 .diferencia-proporciones-view {
-  padding: 1rem 0;
+  padding-bottom: var(--spacing-2xl);
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--spacing-md);
 }
 
-.hero {
-  text-align: center;
-  margin-bottom: 2rem;
-  padding: 2rem;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.hero h1 {
-  margin-bottom: 1rem;
-  font-size: 2.2rem;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  color: #7f8c8d;
-}
-
+/* Tabs */
 .nav-tabs {
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-xl);
   flex-wrap: wrap;
-  background: white;
-  border-radius: 50px;
-  padding: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  gap: var(--spacing-sm);
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  padding: var(--spacing-xs);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tab {
-  padding: 0.8rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   cursor: pointer;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  font-weight: bold;
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+  font-weight: 600;
   border: none;
-  background: none;
-  font-size: 0.9rem;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
 }
 
 .tab.active {
-  background: var(--brand1);
+  background: var(--primary);
   color: white;
+  box-shadow: var(--shadow-sm);
 }
 
 .tab:hover:not(.active) {
-  background: #e0e0e0;
+  background: var(--surface-variant);
+  color: var(--text-primary);
 }
 
+/* Content Sections */
 .content-section {
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
+  background: var(--surface);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  margin-bottom: var(--spacing-xl);
+  border: 1px solid var(--border);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .content-section h2 {
-  color: var(--brand1);
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid var(--border);
-  padding-bottom: 0.5rem;
+  color: var(--primary);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--border-light);
+  font-size: 1.75rem;
 }
 
+/* Intro Content */
 .intro-content {
   line-height: 1.6;
+  color: var(--text-primary);
 }
 
 .intro-content p {
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .examples-section {
-  margin: 2rem 0;
+  margin: var(--spacing-lg) 0;
 }
 
 .examples-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin: 1.5rem 0;
+  gap: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
 }
 
 .example-card {
-  background: #ecf0f1;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border-left: 4px solid #3498db;
+  background: var(--surface-variant);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--secondary);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
 .example-card h4 {
   margin-top: 0;
-  color: #2980b9;
-  margin-bottom: 0.5rem;
+  color: var(--secondary);
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.1rem;
 }
 
 .key-concept {
-  background: #e8f4f8;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-  border-left: 4px solid #3498db;
+  background: var(--primary-50);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-lg) 0;
+  border-left: 4px solid var(--primary);
 }
 
 .key-concept h3 {
   margin-top: 0;
-  color: #2980b9;
+  color: var(--primary-800);
+  margin-bottom: var(--spacing-sm);
 }
 
+/* Theory Content */
 .theory-content {
   line-height: 1.6;
 }
 
 .definition-box {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-  border-left: 4px solid #6c757d;
+  background: var(--surface);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-lg) 0;
+  border-left: 4px solid var(--neutral-500);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
 .definition-box h3 {
   margin-top: 0;
-  color: #495057;
-}
-
-.formula {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin: 1rem 0;
-  text-align: center;
-  padding: 0.5rem;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-}
-
-.concept-explanation {
-  background: #fff4e6;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-  border-left: 4px solid #f39c12;
-}
-
-.concept-explanation h3 {
-  margin-top: 0;
-  color: #d35400;
-}
-
-.key-question {
-  background: #e8f4f8;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-  border-left: 4px solid #3498db;
-}
-
-.key-question h3 {
-  margin-top: 0;
-  color: #2980b9;
-}
-
-.formula-box {
-  background: #e8f5e8;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-  border-left: 4px solid #2ecc71;
-}
-
-.formula-box h3 {
-  margin-top: 0;
-  color: #27ae60;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
 }
 
 .formula-display {
   text-align: center;
-  margin: 1.5rem 0;
-  padding: 1.5rem;
-  background: white;
-  border-radius: 8px;
-  border: 2px solid #e8f5e8;
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-lg);
+  background: var(--surface-variant);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
 }
 
 .katex-equation {
   font-size: 1.4rem;
-  color: #2c3e50;
-}
-
-.complex-equation {
-  display: inline-block;
-  text-align: left;
-  font-family: 'Times New Roman', serif;
-  line-height: 1.2;
-}
-
-.equation-main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.5rem;
-  font-size: 1.6rem;
-}
-
-.sqrt-symbol {
-  font-size: 2rem;
-  margin: 0 0.2rem;
-  position: relative;
-  top: 0.2rem;
-}
-
-.bracket-large {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #2ecc71;
-  position: relative;
-  top: -0.3rem;
-}
-
-.equation-terms {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.term {
-  display: flex;
-  align-items: center;
-  gap: 0.1rem;
-  font-size: 1.4rem;
-}
-
-.paren {
-  color: #3498db;
-  font-weight: bold;
-}
-
-.fraction {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 0.2rem;
-  position: relative;
-}
-
-.fraction .numerator {
-  border-bottom: 1px solid #2ecc71;
-  padding-bottom: 1px;
-  font-size: 0.8em;
-  line-height: 1;
-}
-
-.fraction .denominator {
-  padding-top: 1px;
-  font-size: 0.8em;
-  line-height: 1;
-}
-
-.plus {
-  font-size: 1.4rem;
-  color: #e74c3c;
-  font-weight: bold;
-  margin: 0 0.5rem;
-}
-
-.bracket-close {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.5rem;
-}
-
-@media (max-width: 768px) {
-  .equation-terms {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .term {
-    font-size: 1.2rem;
-  }
-
-  .equation-main {
-    font-size: 1.4rem;
-  }
-
-  .bracket-large {
-    font-size: 2rem;
-  }
-}
-
-.formula-large {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #2ecc71;
-  font-family: 'Times New Roman', serif;
-  line-height: 1.4;
-}
-
-.formula-var {
-  color: var(--brand1);
-  font-weight: bold;
+  color: var(--text-primary);
+  overflow-x: auto;
 }
 
 .formula-note {
-  margin-top: 0.5rem;
+  margin-top: var(--spacing-md);
   font-size: 0.9rem;
-  color: #7f8c8d;
+  color: var(--text-secondary);
   font-style: italic;
 }
 
-.formula-fraction {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  vertical-align: middle;
-  margin: 0 0.2rem;
+.formula-var {
+  color: var(--primary);
+  font-weight: bold;
 }
 
-.numerator {
-  border-bottom: 2px solid #2ecc71;
-  padding-bottom: 2px;
-  margin-bottom: 2px;
-  font-size: 0.9em;
+.concept-explanation {
+  background: var(--warning-50);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-lg) 0;
+  border-left: 4px solid var(--warning);
 }
 
-.denominator {
-  padding-top: 2px;
-  font-size: 0.9em;
+.concept-explanation h3 {
+  margin-top: 0;
+  color: var(--warning-700);
+  margin-bottom: var(--spacing-sm);
+}
+
+.key-question {
+  background: var(--secondary-50);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-lg) 0;
+  border-left: 4px solid var(--secondary);
+}
+
+.key-question h3 {
+  margin-top: 0;
+  color: var(--secondary-800);
+  margin-bottom: var(--spacing-sm);
+}
+
+.formula-box {
+  background: var(--success-50);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-lg) 0;
+  border-left: 4px solid var(--success);
+}
+
+.formula-box h3 {
+  margin-top: 0;
+  color: var(--success-800);
+  margin-bottom: var(--spacing-sm);
 }
 
 .formula-explanation {
-  margin-top: 1.5rem;
+  margin-top: var(--spacing-lg);
 }
 
 .formula-explanation h4 {
-  color: #27ae60;
-  margin-bottom: 1rem;
+  color: var(--success);
+  margin-bottom: var(--spacing-md);
   font-size: 1.1rem;
 }
 
 .variables-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
 }
 
 .variable-item {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 1rem;
-  background: #f8fff8;
-  border-radius: 6px;
-  border: 1px solid #d4edda;
+  padding: var(--spacing-md);
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  text-align: center;
 }
 
 .variable-symbol {
   font-weight: bold;
-  color: #e74c3c;
+  color: var(--primary);
   font-size: 1.1rem;
-  text-align: center;
 }
 
 .variable-desc {
-  color: #2c3e50;
+  color: var(--text-secondary);
   font-size: 0.9rem;
-  text-align: center;
   line-height: 1.4;
 }
 
+/* Example Scenario */
 .example-scenario {
-  background: #e8f4f8;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-  border-left: 4px solid #3498db;
+  background: var(--secondary-50);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-lg) 0;
+  border-left: 4px solid var(--secondary);
 }
 
 .example-scenario h3 {
   margin-top: 0;
-  color: #2980b9;
+  color: var(--secondary-800);
+  margin-bottom: var(--spacing-sm);
 }
 
 .data-summary {
-  margin: 1.5rem 0;
+  margin: var(--spacing-lg) 0;
 }
 
 .data-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  gap: var(--spacing-lg);
 }
 
 .data-card {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border-left: 4px solid #28a745;
+  background: var(--surface);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--success);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
 .data-card h4 {
   margin-top: 0;
   color: var(--success);
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .data-card ul {
   margin-left: 1.5rem;
+  color: var(--text-primary);
 }
 
 .data-card li {
   margin-bottom: 0.5rem;
 }
 
+/* Solution Steps */
 .solution-steps {
-  margin: 1.5rem 0;
+  margin: var(--spacing-lg) 0;
 }
 
 .step {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 1rem 0;
-  border-left: 4px solid #6c757d;
+  background: var(--surface);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-md) 0;
+  border-left: 4px solid var(--neutral-400);
+  border: 1px solid var(--border);
 }
 
 .step h4 {
   margin-top: 0;
-  color: #495057;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-sm);
 }
 
 .calculation {
-  background: white;
-  padding: 1rem;
-  border-radius: 6px;
-  margin: 1rem 0;
-  font-family: 'Courier New', monospace;
+  background: var(--neutral-50);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-sm);
+  margin: var(--spacing-md) 0;
+  font-family: 'Fira Code', monospace;
+  border: 1px solid var(--border-light);
 }
 
 .calculation p {
@@ -894,86 +905,79 @@ const errorEstandarCalculado = ref(0.065);
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem;
-  background: #f8f9fa;
-  border-radius: 6px;
-  border-left: 3px solid #3498db;
-  transition: all 0.3s ease;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--secondary);
+  transition: var(--transition);
+  border: 1px solid var(--border-light);
 }
 
 .calc-step:hover {
-  background: #e8f4f8;
+  background: var(--secondary-50);
   transform: translateX(5px);
 }
 
 .calc-step.result {
-  background: #e8f5e8;
-  border-left-color: #2ecc71;
+  background: var(--success-50);
+  border-left-color: var(--success);
   font-weight: bold;
 }
 
 .calc-equation {
   font-family: 'Times New Roman', serif;
   font-size: 1.1rem;
-  color: #2c3e50;
+  color: var(--text-primary);
   flex: 1;
 }
 
 .calc-desc {
   font-size: 0.85rem;
-  color: #7f8c8d;
+  color: var(--text-secondary);
   font-style: italic;
   margin-left: 1rem;
   min-width: 150px;
   text-align: right;
 }
 
-@media (max-width: 768px) {
-  .calc-step {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .calc-desc {
-    text-align: left;
-    margin-left: 0;
-  }
-}
-
 .interpretation-box {
-  background: #e8f5e8;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-  border-left: 4px solid #2ecc71;
+  background: var(--success-50);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-lg) 0;
+  border-left: 4px solid var(--success);
 }
 
 .interpretation-box h3 {
   margin-top: 0;
-  color: #27ae60;
+  color: var(--success-800);
+  margin-bottom: var(--spacing-sm);
 }
 
+/* Simulation */
 .explanation-box {
-  background: #e8f4f8;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-  border-left: 4px solid #3498db;
+  background: var(--secondary-50);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-lg) 0;
+  border-left: 4px solid var(--secondary);
 }
 
 .explanation-box h3 {
   margin-top: 0;
-  color: #2980b9;
+  color: var(--secondary-800);
+  margin-bottom: var(--spacing-sm);
 }
 
 .simulation-controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
-  background: #ecf0f1;
-  border-radius: 8px;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: var(--surface-variant);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  align-items: center;
 }
 
 .control-group {
@@ -983,137 +987,145 @@ const errorEstandarCalculado = ref(0.065);
 }
 
 .control-group label {
-  font-weight: bold;
-  color: #2c3e50;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .control-group input {
   padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #ddd;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-dark);
 }
 
 .simulation-results {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: var(--surface);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
 }
 
 .results-summary {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
 }
 
 .summary-item {
-  background: #f8f9fa;
-  padding: 1rem;
-  border-radius: 6px;
+  background: var(--surface-variant);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
   text-align: center;
+  border: 1px solid var(--border);
 }
 
 .summary-item h4 {
   margin: 0 0 0.5rem 0;
-  color: #2c3e50;
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
 .stat-value {
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--brand1);
+  color: var(--primary);
   margin: 0;
+  font-family: 'Fira Code', monospace;
 }
 
 .chart-container {
-  margin: 2rem 0;
+  margin: var(--spacing-lg) 0;
   min-height: 400px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
 }
 
 .interpretation {
-  margin-top: 1.5rem;
-  padding: 1.5rem;
-  background: #e8f4f8;
-  border-radius: 8px;
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: var(--secondary-50);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--secondary-200);
 }
 
 .interpretation h4 {
   margin: 0 0 1rem 0;
-  color: #2980b9;
+  color: var(--secondary-800);
 }
 
 .key-insight {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: #fff4e6;
-  border-radius: 6px;
-  border-left: 4px solid #f39c12;
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--warning-50);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--warning);
+  color: var(--warning-900);
 }
 
 .navigation-buttons {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: var(--spacing-2xl);
 }
 
 .btn {
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-md);
   border: none;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: var(--transition);
   text-decoration: none;
   display: inline-block;
+  font-size: 1rem;
 }
 
 .btn-secondary {
-  background: #7f8c8d;
-  color: white;
+  background: var(--neutral-200);
+  color: var(--text-primary);
 }
-
 .btn-secondary:hover {
-  background: #6c7a7b;
+  background: var(--neutral-300);
 }
 
 .btn-primary {
-  background: var(--brand1);
+  background: var(--primary);
   color: white;
+  box-shadow: var(--shadow-sm);
 }
-
 .btn-primary:hover {
-  background: var(--brand1-dark);
+  background: var(--primary-700);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 @media (max-width: 768px) {
   .nav-tabs {
     flex-direction: column;
-    border-radius: 10px;
+    border-radius: var(--radius-lg);
   }
 
   .tab {
     border-radius: 0;
     text-align: center;
-    font-size: 0.8rem;
-    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
   }
 
   .tab:first-child {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
   }
 
   .tab:last-child {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
   }
 
-  .examples-grid, .data-cards {
-    grid-template-columns: 1fr;
-  }
-
+  .examples-grid,
+  .data-cards,
   .results-summary {
     grid-template-columns: 1fr;
   }
@@ -1122,6 +1134,17 @@ const errorEstandarCalculado = ref(0.065);
     width: 100%;
     text-align: center;
     margin-bottom: 0.5rem;
+  }
+
+  .calc-step {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .calc-desc {
+    text-align: left;
+    margin-left: 0;
   }
 }
 </style>

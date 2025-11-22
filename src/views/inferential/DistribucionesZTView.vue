@@ -4,10 +4,14 @@
       <div class="hero">
         <h1>La Distribución Muestral de la Media: Calculando Probabilidades</h1>
         <p>
-          Cuando tomamos una muestra de una población y calculamos su media (x̄), raramente será idéntica a la media de la población entera (μ). La pregunta que nos hacemos es: ¿Qué tan probable es que nuestra muestra tenga la media que obtuvimos?
+          Cuando tomamos una muestra de una población y calculamos su media (x̄), raramente será
+          idéntica a la media de la población entera (μ). La pregunta que nos hacemos es: ¿Qué tan
+          probable es que nuestra muestra tenga la media que obtuvimos?
         </p>
         <p>
-          Para responder a esto, estandarizamos la media muestral para ver dónde cae dentro de una "distribución de referencia". Las dos herramientas principales para esto son la distribución Z y la distribución t.
+          Para responder a esto, estandarizamos la media muestral para ver dónde cae dentro de una
+          "distribución de referencia". Las dos herramientas principales para esto son la
+          distribución Z y la distribución t.
         </p>
       </div>
 
@@ -26,7 +30,11 @@
       <!-- DISTRIBUCIÓN Z -->
       <div v-if="activeTab === 'z'" class="content-section">
         <h2>Distribución Z (Cuando conocemos la desviación estándar de la población, σ)</h2>
-        <p>Usamos la distribución Z cuando tenemos la suerte de conocer la desviación estándar (σ) de toda la población. Esto es el "caso ideal" y nos permite usar la distribución normal estándar.</p>
+        <p>
+          Usamos la distribución Z cuando tenemos la suerte de conocer la desviación estándar (σ) de
+          toda la población. Esto es el "caso ideal" y nos permite usar la distribución normal
+          estándar.
+        </p>
 
         <div class="theory-content">
           <div class="definition-box">
@@ -36,9 +44,7 @@
 
           <div class="formula-section">
             <div class="formula-container">
-              <div class="formula">
-                Z = (x̄ - μ) / (σ / √n)
-              </div>
+              <div class="formula">Z = (x̄ - μ) / (σ / √n)</div>
               <div class="formula-explanation">
                 <p>Donde:</p>
                 <ul>
@@ -54,14 +60,20 @@
 
           <div class="probability-calculation">
             <h3>¿Cómo se calculan las probabilidades con Z?</h3>
-            <p>Una vez que tienes el puntaje Z, buscas la probabilidad correspondiente en una tabla de distribución normal estándar o usas una calculadora estadística.</p>
+            <p>
+              Una vez que tienes el puntaje Z, buscas la probabilidad correspondiente en una tabla
+              de distribución normal estándar o usas una calculadora estadística.
+            </p>
 
             <div class="probability-types">
               <div class="probability-type">
                 <h4>Probabilidad de que la media sea menor que un valor (P(x̄ &lt; a)):</h4>
                 <ol>
                   <li>Calculas el puntaje Z para el valor 'a'.</li>
-                  <li>Buscas ese Z en la tabla. El valor que encuentras es directamente la probabilidad.</li>
+                  <li>
+                    Buscas ese Z en la tabla. El valor que encuentras es directamente la
+                    probabilidad.
+                  </li>
                 </ol>
               </div>
 
@@ -69,7 +81,10 @@
                 <h4>Probabilidad de que la media sea mayor que un valor (P(x̄ > a)):</h4>
                 <ol>
                   <li>Calculas el puntaje Z para el valor 'a'.</li>
-                  <li>Buscas el Z en la tabla. Como la tabla da el área a la izquierda, calculas: 1 - (valor de la tabla).</li>
+                  <li>
+                    Buscas el Z en la tabla. Como la tabla da el área a la izquierda, calculas: 1 -
+                    (valor de la tabla).
+                  </li>
                 </ol>
               </div>
 
@@ -87,7 +102,11 @@
           <div class="visualization-section">
             <h3>Visualización de la Distribución Z</h3>
             <div class="image-container">
-              <img src="@/assets/distribucion-z.webp" alt="Distribución Normal Estándar Z" class="distribution-image">
+              <img
+                src="@/assets/distribucion-z.webp"
+                alt="Distribución Normal Estándar Z"
+                class="distribution-image"
+              />
               <div class="image-caption">
                 La distribución Z o normal estándar tiene media 0 y desviación estándar 1.
               </div>
@@ -100,22 +119,22 @@
             <div class="simulator-controls">
               <div class="control-group">
                 <label for="z-mean">Media Poblacional (μ):</label>
-                <input type="number" id="z-mean" v-model="zMean" step="0.1">
+                <input type="number" id="z-mean" v-model="zMean" step="0.1" />
               </div>
 
               <div class="control-group">
                 <label for="z-sigma">Desviación Estándar Poblacional (σ):</label>
-                <input type="number" id="z-sigma" v-model="zSigma" step="0.1" min="0.1">
+                <input type="number" id="z-sigma" v-model="zSigma" step="0.1" min="0.1" />
               </div>
 
               <div class="control-group">
                 <label for="z-sample-mean">Media Muestral (x̄):</label>
-                <input type="number" id="z-sample-mean" v-model="zSampleMean" step="0.1">
+                <input type="number" id="z-sample-mean" v-model="zSampleMean" step="0.1" />
               </div>
 
               <div class="control-group">
                 <label for="z-sample-size">Tamaño de Muestra (n):</label>
-                <input type="number" id="z-sample-size" v-model="zSampleSize" min="1">
+                <input type="number" id="z-sample-size" v-model="zSampleSize" min="1" />
               </div>
             </div>
 
@@ -143,10 +162,7 @@
                 <div class="z-plot">
                   <div class="plot-area">
                     <div class="mean-line">μ = 0</div>
-                    <div
-                      class="z-value-marker"
-                      :style="{ left: calculateZPosition(zScore) + '%' }"
-                    >
+                    <div class="z-value-marker" :style="{ left: calculateZPosition(zScore) + '%' }">
                       <div class="marker-line"></div>
                       <div class="marker-label">Z = {{ zScore.toFixed(2) }}</div>
                     </div>
@@ -168,7 +184,12 @@
 
         <div class="examples-section">
           <h3>Ejemplo Práctico (usando Z)</h3>
-          <p>Un fabricante de cereales sabe que sus cajas tienen un peso medio de μ=500 gramos con una desviación estándar poblacional de σ=10 gramos. Si tomamos una muestra aleatoria de n=25 cajas, ¿cuál es la probabilidad de que el peso medio de la muestra sea inferior a 496 gramos?</p>
+          <p>
+            Un fabricante de cereales sabe que sus cajas tienen un peso medio de μ=500 gramos con
+            una desviación estándar poblacional de σ=10 gramos. Si tomamos una muestra aleatoria de
+            n=25 cajas, ¿cuál es la probabilidad de que el peso medio de la muestra sea inferior a
+            496 gramos?
+          </p>
 
           <div class="example-details">
             <h4>Identificar los datos:</h4>
@@ -183,10 +204,16 @@
             <p>Z = (496 - 500) / (10 / √25) = (-4) / (10 / 5) = (-4) / 2 = -2.00</p>
 
             <h4>Buscar la probabilidad en la tabla Z:</h4>
-            <p>Buscamos Z = -2.00 en la tabla de distribución normal. El valor correspondiente es 0.0228.</p>
+            <p>
+              Buscamos Z = -2.00 en la tabla de distribución normal. El valor correspondiente es
+              0.0228.
+            </p>
 
             <h4>Respuesta:</h4>
-            <p>La probabilidad de que una muestra de 25 cajas tenga un peso medio inferior a 496 gramos es de 2.28%.</p>
+            <p>
+              La probabilidad de que una muestra de 25 cajas tenga un peso medio inferior a 496
+              gramos es de 2.28%.
+            </p>
           </div>
         </div>
 
@@ -194,7 +221,10 @@
           <h3>Ejercicios Prácticos - Distribución Z</h3>
           <div class="exercise-card">
             <h4>🎯 Ejercicio 2: Cola Izquierda (P(Z &lt; z))</h4>
-            <p>Un proceso de llenado tiene μ = 1000 ml y σ = 20 ml. En n = 49 botellas, x̄ = 995 ml. ¿Cuál es la probabilidad de observar una media tan baja o menor?</p>
+            <p>
+              Un proceso de llenado tiene μ = 1000 ml y σ = 20 ml. En n = 49 botellas, x̄ = 995 ml.
+              ¿Cuál es la probabilidad de observar una media tan baja o menor?
+            </p>
             <div class="exercise-solution">
               <h5>Solución:</h5>
               <ul>
@@ -204,10 +234,13 @@
               </ul>
             </div>
           </div>
-          
+
           <div class="exercise-card">
             <h4>🚀 Ejercicio 1: Cola Derecha (P(Z &gt; z))</h4>
-            <p>Un fabricante declara μ = 200 g y σ = 8 g. En n = 36 barras observas x̄ = 203 g. ¿Cuál es la probabilidad de obtener una media tan alta o mayor?</p>
+            <p>
+              Un fabricante declara μ = 200 g y σ = 8 g. En n = 36 barras observas x̄ = 203 g. ¿Cuál
+              es la probabilidad de obtener una media tan alta o mayor?
+            </p>
             <div class="exercise-solution">
               <h5>Solución:</h5>
               <ul>
@@ -220,13 +253,19 @@
 
           <div class="exercise-card">
             <h4>📊 Ejercicio 3: Intervalo (P(a &lt; Z &lt; b))</h4>
-            <p>Un control de calidad tiene μ = 50 kg y σ = 5 kg. En n = 64 paquetes, ¿cuál es la probabilidad de que la media esté entre 48.5 kg y 51.5 kg?</p>
+            <p>
+              Un control de calidad tiene μ = 50 kg y σ = 5 kg. En n = 64 paquetes, ¿cuál es la
+              probabilidad de que la media esté entre 48.5 kg y 51.5 kg?
+            </p>
             <div class="exercise-solution">
               <h5>Solución:</h5>
               <ul>
                 <li>Z₁ = (48.5 - 50) / (5 / √64) = (-1.5) / (5 / 8) = (-1.5) / 0.625 = -2.40</li>
                 <li>Z₂ = (51.5 - 50) / (5 / √64) = 1.5 / 0.625 = 2.40</li>
-                <li>P(-2.40 &lt; Z &lt; 2.40) = P(Z &lt; 2.40) - P(Z &lt; -2.40) = 0.9918 - 0.0082 = 0.9836</li>
+                <li>
+                  P(-2.40 &lt; Z &lt; 2.40) = P(Z &lt; 2.40) - P(Z &lt; -2.40) = 0.9918 - 0.0082 =
+                  0.9836
+                </li>
                 <li>La probabilidad es de 98.36%</li>
               </ul>
             </div>
@@ -237,29 +276,40 @@
       <!-- DISTRIBUCIÓN T -->
       <div v-if="activeTab === 't'" class="content-section">
         <h2>Distribución t (Cuando NO conocemos la desviación estándar de la población, σ)</h2>
-        <p>Este es el escenario más realista. No conocemos σ, así que la estimamos usando la desviación estándar de nuestra propia muestra (s). Esto introduce más incertidumbre, por lo que usamos la distribución t, que es como la normal pero con "colas más pesadas".</p>
+        <p>
+          Este es el escenario más realista. No conocemos σ, así que la estimamos usando la
+          desviación estándar de nuestra propia muestra (s). Esto introduce más incertidumbre, por
+          lo que usamos la distribución t, que es como la normal pero con "colas más pesadas".
+        </p>
 
         <div class="theory-content">
           <div class="definition-box">
             <h3>Concepto Clave: Grados de Libertad</h3>
-            <p>La forma exacta de la distribución t depende del tamaño de la muestra a través de los grados de libertad (gl). Para problemas de una media muestral, el cálculo es simple:</p>
+            <p>
+              La forma exacta de la distribución t depende del tamaño de la muestra a través de los
+              grados de libertad (gl). Para problemas de una media muestral, el cálculo es simple:
+            </p>
             <p><strong>gl = n - 1</strong></p>
-            <p>A mayor tamaño de muestra (y más grados de libertad), la distribución t se parece más a la distribución Z.</p>
+            <p>
+              A mayor tamaño de muestra (y más grados de libertad), la distribución t se parece más
+              a la distribución Z.
+            </p>
           </div>
 
           <div class="formula-section">
             <h3>¿Cómo se calcula el estadístico t para una media muestral?</h3>
             <p>La fórmula es muy similar a la de Z, pero reemplazamos σ por s.</p>
             <div class="formula-container">
-              <div class="formula">
-                t = (x̄ - μ) / (s / √n)
-              </div>
+              <div class="formula">t = (x̄ - μ) / (s / √n)</div>
               <div class="formula-explanation">
                 <p>Donde:</p>
                 <ul>
                   <li><strong>x̄</strong> es la media de tu muestra.</li>
                   <li><strong>μ</strong> es la media de la población (hipotética).</li>
-                  <li><strong>s</strong> es la desviación estándar de la muestra (calculada a partir de tus datos).</li>
+                  <li>
+                    <strong>s</strong> es la desviación estándar de la muestra (calculada a partir
+                    de tus datos).
+                  </li>
                   <li><strong>n</strong> es el tamaño de la muestra.</li>
                 </ul>
               </div>
@@ -268,7 +318,10 @@
 
           <div class="probability-calculation">
             <h3>¿Cómo se calculan las probabilidades con t?</h3>
-            <p>El proceso es similar, pero en lugar de una tabla Z, usas una tabla de distribución t o una calculadora que te pida el valor de t y los grados de libertad.</p>
+            <p>
+              El proceso es similar, pero en lugar de una tabla Z, usas una tabla de distribución t
+              o una calculadora que te pida el valor de t y los grados de libertad.
+            </p>
 
             <div class="probability-types">
               <div class="probability-type">
@@ -276,7 +329,10 @@
                 <ol>
                   <li>Calculas los grados de libertad (gl = n - 1).</li>
                   <li>Calculas el estadístico t para el valor 'a'.</li>
-                  <li>Usas una calculadora o software estadístico para encontrar P(t &lt; t_calculado) con los gl correspondientes.</li>
+                  <li>
+                    Usas una calculadora o software estadístico para encontrar P(t &lt; t_calculado)
+                    con los gl correspondientes.
+                  </li>
                 </ol>
               </div>
 
@@ -284,7 +340,10 @@
                 <h4>Probabilidad de que la media sea mayor que un valor (P(x̄ > a)):</h4>
                 <ol>
                   <li>Calculas los gl y el estadístico t.</li>
-                  <li>Encuentras P(t &gt; t_calculado). Esto a menudo se calcula como 1 - P(t &lt; t_calculado).</li>
+                  <li>
+                    Encuentras P(t &gt; t_calculado). Esto a menudo se calcula como 1 - P(t &lt;
+                    t_calculado).
+                  </li>
                 </ol>
               </div>
 
@@ -292,7 +351,10 @@
                 <h4>Probabilidad de que la media esté entre dos valores (P(a &lt; x̄ &lt; b)):</h4>
                 <ol>
                   <li>Calculas los gl y los estadísticos t para 'a' y 'b' (ta y tb).</li>
-                  <li>Calculas la probabilidad acumulada para cada uno y restas: P(t &lt; tb) - P(t &lt; ta).</li>
+                  <li>
+                    Calculas la probabilidad acumulada para cada uno y restas: P(t &lt; tb) - P(t
+                    &lt; ta).
+                  </li>
                 </ol>
               </div>
             </div>
@@ -301,37 +363,51 @@
           <div class="visualization-section">
             <h3>Visualización de la Distribución t</h3>
             <div class="image-container">
-              <img src="@/assets/distribucion-t.webp" alt="Distribución t de Student" class="distribution-image">
+              <img
+                src="@/assets/distribucion-t.webp"
+                alt="Distribución t de Student"
+                class="distribution-image"
+              />
               <div class="image-caption">
-                La distribución t tiene colas más pesadas que la normal, especialmente con pocos grados de libertad.
+                La distribución t tiene colas más pesadas que la normal, especialmente con pocos
+                grados de libertad.
               </div>
             </div>
           </div>
 
           <div class="interactive-section">
             <h3>Calculadora de Distribución t</h3>
-            <p>Calcula el estadístico t y el p-valor correspondiente usando la distribución t de Student.</p>
+            <p>
+              Calcula el estadístico t y el p-valor correspondiente usando la distribución t de
+              Student.
+            </p>
 
             <div class="t-calculator">
               <div class="calculator-controls">
                 <div class="control-group">
                   <label for="t-mean">Media Poblacional (μ):</label>
-                  <input type="number" id="t-mean" v-model="tMean" step="0.1">
+                  <input type="number" id="t-mean" v-model="tMean" step="0.1" />
                 </div>
 
                 <div class="control-group">
                   <label for="t-sample-mean">Media Muestral (x̄):</label>
-                  <input type="number" id="t-sample-mean" v-model="tSampleMean" step="0.1">
+                  <input type="number" id="t-sample-mean" v-model="tSampleMean" step="0.1" />
                 </div>
 
                 <div class="control-group">
                   <label for="t-sample-std">Desviación Muestral (s):</label>
-                  <input type="number" id="t-sample-std" v-model="tSampleStd" step="0.1" min="0.1">
+                  <input
+                    type="number"
+                    id="t-sample-std"
+                    v-model="tSampleStd"
+                    step="0.1"
+                    min="0.1"
+                  />
                 </div>
 
                 <div class="control-group">
                   <label for="t-sample-size">Tamaño de Muestra (n):</label>
-                  <input type="number" id="t-sample-size" v-model="tSampleSize" min="2">
+                  <input type="number" id="t-sample-size" v-model="tSampleSize" min="2" />
                 </div>
               </div>
 
@@ -359,7 +435,13 @@
 
         <div class="examples-section">
           <h3>Ejemplo Práctico (usando t)</h3>
-          <p>Un investigador quiere saber el tiempo promedio que tardan los estudiantes en completar un nuevo examen. Toma una muestra de n=16 estudiantes y encuentra que el tiempo medio fue de x̄=85 minutos, con una desviación estándar muestral de s=12 minutos. Si la norma para exámenes similares es de μ=80 minutos, ¿cuál es la probabilidad de que una muestra de 16 estudiantes tarde 85 minutos o más?</p>
+          <p>
+            Un investigador quiere saber el tiempo promedio que tardan los estudiantes en completar
+            un nuevo examen. Toma una muestra de n=16 estudiantes y encuentra que el tiempo medio
+            fue de x̄=85 minutos, con una desviación estándar muestral de s=12 minutos. Si la norma
+            para exámenes similares es de μ=80 minutos, ¿cuál es la probabilidad de que una muestra
+            de 16 estudiantes tarde 85 minutos o más?
+          </p>
 
           <div class="example-details">
             <h4>Identificar los datos:</h4>
@@ -377,10 +459,16 @@
             <p>t = (85 - 80) / (12 / √16) = 5 / (12 / 4) = 5 / 3 ≈ 1.667</p>
 
             <h4>Buscar la probabilidad (usando una calculadora o software):</h4>
-            <p>Necesitamos encontrar P(t > 1.667) con 15 grados de libertad. Una calculadora estadística nos daría un valor de aproximadamente 0.058 (5.8%).</p>
+            <p>
+              Necesitamos encontrar P(t > 1.667) con 15 grados de libertad. Una calculadora
+              estadística nos daría un valor de aproximadamente 0.058 (5.8%).
+            </p>
 
             <h4>Respuesta:</h4>
-            <p>La probabilidad de que una muestra de 16 estudiantes tenga un tiempo medio de 85 minutos o más es de aproximadamente 5.8%.</p>
+            <p>
+              La probabilidad de que una muestra de 16 estudiantes tenga un tiempo medio de 85
+              minutos o más es de aproximadamente 5.8%.
+            </p>
           </div>
         </div>
 
@@ -389,7 +477,10 @@
 
           <div class="exercise-card">
             <h4>🚀 Ejercicio 1: Cola Izquierda (P(T &lt; t))</h4>
-            <p>Un curso tiene promedio histórico μ = 75. Tomas n = 15 estudiantes y obtienes x̄ = 72 con s = 12. ¿Cuál es la probabilidad de observar una media tan baja o menor?</p>
+            <p>
+              Un curso tiene promedio histórico μ = 75. Tomas n = 15 estudiantes y obtienes x̄ = 72
+              con s = 12. ¿Cuál es la probabilidad de observar una media tan baja o menor?
+            </p>
             <div class="exercise-solution">
               <h5>Solución:</h5>
               <ul>
@@ -403,7 +494,10 @@
 
           <div class="exercise-card">
             <h4>🎯 Ejercicio 2: Cola Derecha (P(T > t))</h4>
-            <p>Un estudio de rendimiento tiene μ = 85. En n = 20 estudiantes, x̄ = 88 con s = 10. ¿Cuál es la probabilidad de obtener una media tan alta o mayor?</p>
+            <p>
+              Un estudio de rendimiento tiene μ = 85. En n = 20 estudiantes, x̄ = 88 con s = 10.
+              ¿Cuál es la probabilidad de obtener una media tan alta o mayor?
+            </p>
             <div class="exercise-solution">
               <h5>Solución:</h5>
               <ul>
@@ -417,7 +511,10 @@
 
           <div class="exercise-card">
             <h4>📊 Ejercicio 3: Intervalo (P(a &lt; T &lt; b))</h4>
-            <p>Un análisis de calidad tiene μ = 100. En n = 12 muestras, x̄ = 98 con s = 8. ¿Cuál es la probabilidad de que la media esté entre 96 y 104?</p>
+            <p>
+              Un análisis de calidad tiene μ = 100. En n = 12 muestras, x̄ = 98 con s = 8. ¿Cuál es
+              la probabilidad de que la media esté entre 96 y 104?
+            </p>
             <div class="exercise-solution">
               <h5>Solución:</h5>
               <ul>
@@ -451,7 +548,7 @@
 
                 <div class="decision-step">
                   <div class="step-question">
-                    <strong>Pregunta Principal:</strong><br>
+                    <strong>Pregunta Principal:</strong><br />
                     ¿Conozco la desviación estándar de TODA la población (σ)?
                   </div>
                   <div class="step-answers">
@@ -491,8 +588,12 @@
                     <h4>Consideración Adicional</h4>
                     <p>Si n ≥ 30, los resultados de Z y t son prácticamente iguales</p>
                     <div class="sample-size-indicator">
-                      <div class="size-small">n &lt; 30<br><span class="recommendation">Usa t</span></div>
-                      <div class="size-large">n ≥ 30<br><span class="recommendation">Z o t (similar)</span></div>
+                      <div class="size-small">
+                        n &lt; 30<br /><span class="recommendation">Usa t</span>
+                      </div>
+                      <div class="size-large">
+                        n ≥ 30<br /><span class="recommendation">Z o t (similar)</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -501,8 +602,17 @@
 
             <div class="note-box">
               <h4>Nota Importante sobre Muestras Grandes</h4>
-              <p>Habrás oído que "si n ≥ 30, se puede usar Z". ¿Por qué? Porque con una muestra grande, la desviación estándar de la muestra (s) es una estimación <strong>muy buena</strong> de la desviación estándar de la población (σ). En esos casos, la distribución t es casi idéntica a la Z.</p>
-              <p><strong>Conclusión:</strong> Técnicamente, si no conoces σ, <strong>siempre deberías usar t</strong>. Pero en la práctica, con muestras muy grandes, los resultados de Z y t serán prácticamente iguales.</p>
+              <p>
+                Habrás oído que "si n ≥ 30, se puede usar Z". ¿Por qué? Porque con una muestra
+                grande, la desviación estándar de la muestra (s) es una estimación
+                <strong>muy buena</strong> de la desviación estándar de la población (σ). En esos
+                casos, la distribución t es casi idéntica a la Z.
+              </p>
+              <p>
+                <strong>Conclusión:</strong> Técnicamente, si no conoces σ,
+                <strong>siempre deberías usar t</strong>. Pero en la práctica, con muestras muy
+                grandes, los resultados de Z y t serán prácticamente iguales.
+              </p>
             </div>
           </div>
 
@@ -545,7 +655,6 @@
               </tbody>
             </table>
           </div>
-
         </div>
       </div>
 
@@ -562,204 +671,216 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed } from 'vue'
 // @ts-expect-error jstat doesn't have TypeScript definitions
-import * as jStat from 'jstat';
+import * as jStat from 'jstat'
 
 const tabs = [
   { id: 'z', label: 'Distribución Z' },
   { id: 't', label: 'Distribución t' },
-  { id: 'comparacion', label: 'Comparación' }
-];
+  { id: 'comparacion', label: 'Comparación' },
+]
 
-const activeTab = ref('z');
+const activeTab = ref('z')
 
 // Variables para distribución Z
-const zMean = ref(500);
-const zSigma = ref(10);
-const zSampleMean = ref(496);
-const zSampleSize = ref(25);
+const zMean = ref(500)
+const zSigma = ref(10)
+const zSampleMean = ref(496)
+const zSampleSize = ref(25)
 
 // Variables para distribución t
-const tMean = ref(80);
-const tSampleMean = ref(85);
-const tSampleStd = ref(12);
-const tSampleSize = ref(16);
+const tMean = ref(80)
+const tSampleMean = ref(85)
+const tSampleStd = ref(12)
+const tSampleSize = ref(16)
 
 // Calculadora Z
 const zScore = computed(() => {
-  return (zSampleMean.value - zMean.value) / (zSigma.value / Math.sqrt(zSampleSize.value));
-});
+  return (zSampleMean.value - zMean.value) / (zSigma.value / Math.sqrt(zSampleSize.value))
+})
 
 const zProbability = computed(() => {
   // Simplificación para propósitos educativos
-  const z = Math.abs(zScore.value);
-  if (z >= 2.5) return 0.0062;
-  if (z >= 2.0) return 0.0228;
-  if (z >= 1.5) return 0.0668;
-  if (z >= 1.0) return 0.1587;
-  if (z >= 0.5) return 0.3085;
-  return 0.5;
-});
+  const z = Math.abs(zScore.value)
+  if (z >= 2.5) return 0.0062
+  if (z >= 2.0) return 0.0228
+  if (z >= 1.5) return 0.0668
+  if (z >= 1.0) return 0.1587
+  if (z >= 0.5) return 0.3085
+  return 0.5
+})
 
 const zInterpretation = computed(() => {
-  const absZ = Math.abs(zScore.value);
-  if (absZ >= 2.0) return 'Resultado muy inusual (p < 0.05)';
-  if (absZ >= 1.5) return 'Resultado poco común';
-  return 'Variación dentro de lo esperado';
-});
+  const absZ = Math.abs(zScore.value)
+  if (absZ >= 2.0) return 'Resultado muy inusual (p < 0.05)'
+  if (absZ >= 1.5) return 'Resultado poco común'
+  return 'Variación dentro de lo esperado'
+})
 
 const calculateZPosition = (zValue: number) => {
   // Convertir valor Z (-3 a 3) a porcentaje (0% a 100%)
-  return ((zValue + 3) / 6) * 100;
-};
+  return ((zValue + 3) / 6) * 100
+}
 
 // Calculadora t
 const tScore = computed(() => {
-  return (tSampleMean.value - tMean.value) / (tSampleStd.value / Math.sqrt(tSampleSize.value));
-});
+  return (tSampleMean.value - tMean.value) / (tSampleStd.value / Math.sqrt(tSampleSize.value))
+})
 
-const tPValue =  computed(() => {
-  const t = tScore.value; // Sin valor absoluto
-  const df = tSampleSize.value - 1;
-  return jStat.studentt.cdf(t, df); // P(T ≤ t)
-});
+const tPValue = computed(() => {
+  const t = tScore.value // Sin valor absoluto
+  const df = tSampleSize.value - 1
+  return jStat.studentt.cdf(t, df) // P(T ≤ t)
+})
 
 const tInterpretation = computed(() => {
-  const p = tPValue.value;
-  if (p < 0.001) return 'Evidencia muy fuerte (p < 0.001)';
-  if (p < 0.01) return 'Evidencia fuerte (p < 0.01)';
-  if (p < 0.05) return 'Evidencia moderada (p < 0.05)';
-  if (p < 0.10) return 'Evidencia débil (p < 0.10)';
-  return 'Sin evidencia significativa (p ≥ 0.10)';
-});
+  const p = tPValue.value
+  if (p < 0.001) return 'Evidencia muy fuerte (p < 0.001)'
+  if (p < 0.01) return 'Evidencia fuerte (p < 0.01)'
+  if (p < 0.05) return 'Evidencia moderada (p < 0.05)'
+  if (p < 0.1) return 'Evidencia débil (p < 0.10)'
+  return 'Sin evidencia significativa (p ≥ 0.10)'
+})
 
 // No initialization needed
 </script>
 
 <style scoped>
-/* Estilos generales */
+@import '@/assets/styles/main.css';
+
 .distribuciones-zt-view {
-  padding: 1rem 0;
+  padding-bottom: var(--spacing-2xl);
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--spacing-md);
 }
 
-.hero {
-  text-align: center;
-  margin-bottom: 2rem;
-  padding: 2rem;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.hero h1 {
-  color: #3498db;
-  margin-bottom: 1rem;
-  font-size: 2.2rem;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  color: #7f8c8d;
-  margin-bottom: 1rem;
-}
-
+/* Tabs */
 .nav-tabs {
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-xl);
   flex-wrap: wrap;
-  background: white;
-  border-radius: 50px;
-  padding: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  gap: var(--spacing-sm);
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  padding: var(--spacing-xs);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tab {
-  padding: 0.8rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   cursor: pointer;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  font-weight: bold;
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+  font-weight: 600;
   border: none;
-  background: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
 }
 
 .tab.active {
-  background: #3498db;
+  background: var(--primary);
   color: white;
+  box-shadow: var(--shadow-sm);
 }
 
 .tab:hover:not(.active) {
-  background: #e0e0e0;
+  background: var(--surface-variant);
+  color: var(--text-primary);
 }
 
+/* Content Sections */
 .content-section {
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
+  background: var(--surface);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  margin-bottom: var(--spacing-xl);
+  border: 1px solid var(--border);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .content-section h2 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
+  color: var(--primary);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--border-light);
+  font-size: 1.75rem;
 }
 
 .content-section p {
   line-height: 1.6;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
 }
 
-/* Estilos para teoría */
+/* Theory Content */
 .theory-content {
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-xl);
 }
 
 .definition-box {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border-left: 4px solid #3498db;
-  margin-bottom: 2rem;
+  background: var(--surface);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--neutral-500);
+  margin-bottom: var(--spacing-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
 .definition-box h3 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
 }
 
-/* Estilos para fórmulas */
+/* Formulas */
 .formula-section {
-  margin: 2rem 0;
+  margin: var(--spacing-lg) 0;
 }
 
 .formula-container {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  background: var(--surface-variant);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-md);
+  border: 1px solid var(--border);
 }
 
 .formula {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #e74c3c;
+  color: var(--primary);
   text-align: center;
-  margin-bottom: 1rem;
-  font-family: 'Courier New', monospace;
+  margin-bottom: var(--spacing-md);
+  font-family: 'Fira Code', monospace;
 }
 
 .formula-explanation ul {
-  margin: 1rem 0;
+  margin: var(--spacing-md) 0;
   padding-left: 1.5rem;
+  color: var(--text-secondary);
 }
 
 .formula-explanation li {
@@ -767,19 +888,20 @@ const tInterpretation = computed(() => {
   line-height: 1.5;
 }
 
-/* Estilos para cálculo de probabilidades */
+/* Probability Calculation */
 .probability-calculation {
-  margin: 2rem 0;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
-  padding: 2rem;
-  border-radius: 12px;
-  border-left: 4px solid #3498db;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: var(--spacing-lg) 0;
+  background: linear-gradient(135deg, var(--surface-variant) 0%, var(--primary-50) 100%);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--primary);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
 }
 
 .probability-calculation h3 {
-  color: #2c3e50;
-  margin-bottom: 1.5rem;
+  color: var(--primary-900);
+  margin-bottom: var(--spacing-lg);
   font-size: 1.3rem;
   text-align: center;
   position: relative;
@@ -793,32 +915,32 @@ const tInterpretation = computed(() => {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, #3498db, #2980b9);
+  background: var(--gradient-primary);
   border-radius: 2px;
 }
 
 .probability-calculation > p {
   text-align: center;
   font-size: 1.1rem;
-  color: #7f8c8d;
-  margin-bottom: 2rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
   font-style: italic;
 }
 
 .probability-types {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
 }
 
 .probability-type {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 10px;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background: var(--surface);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
 }
@@ -830,18 +952,18 @@ const tInterpretation = computed(() => {
   left: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(180deg, #3498db, #2980b9);
+  background: var(--gradient-primary);
 }
 
 .probability-type:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(52, 152, 219, 0.15);
-  border-color: #3498db;
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-200);
 }
 
 .probability-type h4 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
   font-size: 1.1rem;
   font-weight: 600;
   display: flex;
@@ -862,12 +984,12 @@ const tInterpretation = computed(() => {
 .probability-type li {
   margin-bottom: 0.8rem;
   line-height: 1.6;
-  color: #555;
+  color: var(--text-secondary);
   position: relative;
 }
 
 .probability-type li::marker {
-  color: #3498db;
+  color: var(--primary);
   font-weight: bold;
 }
 
@@ -875,78 +997,75 @@ const tInterpretation = computed(() => {
   margin-bottom: 0;
 }
 
-/* Responsive para probabilidad types */
-@media (max-width: 768px) {
-  .probability-types {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .probability-calculation {
-    padding: 1.5rem;
-  }
-
-  .probability-type {
-    padding: 1.2rem;
-  }
-}
-
-/* Estilos para visualización de imágenes */
+/* Visualization */
 .visualization-section {
-  margin: 2rem 0;
+  margin: var(--spacing-lg) 0;
 }
 
 .image-container {
   text-align: center;
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
+  background: var(--surface-variant);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
 }
 
 .distribution-image {
   max-width: 100%;
   height: auto;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
 }
 
 .image-caption {
-  margin-top: 1rem;
+  margin-top: var(--spacing-md);
   font-style: italic;
-  color: #7f8c8d;
+  color: var(--text-secondary);
 }
 
-/* Estilos para gráficos interactivos */
+/* Interactive Plots */
 .plot-container {
-  background: #f8f9fa;
-  padding: 1rem;
-  border-radius: 8px;
-  margin: 1rem 0;
+  background: var(--surface-variant);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-md) 0;
+  border: 1px solid var(--border);
 }
 
 .plot-area {
   height: 150px;
-  background: white;
-  border-radius: 6px;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
   position: relative;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-light);
 }
 
 .z-plot .plot-area {
-  background: linear-gradient(90deg, #e8f4f8 0%, #3498db 50%, #e8f4f8 100%);
+  background: linear-gradient(
+    90deg,
+    var(--primary-50) 0%,
+    var(--primary-100) 50%,
+    var(--primary-50) 100%
+  );
 }
 
 .t-plot .plot-area {
-  background: linear-gradient(90deg, #fff4e6 0%, #f39c12 50%, #fff4e6 100%);
+  background: linear-gradient(
+    90deg,
+    var(--warning-50) 0%,
+    var(--warning-100) 50%,
+    var(--warning-50) 100%
+  );
 }
 
-.curve-z, .curve-t {
+.curve-z,
+.curve-t {
   height: 100%;
-  background: radial-gradient(ellipse at center, rgba(52, 152, 219, 0.3) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, var(--primary-200) 0%, transparent 70%);
 }
 
 .curve-t {
-  background: radial-gradient(ellipse at center, rgba(243, 156, 18, 0.3) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, var(--warning-200) 0%, transparent 70%);
 }
 
 .mean-line {
@@ -956,7 +1075,7 @@ const tInterpretation = computed(() => {
   transform: translateX(-50%);
   height: 100%;
   width: 2px;
-  background: #e74c3c;
+  background: var(--accent);
 }
 
 .mean-line::after {
@@ -965,8 +1084,9 @@ const tInterpretation = computed(() => {
   top: -25px;
   left: 50%;
   transform: translateX(-50%);
-  color: #e74c3c;
+  color: var(--accent);
   font-weight: bold;
+  font-size: 0.8rem;
 }
 
 .z-value-marker {
@@ -974,7 +1094,7 @@ const tInterpretation = computed(() => {
   top: 0;
   height: 100%;
   width: 2px;
-  background: #2ecc71;
+  background: var(--success);
   transform: translateX(-50%);
 }
 
@@ -988,95 +1108,101 @@ const tInterpretation = computed(() => {
   top: -25px;
   left: 50%;
   transform: translateX(-50%);
-  color: #2c3e50;
+  color: var(--text-primary);
   font-weight: bold;
   white-space: nowrap;
+  font-size: 0.8rem;
 }
 
 .plot-labels {
   display: flex;
   justify-content: space-between;
   padding: 0 1rem;
-  color: #7f8c8d;
+  color: var(--text-secondary);
   font-size: 0.8rem;
   margin-top: 0.5rem;
 }
 
-/* Estilos para comparación - removidos ya que no se usan */
-
-/* Estilos para tabla comparativa */
+/* Comparison Table */
 .comparison-table table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1rem 0;
-  background: white;
-  border-radius: 8px;
+  margin: var(--spacing-md) 0;
+  background: var(--surface);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
 }
 
 .comparison-table th,
 .comparison-table td {
-  border: 1px solid #ddd;
-  padding: 12px 16px;
+  border: 1px solid var(--border);
+  padding: var(--spacing-md);
   text-align: left;
   vertical-align: top;
 }
 
 .comparison-table th {
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  color: white;
+  background: var(--primary-50);
+  color: var(--primary-900);
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
 }
 
 .comparison-table td {
-  background: #f8f9fa;
-  color: #2c3e50;
+  background: var(--surface);
+  color: var(--text-primary);
   line-height: 1.5;
 }
 
 .comparison-table tr:nth-child(even) td {
-  background: #ffffff;
+  background: var(--surface-variant);
 }
 
 .comparison-table tr:hover td {
-  background: #e8f4f8;
+  background: var(--primary-50);
   transition: background-color 0.3s ease;
 }
 
 .comparison-table td strong {
-  color: #3498db;
+  color: var(--primary);
   font-weight: 600;
 }
 
-/* Estilos para ejemplos */
+/* Examples */
 .examples-section {
-  margin-top: 2rem;
+  margin-top: var(--spacing-lg);
 }
 
 .examples-section h3 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
+  color: var(--secondary);
+  margin-bottom: var(--spacing-md);
 }
 
 .example-details {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border-left: 4px solid #3498db;
+  background: var(--surface-variant);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--secondary);
+  border: 1px solid var(--border);
 }
 
 .example-details h4 {
-  color: #2c3e50;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
+  margin-top: var(--spacing-md);
+}
+.example-details h4:first-child {
+  margin-top: 0;
 }
 
 .example-details ul {
-  margin: 1rem 0;
+  margin: var(--spacing-md) 0;
   padding-left: 1.5rem;
+  color: var(--text-secondary);
 }
 
 .example-details li {
@@ -1085,42 +1211,43 @@ const tInterpretation = computed(() => {
 }
 
 .example-details p {
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
   line-height: 1.6;
 }
 
-/* Estilos para ejercicios */
+/* Exercises */
 .exercises-section {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 2px solid #e9ecef;
+  margin-top: var(--spacing-2xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border);
 }
 
 .exercises-section h3 {
-  color: #2c3e50;
-  margin-bottom: 2rem;
+  color: var(--secondary);
+  margin-bottom: var(--spacing-xl);
   text-align: center;
   font-size: 1.8rem;
 }
 
 .exercise-card {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
-  padding: 2rem;
-  border-radius: 12px;
-  border-left: 5px solid #3498db;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-variant) 100%);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  border-left: 5px solid var(--primary);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  border: 1px solid var(--border);
 }
 
 .exercise-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(52, 152, 219, 0.15);
+  box-shadow: var(--shadow-md);
 }
 
 .exercise-card h4 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
   font-size: 1.2rem;
   font-weight: 600;
   display: flex;
@@ -1129,23 +1256,23 @@ const tInterpretation = computed(() => {
 }
 
 .exercise-card p {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-lg);
   line-height: 1.6;
-  color: #555;
+  color: var(--text-secondary);
   font-size: 1.05rem;
 }
 
 .exercise-solution {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
-  margin-top: 1rem;
+  background: var(--surface);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  margin-top: var(--spacing-md);
 }
 
 .exercise-solution h5 {
-  color: #27ae60;
-  margin-bottom: 1rem;
+  color: var(--success);
+  margin-bottom: var(--spacing-md);
   font-weight: 600;
 }
 
@@ -1157,27 +1284,28 @@ const tInterpretation = computed(() => {
 .exercise-solution li {
   margin-bottom: 0.8rem;
   line-height: 1.6;
-  color: #2c3e50;
+  color: var(--text-primary);
   position: relative;
 }
 
 .exercise-solution li::marker {
-  color: #27ae60;
+  color: var(--success);
   font-weight: bold;
 }
 
 .exercise-solution li:last-child {
   margin-bottom: 0;
   font-weight: bold;
-  color: #e74c3c;
+  color: var(--accent);
 }
 
-/* Estilos para controles */
-.simulator-controls, .calculator-controls {
+/* Controls */
+.simulator-controls,
+.calculator-controls {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin: 1rem 0;
+  gap: var(--spacing-md);
+  margin: var(--spacing-md) 0;
 }
 
 .control-group {
@@ -1186,33 +1314,34 @@ const tInterpretation = computed(() => {
 }
 
 .control-group label {
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .control-group input {
   padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
   font-size: 1rem;
 }
 
-/* Estilos para resultados */
-.simulation-results, .calculation-results {
-  margin: 1rem 0;
+/* Results */
+.simulation-results,
+.calculation-results {
+  margin: var(--spacing-md) 0;
 }
 
 .result-card {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  background: var(--surface-variant);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
 }
 
 .result-card h4 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
 }
 
 .result-item {
@@ -1221,7 +1350,7 @@ const tInterpretation = computed(() => {
   align-items: center;
   margin-bottom: 0.5rem;
   padding: 0.5rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .result-item:last-child {
@@ -1229,29 +1358,31 @@ const tInterpretation = computed(() => {
 }
 
 .result-label {
-  font-weight: bold;
-  color: #7f8c8d;
+  font-weight: 600;
+  color: var(--text-secondary);
 }
 
 .result-value {
   font-weight: bold;
-  color: #3498db;
+  color: var(--primary);
+  font-family: 'Fira Code', monospace;
 }
 
-/* Estilos para diagrama de decisión */
+/* Decision Chart */
 .decision-chart {
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 2rem 0;
+  background: var(--surface);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin: var(--spacing-xl) 0;
+  border: 1px solid var(--border);
 }
 
 .decision-flow {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: var(--spacing-md);
 }
 
 .decision-start {
@@ -1259,16 +1390,16 @@ const tInterpretation = computed(() => {
 }
 
 .decision-box {
-  background: #3498db;
+  background: var(--primary);
   color: white;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
   min-width: 200px;
 }
 
 .decision-box.start {
-  background: #2ecc71;
+  background: var(--success);
 }
 
 .decision-box h4 {
@@ -1280,25 +1411,26 @@ const tInterpretation = computed(() => {
   margin: 0;
   font-size: 0.9rem;
   line-height: 1.4;
+  color: white;
 }
 
 .arrow-down {
   font-size: 2rem;
-  color: #7f8c8d;
+  color: var(--text-secondary);
   margin: 0.5rem 0;
 }
 
 .decision-step {
   text-align: center;
-  margin: 1rem 0;
+  margin: var(--spacing-md) 0;
 }
 
 .step-question {
-  background: #f8f9fa;
-  padding: 1rem;
-  border-radius: 8px;
-  border: 2px solid #3498db;
-  margin-bottom: 1rem;
+  background: var(--surface-variant);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--primary);
+  margin-bottom: var(--spacing-md);
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -1306,52 +1438,53 @@ const tInterpretation = computed(() => {
 .step-answers {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin: 1rem 0;
+  gap: var(--spacing-xl);
+  margin: var(--spacing-md) 0;
 }
 
-.yes-answer, .no-answer {
+.yes-answer,
+.no-answer {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--spacing-md);
 }
 
 .answer-connector {
-  background: #3498db;
+  background: var(--primary);
   color: white;
   padding: 0.5rem 1rem;
-  border-radius: 20px;
+  border-radius: var(--radius-full);
   font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .no-answer .answer-connector {
-  background: #f39c12;
+  background: var(--warning-500);
 }
 
 .answer-box {
-  background: white;
-  border: 2px solid #3498db;
-  border-radius: 8px;
-  padding: 1rem;
+  background: var(--surface);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
   min-width: 200px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .no-answer .answer-box {
-  border-color: #f39c12;
+  border-color: var(--warning-500);
 }
 
 .answer-box h5 {
   margin: 0 0 0.5rem 0;
-  color: #2c3e50;
+  color: var(--text-primary);
   font-size: 1rem;
 }
 
 .answer-box p {
   margin: 0 0 0.5rem 0;
   font-size: 0.9rem;
-  color: #7f8c8d;
+  color: var(--text-secondary);
 }
 
 .answer-box ul {
@@ -1363,120 +1496,140 @@ const tInterpretation = computed(() => {
 .answer-box li {
   font-size: 0.8rem;
   margin-bottom: 0.3rem;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .decision-additional {
-  margin-top: 2rem;
+  margin-top: var(--spacing-xl);
   text-align: center;
 }
 
 .additional-note {
-  background: #fff3cd;
-  border: 1px solid #ffeaa7;
-  border-radius: 8px;
-  padding: 1rem;
+  background: var(--warning-50);
+  border: 1px solid var(--warning-200);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
   display: inline-block;
 }
 
 .additional-note h4 {
   margin: 0 0 0.5rem 0;
-  color: #856404;
+  color: var(--warning-900);
   font-size: 1rem;
 }
 
 .additional-note p {
   margin: 0 0 1rem 0;
-  color: #856404;
+  color: var(--warning-800);
   font-size: 0.9rem;
 }
 
 .sample-size-indicator {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: var(--spacing-xl);
 }
 
-.size-small, .size-large {
-  background: white;
-  border: 2px solid #3498db;
-  border-radius: 8px;
+.size-small,
+.size-large {
+  background: var(--surface);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
   padding: 0.5rem 1rem;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .size-large {
-  border-color: #f39c12;
+  border-color: var(--warning-500);
 }
 
 .recommendation {
   display: block;
   font-weight: bold;
-  color: #3498db;
+  color: var(--primary);
   margin-top: 0.3rem;
 }
 
 .size-large .recommendation {
-  color: #f39c12;
+  color: var(--warning-500);
 }
 
 .note-box {
-  background: #fff3cd;
-  border: 1px solid #ffeaa7;
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 2rem 0;
+  background: var(--warning-50);
+  border: 1px solid var(--warning-200);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin: var(--spacing-xl) 0;
 }
 
 .note-box h4 {
   margin: 0 0 0.5rem 0;
-  color: #856404;
+  color: var(--warning-900);
   font-size: 1rem;
 }
 
 .note-box p {
   margin: 0 0 1rem 0;
-  color: #856404;
+  color: var(--warning-800);
   font-size: 0.9rem;
   line-height: 1.5;
 }
 
-/* Estilos para botones de navegación */
+/* Navigation */
 .navigation-buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 2rem;
-  gap: 1rem;
+  margin-top: var(--spacing-2xl);
+  gap: var(--spacing-md);
 }
 
-/* Estilos responsivos */
+.btn {
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-md);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+}
+
+.btn-secondary {
+  background: var(--neutral-200);
+  color: var(--text-primary);
+}
+.btn-secondary:hover {
+  background: var(--neutral-300);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover {
+  background: var(--primary-700);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .nav-tabs {
     flex-direction: column;
   }
-
-  /* plot-comparison removed */
-
-  .result-comparison {
+  .probability-types {
     grid-template-columns: 1fr;
   }
-
-  .simulator-controls {
-    flex-direction: column;
-  }
-
-  .calculator-controls {
-    grid-template-columns: 1fr;
-  }
-
   .step-answers {
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--spacing-md);
   }
-
-  .yes-answer, .no-answer {
+  .yes-answer,
+  .no-answer {
     flex-direction: column;
     text-align: center;
   }

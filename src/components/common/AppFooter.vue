@@ -5,15 +5,21 @@
   </footer>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 footer {
-  background: var(--dark);
-  color: white;
+  background: var(--neutral-900);
+  color: var(--text-on-primary);
   text-align: center;
-  padding: 2rem;
-  margin-top: 2rem;
+  padding: var(--spacing-2xl);
+  margin-top: var(--spacing-2xl);
+  border-top: 1px solid var(--border);
+}
+
+footer p {
+  color: var(--neutral-300);
+  font-size: 0.875rem;
+  margin: var(--spacing-xs) 0;
 }
 </style>

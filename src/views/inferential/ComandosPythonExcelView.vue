@@ -23,7 +23,8 @@
       <h3>1. Cola Izquierda: P(Z &lt; z)</h3>
       <p>Calcula la probabilidad de que un valor sea menor que tu puntaje Z.</p>
       <div class="example-box">
-        <strong>Ejemplo:</strong> ¿Cuál es la probabilidad de que Z sea menor que -1.96? P(Z &lt; -1.96) = 0.0250
+        <strong>Ejemplo:</strong> ¿Cuál es la probabilidad de que Z sea menor que -1.96? P(Z &lt;
+        -1.96) = 0.0250
       </div>
       <h4>Python:</h4>
       <div class="code-example python">
@@ -39,7 +40,8 @@ print(f"P(Z &lt; {z_score}) = {probabilidad:.4f}")</code></pre>
       <h3>2. Cola Derecha: P(Z > z)</h3>
       <p>Calcula la probabilidad de que un valor sea mayor que tu puntaje Z.</p>
       <div class="example-box">
-        <strong>Ejemplo:</strong> ¿Cuál es la probabilidad de que Z sea mayor que 1.5? P(Z > 1.5) = 0.0668
+        <strong>Ejemplo:</strong> ¿Cuál es la probabilidad de que Z sea mayor que 1.5? P(Z > 1.5) =
+        0.0668
       </div>
       <h4>Python:</h4>
       <div class="code-example python">
@@ -55,7 +57,8 @@ print(f"P(Z > {z_score}) = {probabilidad:.4f}")</code></pre>
       <h3>3. Intervalo: P(a &lt; Z &lt; b)</h3>
       <p>Calcula la probabilidad de que un valor se encuentre entre dos puntajes Z.</p>
       <div class="example-box">
-        <strong>Ejemplo:</strong> ¿Cuál es la probabilidad de que Z esté entre -1.96 y 1.96? P(-1.96 &lt; Z &lt; 1.96) = 0.9500
+        <strong>Ejemplo:</strong> ¿Cuál es la probabilidad de que Z esté entre -1.96 y 1.96? P(-1.96
+        &lt; Z &lt; 1.96) = 0.9500
       </div>
       <h4>Python:</h4>
       <div class="code-example python">
@@ -75,7 +78,8 @@ print(f"P({z_inferior} &lt; Z &lt; {z_superior}) = {probabilidad:.4f}")</code></
       <h3>1. Cola Izquierda: P(T &lt; t)</h3>
       <p>Calcula la probabilidad de que un valor sea menor que tu estadístico t.</p>
       <div class="example-box">
-        <strong>Ejemplo:</strong> Con una muestra de tamaño n=25 (df=24), ¿cuál es la probabilidad de que T sea menor que -2.064? P(T &lt; -2.064) con 24 df = 0.0250
+        <strong>Ejemplo:</strong> Con una muestra de tamaño n=25 (df=24), ¿cuál es la probabilidad
+        de que T sea menor que -2.064? P(T &lt; -2.064) con 24 df = 0.0250
       </div>
       <h4>Python:</h4>
       <div class="code-example python">
@@ -92,7 +96,8 @@ print(f"P(T &lt; {t_score}) con {grados_libertad} df = {probabilidad:.4f}")</cod
       <h3>2. Cola Derecha: P(T > t)</h3>
       <p>Calcula la probabilidad de que un valor sea mayor que tu estadístico t.</p>
       <div class="example-box">
-        <strong>Ejemplo:</strong> Con una muestra de tamaño n=15 (df=14), ¿cuál es la probabilidad de que T sea mayor que 1.761? P(T > 1.761) con 14 df = 0.0500
+        <strong>Ejemplo:</strong> Con una muestra de tamaño n=15 (df=14), ¿cuál es la probabilidad
+        de que T sea mayor que 1.761? P(T > 1.761) con 14 df = 0.0500
       </div>
       <h4>Python:</h4>
       <div class="code-example python">
@@ -109,7 +114,8 @@ print(f"P(T > {t_score}) con {grados_libertad} df = {probabilidad:.4f}")</code><
       <h3>3. Intervalo: P(a &lt; T &lt; b)</h3>
       <p>Calcula la probabilidad de que un valor se encuentre entre dos estadísticos t.</p>
       <div class="example-box">
-        <strong>Ejemplo:</strong> Con una muestra de tamaño n=30 (df=29), ¿cuál es la probabilidad de que T esté entre -2.045 y 2.045? P(-2.045 &lt; T &lt; 2.045) con 29 df = 0.9500
+        <strong>Ejemplo:</strong> Con una muestra de tamaño n=30 (df=29), ¿cuál es la probabilidad
+        de que T esté entre -2.045 y 2.045? P(-2.045 &lt; T &lt; 2.045) con 29 df = 0.9500
       </div>
       <h4>Python:</h4>
       <div class="code-example python">
@@ -138,14 +144,86 @@ print(f"P({t_inferior} &lt; T &lt; {t_superior}) con {grados_libertad} df = {pro
 </script>
 
 <style scoped>
+@import '@/assets/styles/main.css';
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+  animation: fadeIn 0.5s ease-in;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-2xl);
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+}
+
+.hero h1 {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.hero p {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+.intro-content {
+  background: var(--surface);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+h2 {
+  color: var(--primary);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+  font-size: 1.8rem;
+  border-bottom: 2px solid var(--border-light);
+  padding-bottom: var(--spacing-sm);
+}
+
+h3 {
+  color: var(--secondary);
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.4rem;
+}
+
+h4 {
+  color: var(--text-primary);
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
+  font-size: 1.1rem;
+}
+
+p {
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
 .code-example {
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
+  background: var(--neutral-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin: var(--spacing-md) 0;
   font-family: 'Courier New', monospace;
   overflow-x: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.code-example pre {
+  margin: 0;
 }
 
 .code-example.python {
@@ -157,37 +235,40 @@ print(f"P({t_inferior} &lt; T &lt; {t_superior}) con {grados_libertad} df = {pro
 }
 
 .example-box {
-  background: #e8f4f8;
-  border: 1px solid #bee5eb;
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
-  color: #0c5460;
+  background: var(--info-50);
+  border: 1px solid var(--info-200);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+  color: var(--info-900);
+  border-left: 4px solid var(--info);
 }
 
 .navigation-buttons {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: var(--spacing-2xl);
 }
 
 .btn {
   display: inline-block;
   padding: 0.8rem 1.5rem;
   text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: all 0.3s ease;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: var(--transition);
 }
 
 .btn-secondary {
-  background: #6c757d;
-  color: white;
-  border: 2px solid #6c757d;
+  background: white;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
 }
 
 .btn-secondary:hover {
-  background: #5a6268;
-  border-color: #5a6268;
+  background: var(--neutral-100);
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+  transform: translateY(-2px);
 }
 </style>
