@@ -82,6 +82,14 @@
       />
 
       <ContentCard
+        title="Probabilidad"
+        content="Fundamentos de probabilidad: tipos de probabilidad, reglas de adición y multiplicación, eventos independientes y dependientes."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/descriptiva/probabilidad'"
+      />
+
+      <ContentCard
         title="Medidas de Posición: Cuartiles, Deciles y Percentiles"
         content="Aprende a calcular cuantiles (cuartiles), deciles y percentiles. Incluye ejemplos y una calculadora interactiva para tus datos."
         :show-button="true"

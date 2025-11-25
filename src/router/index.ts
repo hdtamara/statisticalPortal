@@ -62,6 +62,11 @@ const router = createRouter({
       component: () => import('@/views/descriptive/CombinatoriaPermutacionesView.vue'),
     },
     {
+      path: '/descriptiva/probabilidad',
+      name: 'probabilidad',
+      component: () => import('@/views/descriptive/ProbabilidadView.vue'),
+    },
+    {
       path: '/descriptiva/medidas-posicion',
       name: 'position-measures',
       component: () => import('@/views/descriptive/MedidasPosicionView.vue'),
