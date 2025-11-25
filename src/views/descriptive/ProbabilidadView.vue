@@ -530,46 +530,6 @@
           </ul>
         </div>
 
-        <h3>Ayudas Visuales</h3>
-
-        <div class="visual-placeholder">
-          <div class="placeholder-box">
-            <h4>📊 Diagrama: Eventos Independientes</h4>
-            <p>
-              <strong>Ubicación para imagen:</strong> Diagrama de árbol mostrando eventos
-              independientes
-            </p>
-            <p style="margin-top: 0.5rem; font-style: italic">
-              Explicación: En eventos independientes, la probabilidad del segundo evento no cambia
-              sin importar el resultado del primero. Ejemplo: lanzar dos monedas.
-            </p>
-            <div class="code-block">
-              <pre><code><!-- AGREGAR IMAGEN AQUÍ -->
-<!-- Ruta sugerida: @/assets/images/probabilidad/eventos-independientes.png -->
-<!-- Mostrar diagrama de árbol con probabilidades que no cambian --></code></pre>
-            </div>
-          </div>
-        </div>
-
-        <div class="visual-placeholder">
-          <div class="placeholder-box">
-            <h4>📊 Diagrama: Eventos Dependientes</h4>
-            <p>
-              <strong>Ubicación para imagen:</strong> Diagrama de árbol mostrando eventos
-              dependientes
-            </p>
-            <p style="margin-top: 0.5rem; font-style: italic">
-              Explicación: En eventos dependientes, la probabilidad del segundo evento cambia según
-              el resultado del primero. Ejemplo: sacar cartas sin reemplazo.
-            </p>
-            <div class="code-block">
-              <pre><code><!-- AGREGAR IMAGEN AQUÍ -->
-<!-- Ruta sugerida: @/assets/images/probabilidad/eventos-dependientes.png -->
-<!-- Mostrar diagrama de árbol con probabilidades que cambian en el segundo nivel --></code></pre>
-            </div>
-          </div>
-        </div>
-
         <h3 style="margin-top: 2rem">Definiciones y Fórmulas</h3>
 
         <div class="formula-section">
@@ -602,13 +562,6 @@
             class="formula-display"
             v-html="renderLatexDisplay('P(A \\text{ y } B) = P(A) \\cdot P(B|A)')"
           ></div>
-          <div class="tip-section" style="margin-top: 1rem">
-            <p>
-              <strong>💡 Ayuda Visual:</strong> Para problemas de multiplicación secuencial (paso 1,
-              luego paso 2), usa siempre un <strong>Diagrama de Árbol</strong>. Es la mejor forma de
-              no perderse.
-            </p>
-          </div>
         </div>
 
         <div class="detailed-example" style="margin-top: 2rem">
