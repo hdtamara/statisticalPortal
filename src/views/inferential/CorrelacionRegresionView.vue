@@ -1195,6 +1195,1066 @@
           </div>
         </div>
       </div>
+
+      <!-- Tabla ANOVA -->
+      <div v-if="activeTab === 'anova'" class="content-section">
+        <h2>Tabla ANOVA en Regresión Lineal</h2>
+
+        <div class="theory-box">
+          <h3>¿Qué es la Tabla ANOVA en Regresión?</h3>
+          <p>
+            La <strong>Tabla ANOVA</strong> (Análisis de Varianza) es una herramienta fundamental
+            que te permite
+            <strong>evaluar si tu modelo de regresión es estadísticamente significativo</strong>.
+          </p>
+
+          <div class="concept-card">
+            <h4>La Pregunta Principal</h4>
+            <p>
+              <strong
+                >¿Mi ecuación de regresión realmente sirve para predecir, o es tan mala que sería
+                mejor usar simplemente el promedio?</strong
+              >
+            </p>
+            <p class="note">En otras palabras: ¿Aporta algo usar X para predecir Y, o es inútil?</p>
+          </div>
+
+          <div class="concept-card">
+            <h4>¿Qué hace el ANOVA?</h4>
+            <p>Descompone la <strong>variación total</strong> de Y en dos partes:</p>
+            <ul>
+              <li>
+                <strong>Variación explicada por la regresión:</strong> La parte que tu modelo puede
+                predecir usando X
+              </li>
+              <li>
+                <strong>Variación no explicada (residual):</strong> La parte que tu modelo NO puede
+                predecir (el error)
+              </li>
+            </ul>
+            <p class="note">
+              Si la variación explicada es mucho mayor que la no explicada, tu modelo es bueno.
+            </p>
+          </div>
+        </div>
+
+        <h2>Conceptos Fundamentales de la Tabla ANOVA</h2>
+
+        <div class="theory-box">
+          <h3>1. Suma de Cuadrados Total (SCT)</h3>
+          <div class="concept-card">
+            <h4>¿Qué mide?</h4>
+            <p>
+              Mide <strong>cuánto varían los valores de Y respecto a su promedio</strong>. Es la
+              variabilidad total que queremos explicar.
+            </p>
+
+            <div class="formula-box">
+              <h4>Fórmula</h4>
+              <div v-html="renderLatexDisplay('SCT = \\sum(Y - \\bar{Y})^2')"></div>
+              <p class="formula-note">
+                Donde:<br />
+                <strong>Y:</strong> Cada valor observado<br />
+                <strong><span v-html="renderLatex('\\bar{Y}')"></span>:</strong> Promedio de todos
+                los valores de Y
+              </p>
+            </div>
+
+            <h4>Interpretación Simple</h4>
+            <p>
+              Es como preguntar:
+              <em
+                >"Si no tuviera ningún modelo y solo usara el promedio para predecir, ¿qué tan lejos
+                estarían mis predicciones de la realidad?"</em
+              >
+            </p>
+            <p class="note">
+              <strong>Ejemplo:</strong> Si SCT = 1000, significa que hay 1000 unidades² de variación
+              total en tus datos.
+            </p>
+          </div>
+        </div>
+
+        <div class="theory-box">
+          <h3>2. Suma de Cuadrados de Regresión (SCR)</h3>
+          <div class="concept-card">
+            <h4>¿Qué mide?</h4>
+            <p>
+              Mide <strong>cuánta variación de Y logra explicar tu modelo de regresión</strong>. Es
+              la parte "buena" de la variación.
+            </p>
+
+            <div class="formula-box">
+              <h4>Fórmula</h4>
+              <div v-html="renderLatexDisplay('SCR = \\sum(\\hat{Y} - \\bar{Y})^2')"></div>
+              <p class="formula-note">
+                Donde:<br />
+                <strong><span v-html="renderLatex('\\hat{Y}')"></span>:</strong> Valores predichos
+                por tu ecuación de regresión<br />
+                <strong><span v-html="renderLatex('\\bar{Y}')"></span>:</strong> Promedio de Y
+              </p>
+            </div>
+
+            <h4>Interpretación Simple</h4>
+            <p>
+              Es como preguntar:
+              <em
+                >"¿Cuánto mejor es mi modelo de regresión comparado con solo usar el promedio?"</em
+              >
+            </p>
+            <p class="note">
+              <strong>Ejemplo:</strong> Si SCR = 800 de un total SCT = 1000, tu modelo explica 800
+              de las 1000 unidades² de variación. ¡Eso es bueno!
+            </p>
+          </div>
+        </div>
+
+        <div class="theory-box">
+          <h3>3. Suma de Cuadrados del Error (SCE)</h3>
+          <div class="concept-card">
+            <h4>¿Qué mide?</h4>
+            <p>
+              Mide <strong>cuánta variación NO puede explicar tu modelo</strong>. Es el error o
+              residual.
+            </p>
+
+            <div class="formula-box">
+              <h4>Fórmula</h4>
+              <div v-html="renderLatexDisplay('SCE = \\sum(Y - \\hat{Y})^2')"></div>
+              <p class="formula-note">
+                Donde:<br />
+                <strong>Y:</strong> Valores reales observados<br />
+                <strong><span v-html="renderLatex('\\hat{Y}')"></span>:</strong> Valores predichos
+                por tu modelo
+              </p>
+            </div>
+
+            <h4>Interpretación Simple</h4>
+            <p>
+              Es como preguntar: <em>"¿Qué tan lejos están mis predicciones de la realidad?"</em>
+            </p>
+            <p class="note">
+              <strong>Ejemplo:</strong> Si SCE = 200, significa que quedan 200 unidades² de
+              variación sin explicar (por otros factores que no mediste).
+            </p>
+          </div>
+        </div>
+
+        <div class="theory-box">
+          <h3>La Relación Fundamental</h3>
+          <div class="highlight-box">
+            <h3>Ecuación Clave del ANOVA</h3>
+            <div v-html="renderLatexDisplay('SCT = SCR + SCE')"></div>
+            <p style="margin-top: 1rem">
+              <strong>Variación Total = Variación Explicada + Variación No Explicada</strong>
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <h4>¿Por qué es importante?</h4>
+            <p>Esta ecuación nos dice que toda la variación en Y se puede dividir en dos partes:</p>
+            <ul>
+              <li>Lo que tu modelo puede explicar (SCR)</li>
+              <li>Lo que no puede explicar (SCE)</li>
+            </ul>
+            <p class="note">
+              <strong>Objetivo:</strong> Queremos que SCR sea lo más grande posible y SCE lo más
+              pequeño posible.
+            </p>
+          </div>
+        </div>
+
+        <h2>Paso a Paso: Construyendo la Tabla ANOVA</h2>
+
+        <div class="theory-box">
+          <h3>Paso 1: Calcular las Sumas de Cuadrados</h3>
+
+          <div class="solution-steps">
+            <div class="step">
+              <h4>1.1 Calcular SCT (Suma de Cuadrados Total)</h4>
+              <p>
+                Para cada observación, calcula
+                <span v-html="renderLatex('(Y - \\bar{Y})^2')"></span> y suma todos los resultados.
+              </p>
+              <div class="formula-box">
+                <div
+                  v-html="renderLatexDisplay('SCT = \\sum(Y - \\bar{Y})^2 = ' + sct.toFixed(2))"
+                ></div>
+              </div>
+            </div>
+
+            <div class="step">
+              <h4>1.2 Calcular SCE (Suma de Cuadrados del Error)</h4>
+              <p>
+                Para cada observación, calcula
+                <span v-html="renderLatex('(Y - \\hat{Y})^2')"></span> y suma todos los resultados.
+              </p>
+              <div class="formula-box">
+                <div
+                  v-html="renderLatexDisplay('SCE = \\sum(Y - \\hat{Y})^2 = ' + sce.toFixed(2))"
+                ></div>
+              </div>
+            </div>
+
+            <div class="step">
+              <h4>1.3 Calcular SCR (Suma de Cuadrados de Regresión)</h4>
+              <p>
+                Usa la relación fundamental: <span v-html="renderLatex('SCR = SCT - SCE')"></span>
+              </p>
+              <div class="formula-box">
+                <div
+                  v-html="
+                    renderLatexDisplay(
+                      'SCR = ' + sct.toFixed(2) + ' - ' + sce.toFixed(2) + ' = ' + scr.toFixed(2),
+                    )
+                  "
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="theory-box">
+          <h3>Paso 2: Determinar los Grados de Libertad</h3>
+
+          <div class="concept-card">
+            <h4>¿Qué son los Grados de Libertad?</h4>
+            <p>
+              Son el número de valores que pueden variar libremente en un cálculo. Es un concepto
+              técnico, pero aquí están las reglas:
+            </p>
+          </div>
+
+          <div class="solution-steps">
+            <div class="step">
+              <h4>2.1 Grados de Libertad Total (gl<sub>Total</sub>)</h4>
+              <div class="formula-box">
+                <div v-html="renderLatexDisplay('gl_{Total} = n - 1')"></div>
+                <p class="formula-note">
+                  Donde <strong>n</strong> es el número de observaciones<br />
+                  En nuestro ejemplo: gl<sub>Total</sub> = {{ n }} - 1 = {{ glTotal }}
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <h4>2.2 Grados de Libertad de Regresión (gl<sub>Regresión</sub>)</h4>
+              <div class="formula-box">
+                <div v-html="renderLatexDisplay('gl_{Regresión} = k')"></div>
+                <p class="formula-note">
+                  Donde <strong>k</strong> es el número de variables independientes<br />
+                  En regresión lineal simple: k = 1 (solo una X)<br />
+                  En nuestro ejemplo: gl<sub>Regresión</sub> = {{ glRegresion }}
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <h4>2.3 Grados de Libertad del Error (gl<sub>Error</sub>)</h4>
+              <div class="formula-box">
+                <div v-html="renderLatexDisplay('gl_{Error} = n - k - 1')"></div>
+                <p class="formula-note">
+                  En regresión lineal simple: gl<sub>Error</sub> = n - 2<br />
+                  En nuestro ejemplo: gl<sub>Error</sub> = {{ n }} - 2 = {{ glError }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="theory-box">
+          <h3>Paso 3: Calcular los Cuadrados Medios</h3>
+
+          <div class="concept-card">
+            <h4>¿Qué son los Cuadrados Medios?</h4>
+            <p>
+              Son las <strong>sumas de cuadrados divididas por sus grados de libertad</strong>. Es
+              como calcular un "promedio" de la variación.
+            </p>
+            <p class="note">
+              Los cuadrados medios nos permiten comparar la variación explicada vs la no explicada
+              de forma justa.
+            </p>
+          </div>
+
+          <div class="solution-steps">
+            <div class="step">
+              <h4>3.1 Cuadrado Medio de Regresión (CMR)</h4>
+              <div class="formula-box">
+                <div v-html="renderLatexDisplay('CMR = \\frac{SCR}{gl_{Regresión}}')"></div>
+                <div
+                  v-html="
+                    renderLatexDisplay(
+                      'CMR = \\frac{' +
+                        scr.toFixed(2) +
+                        '}{' +
+                        glRegresion +
+                        '} = ' +
+                        cmr.toFixed(2),
+                    )
+                  "
+                ></div>
+              </div>
+              <p class="note">Representa la variación promedio explicada por el modelo.</p>
+            </div>
+
+            <div class="step">
+              <h4>3.2 Cuadrado Medio del Error (CME)</h4>
+              <div class="formula-box">
+                <div v-html="renderLatexDisplay('CME = \\frac{SCE}{gl_{Error}}')"></div>
+                <div
+                  v-html="
+                    renderLatexDisplay(
+                      'CME = \\frac{' + sce.toFixed(2) + '}{' + glError + '} = ' + cme.toFixed(2),
+                    )
+                  "
+                ></div>
+              </div>
+              <p class="note">
+                Representa la variación promedio NO explicada (el error promedio al cuadrado).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="theory-box">
+          <h3>Paso 4: Calcular el Estadístico F</h3>
+
+          <div class="concept-card">
+            <h4>¿Qué es el Estadístico F?</h4>
+            <p>
+              Es la <strong>razón entre la variación explicada y la variación no explicada</strong>.
+              Es la pieza clave para determinar si tu modelo es significativo.
+            </p>
+          </div>
+
+          <div class="formula-box">
+            <h4>Fórmula del Estadístico F</h4>
+            <div v-html="renderLatexDisplay('F = \\frac{CMR}{CME}')"></div>
+            <div
+              v-html="
+                renderLatexDisplay(
+                  'F = \\frac{' +
+                    cmr.toFixed(2) +
+                    '}{' +
+                    cme.toFixed(2) +
+                    '} = ' +
+                    fStatistic.toFixed(2),
+                )
+              "
+            ></div>
+          </div>
+
+          <div class="concept-card">
+            <h4>Interpretación del Valor F</h4>
+            <ul>
+              <li>
+                <strong>F grande (mucho mayor que 1):</strong> La variación explicada es mucho mayor
+                que el error. Tu modelo es bueno.
+              </li>
+              <li>
+                <strong>F cercano a 1:</strong> La variación explicada es similar al error. Tu
+                modelo no es muy útil.
+              </li>
+              <li>
+                <strong>F menor que 1:</strong> Tu modelo es peor que simplemente usar el promedio.
+              </li>
+            </ul>
+            <p class="note">
+              En nuestro ejemplo: F = {{ fStatistic.toFixed(2) }}, lo cual es
+              {{ fStatistic > 10 ? 'muy grande' : fStatistic > 4 ? 'grande' : 'moderado' }},
+              indicando un
+              {{ fStatistic > 10 ? 'excelente' : fStatistic > 4 ? 'buen' : 'modelo moderado' }}.
+            </p>
+          </div>
+        </div>
+
+        <div class="theory-box">
+          <h3>Paso 5: Determinar el Valor P</h3>
+
+          <div class="concept-card">
+            <h4>¿Qué es el Valor P?</h4>
+            <p>
+              El <strong>valor p</strong> te dice la probabilidad de obtener un valor F tan grande
+              (o más grande) si en realidad no hubiera relación entre X e Y.
+            </p>
+            <p class="note">
+              <strong>Regla de oro:</strong> Si p &lt; 0.05, tu modelo es estadísticamente
+              significativo.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <h4>Cómo Interpretar el Valor P</h4>
+            <ul>
+              <li>
+                <strong>p &lt; 0.001:</strong> Evidencia muy fuerte. Tu modelo es altamente
+                significativo.
+              </li>
+              <li>
+                <strong>p &lt; 0.01:</strong> Evidencia fuerte. Tu modelo es muy significativo.
+              </li>
+              <li>
+                <strong>p &lt; 0.05:</strong> Evidencia suficiente. Tu modelo es significativo.
+              </li>
+              <li>
+                <strong>p &gt;= 0.05:</strong> No hay evidencia suficiente. Tu modelo no es
+                significativo.
+              </li>
+            </ul>
+          </div>
+
+          <div class="decision-box">
+            <h4>Decisión Final</h4>
+            <p><strong>Hipótesis Nula (H₀):</strong> El modelo de regresión no es útil (β = 0)</p>
+            <p>
+              <strong>Hipótesis Alternativa (H₁):</strong> El modelo de regresión es útil (β ≠ 0)
+            </p>
+            <p style="margin-top: 1rem">
+              Con F = {{ fStatistic.toFixed(2) }} y un nivel de significancia α = 0.05:
+            </p>
+            <p>
+              <strong>{{ fStatistic > 4.5 ? 'Rechazamos H₀' : 'No rechazamos H₀' }}</strong>
+            </p>
+            <p>
+              {{
+                fStatistic > 4.5
+                  ? 'El modelo de regresión ES estadísticamente significativo. La variable X ayuda a predecir Y.'
+                  : 'El modelo de regresión NO es estadísticamente significativo. La variable X no ayuda mucho a predecir Y.'
+              }}
+            </p>
+          </div>
+        </div>
+
+        <h2>La Tabla ANOVA Completa</h2>
+
+        <div class="theory-box">
+          <h3>Tabla ANOVA para Nuestro Ejemplo</h3>
+          <p>Aquí está la tabla ANOVA completa con todos los valores calculados:</p>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fuente de Variación</th>
+                  <th>Suma de Cuadrados (SC)</th>
+                  <th>Grados de Libertad (gl)</th>
+                  <th>Cuadrado Medio (CM)</th>
+                  <th>F</th>
+                  <th>Significancia</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Regresión</strong></td>
+                  <td>{{ scr.toFixed(2) }}</td>
+                  <td>{{ glRegresion }}</td>
+                  <td>{{ cmr.toFixed(2) }}</td>
+                  <td>{{ fStatistic.toFixed(2) }}</td>
+                  <td>{{ fStatistic > 4.5 ? 'p < 0.05 *' : 'p ≥ 0.05' }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Error (Residual)</strong></td>
+                  <td>{{ sce.toFixed(2) }}</td>
+                  <td>{{ glError }}</td>
+                  <td>{{ cme.toFixed(2) }}</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr class="total-row">
+                  <td><strong>Total</strong></td>
+                  <td>{{ sct.toFixed(2) }}</td>
+                  <td>{{ glTotal }}</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="note" style="margin-top: 1rem">
+            <strong>* Significativo al nivel 0.05</strong>
+          </p>
+        </div>
+
+        <div class="theory-box">
+          <h3>Interpretación Completa de la Tabla</h3>
+
+          <div class="concept-card">
+            <h4>¿Qué nos dice esta tabla?</h4>
+
+            <ol>
+              <li>
+                <strong>Variación Total (SCT = {{ sct.toFixed(2) }}):</strong><br />
+                Hay {{ sct.toFixed(2) }} unidades² de variación total en las ventas (Y).
+              </li>
+
+              <li>
+                <strong>Variación Explicada (SCR = {{ scr.toFixed(2) }}):</strong><br />
+                El modelo de regresión explica {{ scr.toFixed(2) }} unidades² de esa variación.<br />
+                Esto representa el <strong>{{ (rSquared * 100).toFixed(1) }}%</strong> de la
+                variación total.
+              </li>
+
+              <li>
+                <strong>Variación No Explicada (SCE = {{ sce.toFixed(2) }}):</strong><br />
+                Quedan {{ sce.toFixed(2) }} unidades² sin explicar (debido a otros factores).<br />
+                Esto representa el <strong>{{ ((1 - rSquared) * 100).toFixed(1) }}%</strong> de la
+                variación total.
+              </li>
+
+              <li>
+                <strong>Estadístico F = {{ fStatistic.toFixed(2) }}:</strong><br />
+                La variación explicada es {{ fStatistic.toFixed(2) }} veces mayor que la variación
+                no explicada.<br />
+                {{
+                  fStatistic > 10
+                    ? 'Esto es excelente e indica un modelo muy fuerte.'
+                    : fStatistic > 4
+                      ? 'Esto es bueno e indica un modelo útil.'
+                      : 'Esto indica un modelo moderado.'
+                }}
+              </li>
+
+              <li>
+                <strong>Conclusión:</strong><br />
+                {{
+                  fStatistic > 4.5
+                    ? 'El modelo de regresión es estadísticamente significativo. El número de llamadas SÍ ayuda a predecir las ventas de copiadoras.'
+                    : 'El modelo de regresión NO es estadísticamente significativo. El número de llamadas NO ayuda significativamente a predecir las ventas.'
+                }}
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="theory-box">
+          <h3>Relación entre ANOVA y R²</h3>
+
+          <div class="concept-card">
+            <h4>Conexión Importante</h4>
+            <p>
+              El coeficiente de determinación R² que vimos antes está directamente relacionado con
+              la tabla ANOVA:
+            </p>
+
+            <div class="formula-box">
+              <div
+                v-html="
+                  renderLatexDisplay(
+                    'R^2 = \\frac{SCR}{SCT} = \\frac{' +
+                      scr.toFixed(2) +
+                      '}{' +
+                      sct.toFixed(2) +
+                      '} = ' +
+                      rSquared.toFixed(3),
+                  )
+                "
+              ></div>
+            </div>
+
+            <p class="note">
+              R² = {{ (rSquared * 100).toFixed(1) }}% significa que el
+              {{ (rSquared * 100).toFixed(1) }}% de la variación en Y se explica por X.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <h4>También podemos calcular R² como:</h4>
+            <div class="formula-box">
+              <div
+                v-html="
+                  renderLatexDisplay(
+                    'R^2 = 1 - \\frac{SCE}{SCT} = 1 - \\frac{' +
+                      sce.toFixed(2) +
+                      '}{' +
+                      sct.toFixed(2) +
+                      '} = ' +
+                      rSquared.toFixed(3),
+                  )
+                "
+              ></div>
+            </div>
+            <p class="note">
+              Esto nos dice que solo el {{ ((1 - rSquared) * 100).toFixed(1) }}% de la variación NO
+              se explica por el modelo.
+            </p>
+          </div>
+        </div>
+
+        <h2>Interpretación de los Grados de Libertad</h2>
+
+        <div class="theory-box">
+          <h3>¿Qué Significan Realmente los Grados de Libertad?</h3>
+
+          <div class="concept-card">
+            <h4>Concepto Intuitivo</h4>
+            <p>
+              Los <strong>grados de libertad (gl)</strong> representan
+              <strong>cuántos valores en tu conjunto de datos son "libres" de variar</strong> una
+              vez que conoces ciertas restricciones (como el promedio).
+            </p>
+            <p class="note">
+              <strong>Analogía:</strong> Si tienes 10 números y sabes que su promedio es 50, puedes
+              elegir libremente los primeros 9 números, pero el décimo está "forzado" para que el
+              promedio sea 50. Por eso tienes 9 grados de libertad (10 - 1).
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <h4>Grados de Libertad en la Tabla ANOVA</h4>
+
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Tipo</th>
+                    <th>Fórmula</th>
+                    <th>En Nuestro Ejemplo</th>
+                    <th>¿Qué Representa?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <strong>gl<sub>Total</sub></strong>
+                    </td>
+                    <td>n - 1</td>
+                    <td>{{ n }} - 1 = {{ glTotal }}</td>
+                    <td>Número de observaciones menos 1 (porque estimamos la media)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>gl<sub>Regresión</sub></strong>
+                    </td>
+                    <td>k</td>
+                    <td>{{ glRegresion }}</td>
+                    <td>Número de variables independientes (predictores) en el modelo</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>gl<sub>Error</sub></strong>
+                    </td>
+                    <td>n - k - 1</td>
+                    <td>{{ n }} - 1 - 1 = {{ glError }}</td>
+                    <td>Observaciones menos parámetros estimados (intercepto + pendiente)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="concept-card">
+            <h4>¿Por Qué Son Importantes?</h4>
+            <ul>
+              <li>
+                <strong>Determinan la distribución F:</strong> Los grados de libertad definen qué
+                distribución F usar para evaluar la significancia
+              </li>
+              <li>
+                <strong>Afectan el valor crítico:</strong> Con más datos (más gl), es más fácil
+                detectar efectos significativos
+              </li>
+              <li>
+                <strong>Indican el tamaño de muestra:</strong> gl<sub>Total</sub> + 1 = n (número de
+                observaciones)
+              </li>
+              <li>
+                <strong>Muestran la complejidad del modelo:</strong> gl<sub>Regresión</sub> indica
+                cuántas variables independientes tienes
+              </li>
+            </ul>
+          </div>
+
+          <div class="concept-card">
+            <h4>Relación Fundamental</h4>
+            <div class="formula-box">
+              <div v-html="renderLatexDisplay('gl_{Total} = gl_{Regresión} + gl_{Error}')"></div>
+              <div
+                v-html="renderLatexDisplay(glTotal + ' = ' + glRegresion + ' + ' + glError)"
+              ></div>
+            </div>
+            <p class="note">Esta relación siempre se cumple, similar a como SCT = SCR + SCE</p>
+          </div>
+        </div>
+
+        <h2>Leyendo la Salida de Software Estadístico</h2>
+
+        <div class="theory-box">
+          <h3>Interpretando Resultados de Python, R, SPSS y Otros</h3>
+
+          <div class="concept-card">
+            <h4>¿Por Qué Es Importante?</h4>
+            <p>
+              En la práctica, casi nunca calcularás la regresión a mano. Usarás software como
+              <strong>Python (statsmodels, scikit-learn)</strong>, <strong>R</strong>,
+              <strong>SPSS</strong>, <strong>Excel</strong>, o <strong>Stata</strong>. Es crucial
+              saber leer e interpretar la salida.
+            </p>
+          </div>
+
+          <h3>Ejemplo: Salida de Python (statsmodels)</h3>
+
+          <div class="code-output-box">
+            <pre
+              style="
+                background: #1e1e1e;
+                color: #d4d4d4;
+                padding: 1.5rem;
+                border-radius: 0.5rem;
+                overflow-x: auto;
+                font-size: 0.85rem;
+                line-height: 1.6;
+              "
+            >
+<span style="color: #4ec9b0;">OLS Regression Results</span>
+==============================================================================
+<span style="color: #9cdcfe;">Dep. Variable:</span>         Ventas   <span style="color: #9cdcfe;">R-squared:</span>             0.576
+<span style="color: #9cdcfe;">Model:</span>                   OLS   <span style="color: #9cdcfe;">Adj. R-squared:</span>        0.523
+<span style="color: #9cdcfe;">Method:</span>          Least Squares   <span style="color: #9cdcfe;">F-statistic:</span>           10.87
+<span style="color: #9cdcfe;">Date:</span>        Sat, 29 Nov 2025   <span style="color: #9cdcfe;">Prob (F-statistic):</span>  0.0109
+<span style="color: #9cdcfe;">Time:</span>               02:36:09   <span style="color: #9cdcfe;">Log-Likelihood:</span>      -36.000
+<span style="color: #9cdcfe;">No. Observations:</span>         10   <span style="color: #9cdcfe;">AIC:</span>                   76.00
+<span style="color: #9cdcfe;">Df Residuals:</span>             8   <span style="color: #9cdcfe;">BIC:</span>                   76.60
+<span style="color: #9cdcfe;">Df Model:</span>                 1
+==============================================================================
+                 <span style="color: #4ec9b0;">coef</span>    <span style="color: #4ec9b0;">std err</span>      <span style="color: #4ec9b0;">t</span>      <span style="color: #4ec9b0;">P>|t|</span>  <span style="color: #4ec9b0;">[0.025</span>    <span style="color: #4ec9b0;">0.975]</span>
+------------------------------------------------------------------------------
+Intercept     18.9474     8.499     2.229  0.056    -0.651    38.546
+Llamadas       1.1842     0.359     3.297  0.011     0.356     2.012
+==============================================================================
+</pre>
+          </div>
+
+          <h3>Guía de Interpretación Paso a Paso</h3>
+
+          <div class="solution-steps">
+            <div class="step">
+              <h4>1️⃣ Información del Modelo (Parte Superior)</h4>
+
+              <div class="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Campo</th>
+                      <th>Valor</th>
+                      <th>Interpretación</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Dep. Variable</strong></td>
+                      <td>Ventas</td>
+                      <td>Variable dependiente (Y) que estamos prediciendo</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Model</strong></td>
+                      <td>OLS</td>
+                      <td>Ordinary Least Squares (Mínimos Cuadrados Ordinarios)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Method</strong></td>
+                      <td>Least Squares</td>
+                      <td>Método usado para estimar los parámetros</td>
+                    </tr>
+                    <tr>
+                      <td><strong>No. Observations</strong></td>
+                      <td>10</td>
+                      <td>Número total de datos (n = 10)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="step">
+              <h4>2️⃣ Grados de Libertad (¡Aquí están!)</h4>
+
+              <div class="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Campo</th>
+                      <th>Valor</th>
+                      <th>Interpretación</th>
+                      <th>Relación con ANOVA</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Df Residuals</strong></td>
+                      <td>8</td>
+                      <td>Grados de libertad del error</td>
+                      <td>gl<sub>Error</sub> = n - 2 = 10 - 2 = 8</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Df Model</strong></td>
+                      <td>1</td>
+                      <td>Grados de libertad del modelo</td>
+                      <td>gl<sub>Regresión</sub> = k = 1 (una variable X)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p class="note">
+                <strong>Nota:</strong> Df Residuals = gl<sub>Error</sub> y Df Model = gl<sub
+                  >Regresión</sub
+                >
+              </p>
+            </div>
+
+            <div class="step">
+              <h4>3️⃣ Bondad de Ajuste</h4>
+
+              <div class="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Campo</th>
+                      <th>Valor</th>
+                      <th>Interpretación</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>R-squared</strong></td>
+                      <td>0.576</td>
+                      <td>
+                        <strong>57.6%</strong> de la variación en Ventas se explica por Llamadas<br />
+                        Equivale a R² en nuestra tabla ANOVA
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Adj. R-squared</strong></td>
+                      <td>0.523</td>
+                      <td>
+                        R² ajustado por el número de variables<br />
+                        Más conservador, penaliza modelos complejos
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="step">
+              <h4>4️⃣ Prueba F Global (¡La Más Importante!)</h4>
+
+              <div class="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Campo</th>
+                      <th>Valor</th>
+                      <th>Interpretación</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>F-statistic</strong></td>
+                      <td>10.87</td>
+                      <td>
+                        Estadístico F de la tabla ANOVA<br />
+                        F = CMR / CME = 10.87
+                      </td>
+                    </tr>
+                    <tr style="background: #d4edda">
+                      <td><strong>Prob (F-statistic)</strong></td>
+                      <td><strong>0.0109</strong></td>
+                      <td>
+                        <strong>¡Este es el valor p!</strong><br />
+                        p = 0.0109 &lt; 0.05 → <strong>Modelo significativo ✓</strong><br />
+                        Solo hay 1.09% de probabilidad de que este resultado sea casualidad
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="highlight-box">
+                <p><strong>Decisión:</strong></p>
+                <p>
+                  Como <strong>p = 0.0109 &lt; 0.05</strong>, rechazamos H₀.<br />
+                  <strong>Conclusión:</strong> El modelo de regresión ES estadísticamente
+                  significativo.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <h4>5️⃣ Coeficientes de Regresión</h4>
+
+              <div class="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Variable</th>
+                      <th>coef</th>
+                      <th>std err</th>
+                      <th>t</th>
+                      <th>P>|t|</th>
+                      <th>Interpretación</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Intercept</strong></td>
+                      <td>18.9474</td>
+                      <td>8.499</td>
+                      <td>2.229</td>
+                      <td>0.056</td>
+                      <td>
+                        <strong>a = 18.95</strong> (intersección)<br />
+                        Ventas cuando Llamadas = 0<br />
+                        p = 0.056 > 0.05 (no significativo)
+                      </td>
+                    </tr>
+                    <tr style="background: #d4edda">
+                      <td><strong>Llamadas</strong></td>
+                      <td><strong>1.1842</strong></td>
+                      <td>0.359</td>
+                      <td>3.297</td>
+                      <td><strong>0.011</strong></td>
+                      <td>
+                        <strong>b = 1.18</strong> (pendiente)<br />
+                        Por cada llamada adicional, ventas aumentan 1.18 unidades<br />
+                        <strong>p = 0.011 &lt; 0.05 (significativo ✓)</strong>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="concept-card">
+                <h4>Ecuación de Regresión Resultante</h4>
+                <div class="formula-box">
+                  <div v-html="renderLatexDisplay('\\hat{Y} = 18.95 + 1.18X')"></div>
+                </div>
+                <p class="note">
+                  <strong>Interpretación:</strong> Ventas = 18.95 + 1.18 × Llamadas
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <h4>6️⃣ Otros Estadísticos Útiles</h4>
+
+              <div class="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Campo</th>
+                      <th>Valor</th>
+                      <th>¿Qué Evalúa?</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>AIC</strong></td>
+                      <td>76.00</td>
+                      <td>
+                        Criterio de Información de Akaike<br />
+                        Útil para comparar modelos (menor es mejor)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>BIC</strong></td>
+                      <td>76.60</td>
+                      <td>
+                        Criterio de Información Bayesiano<br />
+                        Similar a AIC, penaliza más la complejidad
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Durbin-Watson</strong></td>
+                      <td>2.159</td>
+                      <td>
+                        Prueba de autocorrelación de residuales<br />
+                        Valores cercanos a 2 son buenos (rango: 0-4)
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="theory-box">
+          <h3>Checklist: ¿Qué Buscar en la Salida?</h3>
+
+          <div class="concept-card">
+            <h4>Los 5 Valores Clave que Siempre Debes Revisar</h4>
+            <ol>
+              <li>
+                <strong>✓ Prob (F-statistic) o p-value del modelo:</strong><br />
+                ¿Es menor que 0.05? → Modelo significativo
+              </li>
+              <li>
+                <strong>✓ R-squared (R²):</strong><br />
+                ¿Qué porcentaje de variación explica el modelo? (Busca > 0.5 idealmente)
+              </li>
+              <li>
+                <strong>✓ Coeficientes (coef):</strong><br />
+                ¿Cuál es la ecuación de regresión? (a y b)
+              </li>
+              <li>
+                <strong>✓ P>|t| de cada coeficiente:</strong><br />
+                ¿Cada variable es significativa? (p &lt; 0.05)
+              </li>
+              <li>
+                <strong>✓ Grados de libertad (Df Residuals, Df Model):</strong><br />
+                ¿Tienes suficientes datos? (gl<sub>Error</sub> debería ser > 30 idealmente)
+              </li>
+            </ol>
+          </div>
+
+          <div class="warning-box">
+            <h4>⚠️ Señales de Alerta</h4>
+            <ul>
+              <li><strong>Prob (F-statistic) > 0.05:</strong> Tu modelo no es significativo</li>
+              <li><strong>R² muy bajo (&lt; 0.3):</strong> El modelo explica poco</li>
+              <li>
+                <strong>Df Residuals muy bajo (&lt; 10):</strong> Pocos datos, resultados poco
+                confiables
+              </li>
+              <li>
+                <strong>Durbin-Watson muy alejado de 2:</strong> Posible autocorrelación (problema)
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="theory-box">
+          <h3>Resumen: ¿Cuándo Usar la Tabla ANOVA?</h3>
+
+          <div class="concept-card">
+            <h4>Usa la Tabla ANOVA cuando quieras:</h4>
+            <ul>
+              <li>✓ Probar si tu modelo de regresión es estadísticamente significativo</li>
+              <li>✓ Comparar la variación explicada vs la no explicada</li>
+              <li>✓ Obtener el valor F para pruebas de hipótesis</li>
+              <li>✓ Entender qué porcentaje de variación explica tu modelo</li>
+              <li>✓ Justificar formalmente que tu modelo es útil</li>
+            </ul>
+          </div>
+
+          <div class="warning-box">
+            <h4>⚠️ Recuerda</h4>
+            <ul>
+              <li>Un modelo estadísticamente significativo NO significa que sea perfecto</li>
+              <li>
+                Siempre verifica los supuestos de regresión (linealidad, normalidad,
+                homocedasticidad)
+              </li>
+              <li>Un F alto no garantiza que tu modelo sea útil en la práctica</li>
+              <li>Complementa el ANOVA con análisis de residuales y R²</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -1213,6 +2273,7 @@ const tabs = [
   { id: 'ejemplo-correlacion', label: 'Ejemplo Correlación' },
   { id: 'regresion', label: 'Regresión' },
   { id: 'ejemplo', label: 'Ejemplo Completo' },
+  { id: 'anova', label: 'Tabla ANOVA' },
 ]
 
 const exampleData = [
@@ -1273,6 +2334,32 @@ const sumSquaredResiduals = computed(() => {
 const stdError = computed(() => {
   return Math.sqrt(sumSquaredResiduals.value / (n.value - 2))
 })
+
+// Cálculos para ANOVA
+// Suma de Cuadrados Total (SCT)
+const sct = computed(() => {
+  return exampleData.reduce((acc, item) => {
+    return acc + Math.pow(item.y - meanY.value, 2)
+  }, 0)
+})
+
+// Suma de Cuadrados del Error (SCE)
+const sce = computed(() => sumSquaredResiduals.value)
+
+// Suma de Cuadrados de Regresión (SCR)
+const scr = computed(() => sct.value - sce.value)
+
+// Grados de libertad
+const glTotal = computed(() => n.value - 1)
+const glRegresion = 1 // En regresión lineal simple siempre es 1
+const glError = computed(() => n.value - 2)
+
+// Cuadrados Medios
+const cmr = computed(() => scr.value / glRegresion)
+const cme = computed(() => sce.value / glError.value)
+
+// Estadístico F
+const fStatistic = computed(() => cmr.value / cme.value)
 
 // Renderizado de gráficos
 const renderChart = () => {
@@ -1420,7 +2507,7 @@ const renderMiniCharts = () => {
 }
 
 watch(activeTab, (newTab) => {
-  if (newTab === 'ejemplo') {
+  if (newTab === 'ejemplo' || newTab === 'anova') {
     nextTick(() => {
       renderChart()
     })
@@ -1781,5 +2868,32 @@ tr:last-child td {
 .decision-box p {
   margin-bottom: 0.5rem;
   line-height: 1.6;
+}
+
+.code-output-box {
+  margin: 1.5rem 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.solution-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.solution-steps .step {
+  background: var(--surface);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border-left: 4px solid var(--primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.solution-steps .step h4 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
 }
 </style>
