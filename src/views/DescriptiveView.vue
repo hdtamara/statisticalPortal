@@ -90,6 +90,14 @@
       />
 
       <ContentCard
+        title="Distribuciones de Probabilidad"
+        content="Variables aleatorias discretas y continuas. Distribuciones binomial, uniforme y normal con ejemplos prácticos."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/descriptiva/distribuciones-probabilidad'"
+      />
+
+      <ContentCard
         title="Medidas de Posición: Cuartiles, Deciles y Percentiles"
         content="Aprende a calcular cuantiles (cuartiles), deciles y percentiles. Incluye ejemplos y una calculadora interactiva para tus datos."
         :show-button="true"
