@@ -968,6 +968,7 @@ const renderLatexDisplay = (latex: string): string => {
   max-width: 700px;
   margin: 0 auto;
   line-height: 1.6;
+  color: white;
 }
 
 .tabs {
