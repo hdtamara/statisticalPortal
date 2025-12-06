@@ -1,0 +1,1700 @@
+<template>
+  <div class="tecnicas-muestreo-view">
+    <div class="container">
+      <div class="hero">
+        <h1>Técnicas de Muestreo</h1>
+        <p>
+          Aprende cómo seleccionar y calcular el tamaño de muestra para cada técnica de muestreo
+          probabilístico: aleatorio simple, estratificado, sistemático y por conglomerados.
+        </p>
+      </div>
+
+      <div class="tabs">
+        <button
+          v-for="tab in tabs"
+          :key="tab.id"
+          @click="activeTab = tab.id"
+          :class="['tab-button', { active: activeTab === tab.id }]"
+        >
+          {{ tab.label }}
+        </button>
+      </div>
+
+      <!-- MUESTREO ALEATORIO SIMPLE -->
+      <div v-if="activeTab === 'simple'" class="content-section">
+        <h2>Muestreo Aleatorio Simple (MAS)</h2>
+
+        <div class="intro-box">
+          <h3>🎯 Idea y Definición</h3>
+          <p>
+            Cada muestra posible de tamaño <span v-html="renderLatex('n')"></span> tiene la
+            <strong>misma probabilidad</strong> de ser elegida.
+          </p>
+          <p style="margin-top: 0.5rem">
+            Equivalente: cada individuo de la población tiene la misma probabilidad de entrar en la
+            muestra.
+          </p>
+          <p class="note" style="margin-top: 1rem">
+            <strong>Es el diseño base:</strong> Todo lo demás (estratificado, sistemático, etc.) se
+            compara con el MAS.
+          </p>
+        </div>
+
+        <div class="formula-section">
+          <h3>Cómo se Selecciona</h3>
+          <ol style="line-height: 2; margin-top: 1rem">
+            <li>
+              <strong>Tener marco muestral:</strong> Listado de los
+              <span v-html="renderLatex('N')"></span> elementos numerados del 1 al
+              <span v-html="renderLatex('N')"></span>
+            </li>
+            <li>
+              <strong>Generar <span v-html="renderLatex('n')"></span> números aleatorios</strong>
+              distintos entre 1 y <span v-html="renderLatex('N')"></span> (tabla, Excel, R, etc.)
+            </li>
+            <li><strong>Seleccionar esos elementos:</strong> ésa es la muestra</li>
+          </ol>
+          <p class="note" style="margin-top: 1rem">
+            <strong>En Excel:</strong> Puedes usar =ALEATORIO.ENTRE(1;N)
+          </p>
+        </div>
+
+        <h3 style="margin-top: 2rem">Tamaño Muestral para Media (Población Grande)</h3>
+
+        <div class="formula-section">
+          <p style="margin-bottom: 1rem">
+            Supón que quieres estimar la <strong>media</strong> de una variable Y con error máximo
+            <span v-html="renderLatex('B')"></span> y confianza 95%.
+          </p>
+
+          <h4>Fórmula General:</h4>
+          <div
+            class="formula-display"
+            v-html="renderLatexDisplay('n = \\frac{Z_c^2 \\sigma^2}{B^2}')"
+          ></div>
+
+          <p style="margin-top: 1rem">Con 95% de confianza y usando <span v-html="renderLatex('Z_c \\approx 2')"></span>:</p>
+          <div
+            class="formula-display"
+            v-html="renderLatexDisplay('n \\approx \\frac{4\\sigma^2}{B^2}')"
+          ></div>
+
+          <p style="margin-top: 1rem"><strong>Donde:</strong></p>
+          <ul style="line-height: 1.8">
+            <li>
+              <span v-html="renderLatex('\\sigma^2')"></span> = varianza poblacional (desconocida,
+              se aproxima con <span v-html="renderLatex('S^2')"></span> de un estudio previo)
+            </li>
+            <li><span v-html="renderLatex('B')"></span> = error máximo deseado</li>
+            <li>
+              <span v-html="renderLatex('Z_c')"></span> = valor crítico (1.96 para 95%, pero se
+              redondea a 2)
+            </li>
+          </ul>
+
+          <div class="tip-section" style="margin-top: 1rem">
+            <p>
+              <strong>Truco:</strong> Si no tienes <span v-html="renderLatex('\\sigma')"></span>, en
+              muchas variables normales se cumple aproximadamente
+              <span v-html="renderLatex('\\text{rango} \\approx 4\\sigma')"></span>, por lo que
+              <span v-html="renderLatex('\\sigma \\approx \\frac{R}{4}')"></span>
+            </p>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 2rem">Tamaño Muestral para Proporción (Población Grande)</h3>
+
+        <div class="formula-section">
+          <p style="margin-bottom: 1rem">
+            Objetivo: estimar una proporción <span v-html="renderLatex('p')"></span> (ej. porcentaje
+            de clientes satisfechos) con error máximo <span v-html="renderLatex('B')"></span>.
+          </p>
+
+          <h4>Fórmula:</h4>
+          <div
+            class="formula-display"
+            v-html="renderLatexDisplay('n = \\frac{Z_c^2 \\cdot p \\cdot q}{B^2}')"
+          ></div>
+
+          <p style="margin-top: 1rem">
+            Donde <span v-html="renderLatex('q = 1-p')"></span> y
+            <span v-html="renderLatex('\\sigma^2 = pq = p(1-p)')"></span>
+          </p>
+
+          <p style="margin-top: 1rem"><strong>Si no conoces p:</strong></p>
+          <ul style="line-height: 1.8">
+            <li>
+              Usa un valor preliminar <span v-html="renderLatex('\\hat{p}')"></span> de un estudio
+              piloto
+            </li>
+            <li>
+              O usa <span v-html="renderLatex('p=0.5')"></span> (caso más conservador, varianza
+              máxima)
+            </li>
+          </ul>
+        </div>
+
+        <h3 style="margin-top: 2rem">Corrección por Población Finita (CPF)</h3>
+
+        <div class="formula-section">
+          <p style="margin-bottom: 1rem">
+            Si <span v-html="renderLatex('N')"></span> no es muy grande y la muestra es una porción
+            apreciable de la población, ajustas:
+          </p>
+
+          <h4>Para Media:</h4>
+          <div
+            class="formula-display"
+            v-html="
+              renderLatexDisplay('n = \\frac{N \\cdot Z_c^2 \\cdot \\sigma^2}{B^2(N-1) + Z_c^2 \\cdot \\sigma^2}')
+            "
+          ></div>
+
+          <h4>Para Proporción:</h4>
+          <div
+            class="formula-display"
+            v-html="
+              renderLatexDisplay('n = \\frac{N \\cdot Z_c^2 \\cdot p \\cdot q}{B^2(N-1) + Z_c^2 \\cdot p \\cdot q}')
+            "
+          ></div>
+
+          <p class="note" style="margin-top: 1rem">
+            Esto es básicamente la fórmula con el factor
+            <span v-html="renderLatex('\\frac{N-n}{N}')"></span> metido dentro de
+            <span v-html="renderLatex('n')"></span>
+          </p>
+        </div>
+
+        <div class="detailed-example">
+          <h3>📚 Ejemplo: Calcular Tamaño Muestral (Media)</h3>
+          <p style="margin-bottom: 1rem">
+            <strong>Problema:</strong> Quieres estimar el gasto medio mensual en supermercado. Tienes
+            un estudio previo con <span v-html="renderLatex('S=40')"></span> € aprox. Quieres error
+            máximo <span v-html="renderLatex('B=5')"></span> € y confianza 95%.
+          </p>
+
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Aplicar la fórmula</h4>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay('n \\approx \\frac{4 \\cdot S^2}{B^2} = \\frac{4 \\cdot 40^2}{5^2}')
+                "
+              ></div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Calcular</h4>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay('n = \\frac{4 \\cdot 1600}{25} = \\frac{6400}{25} = 256')
+                "
+              ></div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Conclusión</h4>
+              <p>Necesitas encuestar unas <strong>256 personas</strong> con MAS.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="detailed-example">
+          <h3>📚 Ejemplo: Calcular Tamaño Muestral (Proporción)</h3>
+          <p style="margin-bottom: 1rem">
+            <strong>Problema:</strong> Quieres estimar la proporción de clientes satisfechos con
+            error máximo <span v-html="renderLatex('B=0.05')"></span> (5%) y confianza 95%. No tienes
+            información previa sobre p.
+          </p>
+
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Usar p = 0.5 (caso conservador)</h4>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay(
+                    'n = \\frac{4 \\cdot p \\cdot q}{B^2} = \\frac{4 \\cdot 0.5 \\cdot 0.5}{0.05^2}',
+                  )
+                "
+              ></div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Calcular</h4>
+              <div
+                class="formula-display"
+                v-html="renderLatexDisplay('n = \\frac{4 \\cdot 0.25}{0.0025} = \\frac{1}{0.0025} = 400')"
+              ></div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Conclusión</h4>
+              <p>Necesitas encuestar <strong>400 clientes</strong> para tener un margen de error del 5%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MUESTREO SISTEMÁTICO -->
+      <div v-if="activeTab === 'sistematico'" class="content-section">
+        <h2>Muestreo Sistemático</h2>
+
+        <div class="intro-box">
+          <h3>🎯 Concepto</h3>
+          <p>
+            En el <strong>Muestreo Sistemático</strong>, se selecciona un punto de inicio aleatorio
+            y luego se elige cada k-ésimo elemento de la población.
+          </p>
+        </div>
+
+        <div class="formula-section">
+          <h3>Cálculo del Intervalo de Muestreo (k)</h3>
+          <p style="margin-bottom: 1rem">El intervalo de muestreo se calcula como:</p>
+          <div
+            class="formula-display"
+            v-html="renderLatexDisplay('k = \\left\\lfloor \\frac{N}{n} \\right\\rfloor')"
+          ></div>
+          <p style="margin-top: 1rem"><strong>Donde:</strong></p>
+          <ul style="line-height: 1.8">
+            <li><span v-html="renderLatex('N')"></span> = tamaño de la población</li>
+            <li><span v-html="renderLatex('n')"></span> = tamaño de la muestra deseado</li>
+            <li>
+              <span v-html="renderLatex('\\lfloor \\cdot \\rfloor')"></span> = función piso
+              (redondeo hacia abajo)
+            </li>
+          </ul>
+        </div>
+
+        <div class="formula-section">
+          <h3>Proceso de Selección</h3>
+          <ol style="line-height: 2; margin-top: 1rem">
+            <li>Calcular k = N/n</li>
+            <li>Seleccionar aleatoriamente un número r entre 1 y k (punto de inicio)</li>
+            <li>Seleccionar los elementos en las posiciones: r, r+k, r+2k, r+3k, ..., r+(n-1)k</li>
+          </ol>
+        </div>
+
+        <div class="formula-section">
+          <h3>Error Estándar</h3>
+          <p style="margin-bottom: 1rem">
+            Si la población no tiene un patrón periódico, el error estándar es similar al MAS:
+          </p>
+          <div
+            class="formula-display"
+            v-html="
+              renderLatexDisplay(
+                'SE_{\\bar{x}} \\approx \\frac{\\sigma}{\\sqrt{n}} \\sqrt{\\frac{N-n}{N-1}}',
+              )
+            "
+          ></div>
+        </div>
+
+        <div class="detailed-example">
+          <h3>📚 Ejemplo Completo</h3>
+          <p style="margin-bottom: 1rem">
+            <strong>Problema:</strong> De una lista de N = 1,000 clientes, se desea seleccionar una
+            muestra de n = 100 clientes.
+          </p>
+
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Calcular el intervalo k</h4>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay('k = \\left\\lfloor \\frac{1000}{100} \\right\\rfloor = 10')
+                "
+              ></div>
+              <p>Se seleccionará cada 10º cliente.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Seleccionar punto de inicio aleatorio</h4>
+              <p>Supongamos que r = 7 (número aleatorio entre 1 y 10)</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Seleccionar elementos</h4>
+              <p>Se seleccionan los clientes en las posiciones:</p>
+              <p style="margin-top: 0.5rem">7, 17, 27, 37, 47, 57, 67, 77, 87, 97, 107, ..., 997</p>
+              <p style="margin-top: 0.5rem">
+                <strong>Fórmula general:</strong> Posición = 7 + 10i, donde i = 0, 1, 2, ..., 99
+              </p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Ventaja</h4>
+              <p>
+                Este método es más fácil de implementar que el MAS cuando se tiene una lista
+                ordenada, y garantiza una distribución uniforme en la población.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="analogy-box" style="margin-top: 2rem">
+          <h3>⚠️ Advertencia</h3>
+          <p>
+            El muestreo sistemático puede ser problemático si la población tiene un patrón periódico
+            que coincide con el intervalo k. Por ejemplo, si muestreamos cada 7º día y hay un patrón
+            semanal, podríamos sesgar la muestra.
+          </p>
+        </div>
+      </div>
+
+      <!-- MUESTREO ESTRATIFICADO -->
+      <div v-if="activeTab === 'estratificado'" class="content-section">
+        <h2>Muestreo Estratificado</h2>
+
+        <div class="intro-box">
+          <h3>🎯 Concepto</h3>
+          <p>
+            En el <strong>Muestreo Estratificado</strong>, la población se divide en grupos
+            homogéneos (estratos) y se selecciona una muestra de cada estrato. Esto reduce la
+            variabilidad y mejora la precisión.
+          </p>
+        </div>
+
+        <div class="formula-section">
+          <h3>Notación</h3>
+          <ul style="line-height: 1.8">
+            <li><span v-html="renderLatex('L')"></span> = número de estratos</li>
+            <li><span v-html="renderLatex('N_h')"></span> = tamaño del estrato h</li>
+            <li><span v-html="renderLatex('n_h')"></span> = tamaño de muestra del estrato h</li>
+            <li>
+              <span v-html="renderLatex('N = \\sum_{h=1}^{L} N_h')"></span> = tamaño total de la
+              población
+            </li>
+            <li>
+              <span v-html="renderLatex('n = \\sum_{h=1}^{L} n_h')"></span> = tamaño total de la
+              muestra
+            </li>
+            <li><span v-html="renderLatex('W_h = \\frac{N_h}{N}')"></span> = peso del estrato h</li>
+          </ul>
+        </div>
+
+        <h3 style="margin-top: 2rem">Asignación Proporcional</h3>
+
+        <div class="formula-section">
+          <h3>Fórmula de Asignación Proporcional</h3>
+          <p style="margin-bottom: 1rem">
+            El tamaño de muestra de cada estrato es proporcional al tamaño del estrato:
+          </p>
+          <div
+            class="formula-display"
+            v-html="renderLatexDisplay('n_h = n \\cdot \\frac{N_h}{N} = n \\cdot W_h')"
+          ></div>
+        </div>
+
+        <div class="formula-section">
+          <h3>Media Estratificada</h3>
+          <div
+            class="formula-display"
+            v-html="renderLatexDisplay('\\bar{x}_{st} = \\sum_{h=1}^{L} W_h \\bar{x}_h')"
+          ></div>
+          <p style="margin-top: 1rem">
+            Donde <span v-html="renderLatex('\\bar{x}_h')"></span> es la media del estrato h.
+          </p>
+        </div>
+
+        <div class="formula-section">
+          <h3>Error Estándar con Asignación Proporcional</h3>
+          <div
+            class="formula-display"
+            v-html="
+              renderLatexDisplay(
+                'SE_{\\bar{x}_{st}} = \\sqrt{\\sum_{h=1}^{L} W_h^2 \\frac{\\sigma_h^2}{n_h} \\left(1 - \\frac{n_h}{N_h}\\right)}',
+              )
+            "
+          ></div>
+        </div>
+
+        <div class="detailed-example">
+          <h3>📚 Ejemplo: Asignación Proporcional</h3>
+          <p style="margin-bottom: 1rem">
+            <strong>Problema:</strong> Una universidad tiene 3 facultades con los siguientes
+            tamaños:
+          </p>
+          <ul style="line-height: 1.8">
+            <li>Facultad 1 (Ingeniería): N₁ = 600 estudiantes</li>
+            <li>Facultad 2 (Ciencias): N₂ = 300 estudiantes</li>
+            <li>Facultad 3 (Humanidades): N₃ = 100 estudiantes</li>
+            <li>Total: N = 1,000 estudiantes</li>
+            <li>Tamaño de muestra deseado: n = 100</li>
+          </ul>
+
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Calcular pesos de cada estrato</h4>
+              <div
+                class="formula-display"
+                v-html="renderLatexDisplay('W_1 = \\frac{600}{1000} = 0.60')"
+              ></div>
+              <div
+                class="formula-display"
+                v-html="renderLatexDisplay('W_2 = \\frac{300}{1000} = 0.30')"
+              ></div>
+              <div
+                class="formula-display"
+                v-html="renderLatexDisplay('W_3 = \\frac{100}{1000} = 0.10')"
+              ></div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Calcular tamaño de muestra por estrato</h4>
+              <div
+                class="formula-display"
+                v-html="renderLatexDisplay('n_1 = 100 \\times 0.60 = 60 \\text{ estudiantes}')"
+              ></div>
+              <div
+                class="formula-display"
+                v-html="renderLatexDisplay('n_2 = 100 \\times 0.30 = 30 \\text{ estudiantes}')"
+              ></div>
+              <div
+                class="formula-display"
+                v-html="renderLatexDisplay('n_3 = 100 \\times 0.10 = 10 \\text{ estudiantes}')"
+              ></div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Verificación</h4>
+              <p>n₁ + n₂ + n₃ = 60 + 30 + 10 = 100 ✓</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 2rem">Asignación Óptima (Neyman)</h3>
+
+        <div class="formula-section">
+          <h3>Fórmula de Asignación Óptima</h3>
+          <p style="margin-bottom: 1rem">
+            Cuando se conocen las desviaciones estándar de cada estrato, la asignación óptima
+            minimiza el error estándar:
+          </p>
+          <div
+            class="formula-display"
+            v-html="
+              renderLatexDisplay(
+                'n_h = n \\cdot \\frac{N_h \\sigma_h}{\\sum_{i=1}^{L} N_i \\sigma_i}',
+              )
+            "
+          ></div>
+          <p style="margin-top: 1rem">
+            Esta fórmula asigna más elementos a estratos más grandes y más variables.
+          </p>
+        </div>
+
+        <div class="detailed-example">
+          <h3>📚 Ejemplo: Asignación Óptima</h3>
+          <p style="margin-bottom: 1rem">
+            <strong>Problema:</strong> Usando los mismos estratos anteriores, pero ahora conocemos
+            las desviaciones estándar:
+          </p>
+          <ul style="line-height: 1.8">
+            <li>Estrato 1: N₁ = 600, σ₁ = 20</li>
+            <li>Estrato 2: N₂ = 300, σ₂ = 30</li>
+            <li>Estrato 3: N₃ = 100, σ₃ = 10</li>
+            <li>n = 100</li>
+          </ul>
+
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Calcular N_h × σ_h para cada estrato</h4>
+              <ul style="line-height: 1.8">
+                <li>N₁σ₁ = 600 × 20 = 12,000</li>
+                <li>N₂σ₂ = 300 × 30 = 9,000</li>
+                <li>N₃σ₃ = 100 × 10 = 1,000</li>
+                <li>Suma total = 22,000</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Calcular tamaño de muestra óptimo</h4>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay('n_1 = 100 \\times \\frac{12000}{22000} = 54.5 \\approx 55')
+                "
+              ></div>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay('n_2 = 100 \\times \\frac{9000}{22000} = 40.9 \\approx 41')
+                "
+              ></div>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay('n_3 = 100 \\times \\frac{1000}{22000} = 4.5 \\approx 4')
+                "
+              ></div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Comparación con asignación proporcional</h4>
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Estrato</th>
+                    <th>Proporcional</th>
+                    <th>Óptima</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Estrato 1</td>
+                    <td>60</td>
+                    <td>55</td>
+                  </tr>
+                  <tr>
+                    <td>Estrato 2</td>
+                    <td>30</td>
+                    <td>41</td>
+                  </tr>
+                  <tr>
+                    <td>Estrato 3</td>
+                    <td>10</td>
+                    <td>4</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p style="margin-top: 1rem">
+                La asignación óptima asigna más elementos al Estrato 2 porque tiene mayor
+                variabilidad (σ₂ = 30).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MUESTREO POR CONGLOMERADOS -->
+      <div v-if="activeTab === 'conglomerados'" class="content-section">
+        <h2>Muestreo por Conglomerados</h2>
+
+        <div class="intro-box">
+          <h3>🎯 Concepto</h3>
+          <p>
+            En el <strong>Muestreo por Conglomerados</strong>, la población se divide en grupos
+            naturales (conglomerados) y se seleccionan algunos conglomerados completos
+            aleatoriamente. Es útil cuando es difícil o costoso acceder a toda la población.
+          </p>
+        </div>
+
+        <div class="formula-section">
+          <h3>Notación</h3>
+          <ul style="line-height: 1.8">
+            <li><span v-html="renderLatex('M')"></span> = número total de conglomerados</li>
+            <li><span v-html="renderLatex('m')"></span> = número de conglomerados seleccionados</li>
+            <li><span v-html="renderLatex('N_i')"></span> = tamaño del conglomerado i</li>
+            <li>
+              <span v-html="renderLatex('\\bar{N} = \\frac{\\sum N_i}{M}')"></span> = tamaño
+              promedio de conglomerado
+            </li>
+          </ul>
+        </div>
+
+        <div class="formula-section">
+          <h3>Media del Conglomerado</h3>
+          <p style="margin-bottom: 1rem">La media estimada de la población es:</p>
+          <div
+            class="formula-display"
+            v-html="renderLatexDisplay('\\bar{x}_{cl} = \\frac{\\sum_{i=1}^{m} \\bar{x}_i}{m}')"
+          ></div>
+          <p style="margin-top: 1rem">
+            Donde <span v-html="renderLatex('\\bar{x}_i')"></span> es la media del conglomerado i.
+          </p>
+        </div>
+
+        <div class="formula-section">
+          <h3>Error Estándar (conglomerados de igual tamaño)</h3>
+          <p style="margin-bottom: 1rem">Si todos los conglomerados tienen el mismo tamaño N̄:</p>
+          <div
+            class="formula-display"
+            v-html="
+              renderLatexDisplay(
+                'SE_{\\bar{x}_{cl}} = \\sqrt{\\frac{M-m}{M}} \\cdot \\frac{s_c}{\\sqrt{m}}',
+              )
+            "
+          ></div>
+          <p style="margin-top: 1rem"><strong>Donde:</strong></p>
+          <ul style="line-height: 1.8">
+            <li>
+              <span v-html="renderLatex('s_c')"></span> = desviación estándar entre medias de
+              conglomerados
+            </li>
+            <li>
+              <span v-html="renderLatex('\\sqrt{\\frac{M-m}{M}}')"></span> = factor de corrección
+            </li>
+          </ul>
+        </div>
+
+        <div class="formula-section">
+          <h3>Efecto del Diseño (DEFF)</h3>
+          <p style="margin-bottom: 1rem">
+            El efecto del diseño compara la varianza del muestreo por conglomerados con el MAS:
+          </p>
+          <div
+            class="formula-display"
+            v-html="renderLatexDisplay('DEFF = 1 + (\\bar{n} - 1)\\rho')"
+          ></div>
+          <p style="margin-top: 1rem"><strong>Donde:</strong></p>
+          <ul style="line-height: 1.8">
+            <li>
+              <span v-html="renderLatex('\\bar{n}')"></span> = tamaño promedio del conglomerado
+            </li>
+            <li>
+              <span v-html="renderLatex('\\rho')"></span> = coeficiente de correlación intraclase
+            </li>
+          </ul>
+          <div class="tip-section" style="margin-top: 1rem">
+            <p>
+              <strong>Interpretación:</strong> Si DEFF \u003e 1, el muestreo por conglomerados es
+              menos eficiente que el MAS. Si DEFF \u003c 1, es más eficiente (raro en la práctica).
+            </p>
+          </div>
+        </div>
+
+        <div class="detailed-example">
+          <h3>📚 Ejemplo Completo</h3>
+          <p style="margin-bottom: 1rem">
+            <strong>Problema:</strong> Una ciudad tiene M = 50 escuelas (conglomerados). Se
+            seleccionan m = 10 escuelas aleatoriamente para encuestar a todos sus estudiantes sobre
+            hábitos de estudio.
+          </p>
+
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Datos recopilados</h4>
+              <p>
+                Supongamos que las 10 escuelas seleccionadas tienen las siguientes medias de horas
+                de estudio por semana:
+              </p>
+              <p style="margin-top: 0.5rem">
+                Escuela 1: 12.5h, Escuela 2: 14.2h, Escuela 3: 11.8h, Escuela 4: 13.6h, Escuela 5:
+                15.1h
+              </p>
+              <p>
+                Escuela 6: 12.9h, Escuela 7: 14.5h, Escuela 8: 13.2h, Escuela 9: 12.1h, Escuela 10:
+                13.8h
+              </p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Calcular la media estimada</h4>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay(
+                    '\\bar{x}_{cl} = \\frac{12.5 + 14.2 + 11.8 + ... + 13.8}{10} = \\frac{133.7}{10} = 13.37 \\text{ horas}',
+                  )
+                "
+              ></div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Calcular desviación estándar entre conglomerados</h4>
+              <p>Usando las 10 medias, calculamos s_c = 1.15 horas</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Calcular error estándar</h4>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay(
+                    'SE_{\\bar{x}_{cl}} = \\sqrt{\\frac{50-10}{50}} \\cdot \\frac{1.15}{\\sqrt{10}} = \\sqrt{0.8} \\times 0.364 = 0.325',
+                  )
+                "
+              ></div>
+              <p style="margin-top: 0.5rem">El error estándar es aproximadamente 0.33 horas.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h4>Intervalo de confianza 95%</h4>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay('IC_{95\\%} = 13.37 \\pm 1.96 \\times 0.325 = [12.73, 14.01]')
+                "
+              ></div>
+              <p>
+                Con 95% de confianza, la media poblacional de horas de estudio está entre 12.73 y
+                14.01 horas por semana.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-box" style="margin-top: 2rem">
+          <h3>⚖️ Ventajas y Desventajas</h3>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Ventajas</th>
+                <th>Desventajas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Más económico y práctico</td>
+                <td>Mayor error estándar que MAS</td>
+              </tr>
+              <tr>
+                <td>No requiere marco muestral completo</td>
+                <td>Requiere conglomerados homogéneos internamente</td>
+              </tr>
+              <tr>
+                <td>Facilita la logística de recolección</td>
+                <td>Puede introducir sesgo si los conglomerados son muy diferentes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="analogy-box" style="margin-top: 2rem">
+          <h3>💡 Regla Práctica</h3>
+          <p>
+            El muestreo por conglomerados suele ser <strong>menos eficiente</strong> (mayor
+            varianza) que el MAS para el mismo tamaño de muestra, porque los elementos dentro de un
+            conglomerado se parecen mucho entre sí.
+          </p>
+          <p style="margin-top: 0.5rem">
+            <strong>Ventaja principal:</strong> Es mucho más <strong>económico</strong> cuando los
+            costos de desplazamiento son altos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import katex from 'katex'
+import 'katex/dist/katex.min.css'
+import { ref } from 'vue'
+
+const tabs = [
+  { id: 'simple', label: 'Aleatorio Simple' },
+  { id: 'estratificado', label: 'Estratificado' },
+  { id: 'sistematico', label: 'Sistemático' },
+  { id: 'conglomerados', label: 'Conglomerados' },
+]
+
+const activeTab = ref('simple')
+
+const renderLatex = (latex: string): string => {
+  try {
+    return katex.renderToString(latex, { throwOnError: false, displayMode: false })
+  } catch (error) {
+    console.error(error)
+    return latex
+  }
+}
+
+const renderLatexDisplay = (latex: string): string => {
+  try {
+    return katex.renderToString(latex, { throwOnError: false, displayMode: true })
+  } catch (error) {
+    console.error(error)
+    return latex
+  }
+}
+</script>
+
+<style scoped>
+@import '@/assets/styles/main.css';
+            <li>
+              <strong>Primera etapa:</strong> Seleccionar m conglomerados de los M totales (usando
+              MAS)
+            </li>
+            <li>
+              <strong>Segunda etapa:</strong> Dentro de cada conglomerado seleccionado, elegir n_i
+              elementos de los N_i disponibles
+            </li>
+          </ol>
+        </div>
+
+        <div class="formula-section">
+          <h3>Notación</h3>
+          <ul style="line-height: 1.8">
+            <li><span v-html="renderLatex('M')"></span> = número total de conglomerados (UPM)</li>
+            <li><span v-html="renderLatex('m')"></span> = número de conglomerados seleccionados</li>
+            <li>
+              <span v-html="renderLatex('N_i')"></span> = tamaño del conglomerado i (unidades
+              secundarias)
+            </li>
+            <li>
+              <span v-html="renderLatex('n_i')"></span> = número de elementos seleccionados del
+              conglomerado i
+            </li>
+            <li>
+              <span v-html="renderLatex('\\bar{x}_{ij}')"></span> = observación j del conglomerado i
+            </li>
+          </ul>
+        </div>
+
+        <div class="formula-section">
+          <h3>Estimador de la Media</h3>
+          <p style="margin-bottom: 1rem">El estimador insesgado de la media poblacional es:</p>
+          <div
+            class="formula-display"
+            v-html="renderLatexDisplay('\\bar{x}_{bi} = \\frac{1}{m} \\sum_{i=1}^{m} \\bar{x}_i')"
+          ></div>
+          <p style="margin-top: 1rem">
+            Donde <span v-html="renderLatex('\\bar{x}_i')"></span> es la media de los elementos
+            seleccionados en el conglomerado i:
+          </p>
+          <div
+            class="formula-display"
+            v-html="renderLatexDisplay('\\bar{x}_i = \\frac{1}{n_i} \\sum_{j=1}^{n_i} x_{ij}')"
+          ></div>
+        </div>
+
+        <div class="formula-section">
+          <h3>Varianza del Estimador</h3>
+          <p style="margin-bottom: 1rem">La varianza se compone de dos partes:</p>
+          <div
+            class="formula-display"
+            v-html="
+              renderLatexDisplay(
+                'V(\\bar{x}_{bi}) = \\underbrace{\\left(1-\\frac{m}{M}\\right) \\frac{S_1^2}{m}}_{\\text{Varianza entre conglomerados}} + \\underbrace{\\frac{1}{m} \\sum_{i=1}^{M} \\left(1-\\frac{n_i}{N_i}\\right) \\frac{S_{2i}^2}{n_i}}_{\\text{Varianza dentro de conglomerados}}',
+              )
+            "
+          ></div>
+          <p style="margin-top: 1rem"><strong>Donde:</strong></p>
+          <ul style="line-height: 1.8">
+            <li>
+              <span v-html="renderLatex('S_1^2')"></span> = varianza entre medias de conglomerados
+            </li>
+            <li>
+              <span v-html="renderLatex('S_{2i}^2')"></span> = varianza dentro del conglomerado i
+            </li>
+          </ul>
+        </div>
+
+        <div class="formula-section">
+          <h3>Caso Especial: Conglomerados de Igual Tamaño</h3>
+          <p style="margin-bottom: 1rem">
+            Si todos los conglomerados tienen el mismo tamaño N̄ y se selecciona el mismo número de
+            elementos n de cada uno:
+          </p>
+          <div
+            class="formula-display"
+            v-html="
+              renderLatexDisplay(
+                'SE_{\\bar{x}_{bi}} = \\sqrt{\\left(1-\\frac{m}{M}\\right) \\frac{S_1^2}{m} + \\left(1-\\frac{n}{\\bar{N}}\\right) \\frac{S_2^2}{mn}}',
+              )
+            "
+          ></div>
+        </div>
+
+        <div class="detailed-example">
+          <h3>📚 Ejemplo Completo</h3>
+          <p style="margin-bottom: 1rem">
+            <strong>Problema:</strong> Una cadena de supermercados quiere estimar el gasto promedio
+            de sus clientes. Tiene M = 20 sucursales. Se decide:
+          </p>
+          <ul style="line-height: 1.8">
+            <li><strong>Primera etapa:</strong> Seleccionar m = 5 sucursales aleatoriamente</li>
+            <li>
+              <strong>Segunda etapa:</strong> En cada sucursal seleccionada, encuestar n = 30
+              clientes aleatoriamente
+            </li>
+          </ul>
+
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Datos recopilados</h4>
+              <p>Medias de gasto por sucursal (en dólares):</p>
+              <ul style="line-height: 1.8">
+                <li>Sucursal 1: <span v-html="renderLatex('\\bar{x}_1 = 85.5')"></span></li>
+                <li>Sucursal 2: <span v-html="renderLatex('\\bar{x}_2 = 92.3')"></span></li>
+                <li>Sucursal 3: <span v-html="renderLatex('\\bar{x}_3 = 78.9')"></span></li>
+                <li>Sucursal 4: <span v-html="renderLatex('\\bar{x}_4 = 88.7')"></span></li>
+                <li>Sucursal 5: <span v-html="renderLatex('\\bar{x}_5 = 81.2')"></span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Calcular el estimador de la media</h4>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay(
+                    '\\bar{x}_{bi} = \\frac{85.5 + 92.3 + 78.9 + 88.7 + 81.2}{5} = \\frac{426.6}{5} = 85.32',
+                  )
+                "
+              ></div>
+              <p>El gasto promedio estimado es de $85.32 por cliente.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Calcular varianza entre sucursales</h4>
+              <p>
+                Usando las 5 medias, calculamos
+                <span v-html="renderLatex('S_1^2 = 28.4')"></span>
+              </p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Calcular error estándar (simplificado)</h4>
+              <p>
+                Asumiendo <span v-html="renderLatex('S_2^2 = 150')"></span> (varianza promedio
+                dentro de sucursales):
+              </p>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay(
+                    'SE = \\sqrt{\\left(1-\\frac{5}{20}\\right) \\frac{28.4}{5} + \\frac{150}{5 \\times 30}}',
+                  )
+                "
+              ></div>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay(
+                    'SE = \\sqrt{0.75 \\times 5.68 + 1} = \\sqrt{4.26 + 1} = \\sqrt{5.26} = 2.29',
+                  )
+                "
+              ></div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h4>Intervalo de confianza 95%</h4>
+              <div
+                class="formula-display"
+                v-html="
+                  renderLatexDisplay(
+                    'IC_{95\\%} = 85.32 \\pm 1.96 \\times 2.29 = 85.32 \\pm 4.49 = [80.83, 89.81]',
+                  )
+                "
+              ></div>
+              <p>
+                El gasto promedio de los clientes está entre $80.83 y $89.81 con 95% de confianza.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-box" style="margin-top: 2rem">
+          <h3>✅ Ventajas y Consideraciones</h3>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Ventajas</th>
+                <th>Consideraciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Más flexible que conglomerados simples</td>
+                <td>Requiere dos marcos muestrales</td>
+              </tr>
+              <tr>
+                <td>Reduce costos vs MAS</td>
+                <td>Cálculo de varianza más complejo</td>
+              </tr>
+              <tr>
+                <td>Permite diferentes tasas de muestreo por etapa</td>
+                <td>Puede requerir ponderaciones</td>
+              </tr>
+              <tr>
+                <td>Útil en poblaciones geográficamente dispersas</td>
+                <td>Efecto del diseño puede ser significativo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- COMPARACIÓN DE TÉCNICAS -->
+      <div v-if="activeTab === 'comparacion'" class="content-section">
+        <h2>Comparación de Técnicas de Muestreo</h2>
+
+        <div class="intro-box">
+          <h3>🎯 ¿Cuál técnica elegir?</h3>
+          <p>
+            La elección de la técnica de muestreo depende de varios factores: costo, precisión
+            requerida, características de la población y recursos disponibles. Esta sección te ayuda
+            a comparar y elegir la técnica más adecuada.
+          </p>
+        </div>
+
+        <h3 style="margin-top: 2rem">Comparación General</h3>
+
+        <div class="comparison-box">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Técnica</th>
+                <th>Precisión</th>
+                <th>Costo</th>
+                <th>Complejidad</th>
+                <th>Cuándo usar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>MAS</strong></td>
+                <td>Buena (referencia)</td>
+                <td>Medio-Alto</td>
+                <td>Simple</td>
+                <td>
+                  Población homogénea, marco muestral completo disponible, población no muy dispersa
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Sistemático</strong></td>
+                <td>Similar a MAS</td>
+                <td>Bajo</td>
+                <td>Muy simple</td>
+                <td>
+                  Lista ordenada disponible, sin patrones periódicos, necesitas simplicidad
+                  operativa
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Estratificado</strong></td>
+                <td>Mejor que MAS</td>
+                <td>Medio</td>
+                <td>Media</td>
+                <td>
+                  Población heterogénea con subgrupos claros, quieres representación de todos los
+                  estratos
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Conglomerados</strong></td>
+                <td>Menor que MAS</td>
+                <td>Bajo</td>
+                <td>Media</td>
+                <td>
+                  Población geográficamente dispersa, costos de traslado altos, no se requiere marco
+                  muestral completo
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Bietápico</strong></td>
+                <td>Variable</td>
+                <td>Bajo-Medio</td>
+                <td>Alta</td>
+                <td>
+                  Poblaciones muy grandes, necesitas balance entre costo y precisión, estructura
+                  jerárquica natural
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="margin-top: 2rem">Eficiencia Relativa</h3>
+
+        <div class="formula-section">
+          <h3>Concepto de Eficiencia</h3>
+          <p style="margin-bottom: 1rem">
+            La eficiencia relativa compara dos diseños de muestreo en términos de su varianza o
+            costo:
+          </p>
+          <div
+            class="formula-display"
+            v-html="
+              renderLatexDisplay(
+                '\\text{Eficiencia} = \\frac{V(\\text{Diseño A})}{V(\\text{Diseño B})} \\times \\frac{\\text{Costo B}}{\\text{Costo A}}',
+              )
+            "
+          ></div>
+          <p style="margin-top: 1rem">
+            <strong>Interpretación:</strong>
+          </p>
+          <ul style="line-height: 1.8">
+            <li>Eficiencia \u003e 1: Diseño A es más eficiente que B</li>
+            <li>Eficiencia \u003c 1: Diseño B es más eficiente que A</li>
+          </ul>
+        </div>
+
+        <div class="detailed-example">
+          <h3>📚 Ejemplo Comparativo</h3>
+          <p style="margin-bottom: 1rem">
+            <strong>Problema:</strong> Se necesita estimar el ingreso promedio en una ciudad de
+            10,000 hogares. Compara tres opciones:
+          </p>
+
+          <div class="step-card">
+            <div class="step-number">A</div>
+            <div class="step-content">
+              <h4>MAS: n = 400 hogares</h4>
+              <ul style="line-height: 1.8">
+                <li>Varianza estimada: <span v-html="renderLatex('V = 625')"></span></li>
+                <li>Costo: $4,000 (visitas dispersas)</li>
+                <li>Error estándar: <span v-html="renderLatex('SE = 25')"></span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">B</div>
+            <div class="step-content">
+              <h4>Estratificado: n = 400 hogares (3 estratos por zona)</h4>
+              <ul style="line-height: 1.8">
+                <li>Varianza estimada: <span v-html="renderLatex('V = 400')"></span></li>
+                <li>Costo: $4,200 (requiere clasificación previa)</li>
+                <li>Error estándar: <span v-html="renderLatex('SE = 20')"></span></li>
+                <li>
+                  <strong>Ganancia:</strong> 20% menos varianza, asegura representación por zonas
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">C</div>
+            <div class="step-content">
+              <h4>Conglomerados: 20 manzanas, 20 hogares/manzana = 400 hogares</h4>
+              <ul style="line-height: 1.8">
+                <li>Varianza estimada: <span v-html="renderLatex('V = 900')"></span></li>
+                <li>Costo: $2,500 (visitas concentradas)</li>
+                <li>Error estándar: <span v-html="renderLatex('SE = 30')"></span></li>
+                <li><strong>Ventaja:</strong> 37.5% menos costo, pero mayor error</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">📊</div>
+            <div class="step-content">
+              <h4>Conclusión</h4>
+              <p>
+                <strong>Si el presupuesto no es limitante:</strong> Elegir estratificado (menor
+                error)
+              </p>
+              <p>
+                <strong>Si el presupuesto es ajustado:</strong> Elegir conglomerados (menor costo)
+              </p>
+              <p>
+                <strong>Balance óptimo:</strong> Depende de la razón costo/precisión que sea
+                aceptable para el estudio
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 2rem">Tamaño de Muestra Equivalente</h3>
+
+        <div class="formula-section">
+          <h3>Concepto</h3>
+          <p style="margin-bottom: 1rem">
+            El tamaño de muestra efectivo ajusta el tamaño real por el efecto del diseño (DEFF):
+          </p>
+          <div
+            class="formula-display"
+            v-html="renderLatexDisplay('n_{\\text{efectivo}} = \\frac{n_{\\text{real}}}{DEFF}')"
+          ></div>
+          <p style="margin-top: 1rem">
+            <strong>Ejemplo:</strong> Una muestra de 500 con DEFF = 2.0 equivale a una muestra de
+            250 con MAS.
+          </p>
+        </div>
+
+        <div class="analogy-box" style="margin-top: 2rem">
+          <h3>💡 Reglas Prácticas</h3>
+          <ul style="line-height: 2">
+            <li>
+              <strong>Usa MAS</strong> cuando la población es pequeña (\u003c 5,000) y accesible
+            </li>
+            <li>
+              <strong>Usa Sistemático</strong> como alternativa simple al MAS (si no hay
+              periodicidad)
+            </li>
+            <li>
+              <strong>Usa Estratificado</strong> cuando conoces subgrupos importantes y quieres
+              asegurar su representación
+            </li>
+            <li>
+              <strong>Usa Conglomerados</strong> cuando la población está dispersa y el presupuesto
+              es limitado
+            </li>
+            <li>
+              <strong>Usa Bietápico</strong> en encuestas nacionales o poblaciones muy grandes con
+              estructura jerárquica
+            </li>
+          </ul>
+        </div>
+
+        <h3 style="margin-top: 2rem">Resumen de Fórmulas Clave</h3>
+
+        <div class="formula-section">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Técnica</th>
+                <th>Error Estándar (Media)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>MAS</td>
+                <td>
+                  <span
+                    v-html="renderLatex('SE = \\frac{\\sigma}{\\sqrt{n}} \\sqrt{\\frac{N-n}{N-1}}')"
+                  ></span>
+                </td>
+              </tr>
+              <tr>
+                <td>Sistemático</td>
+                <td>
+                  <span
+                    v-html="
+                      renderLatex('SE \\approx \\frac{\\sigma}{\\sqrt{n}} \\sqrt{\\frac{N-n}{N-1}}')
+                    "
+                  ></span>
+                </td>
+              </tr>
+              <tr>
+                <td>Estratificado</td>
+                <td>
+                  <span
+                    v-html="
+                      renderLatex(
+                        'SE = \\sqrt{\\sum W_h^2 \\frac{\\sigma_h^2}{n_h} (1-\\frac{n_h}{N_h})}',
+                      )
+                    "
+                  ></span>
+                </td>
+              </tr>
+              <tr>
+                <td>Conglomerados</td>
+                <td>
+                  <span
+                    v-html="
+                      renderLatex('SE = \\sqrt{\\frac{M-m}{M}} \\cdot \\frac{s_c}{\\sqrt{m}}')
+                    "
+                  ></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import katex from 'katex'
+import 'katex/dist/katex.min.css'
+import { ref } from 'vue'
+
+const tabs = [
+  { id: 'simple', label: 'Aleatorio Simple' },
+  { id: 'estratificado', label: 'Estratificado' },
+  { id: 'sistematico', label: 'Sistemático' },
+  { id: 'conglomerados', label: 'Conglomerados' },
+]
+
+const activeTab = ref('simple')
+
+const renderLatex = (latex: string): string => {
+  try {
+    return katex.renderToString(latex, { throwOnError: false, displayMode: false })
+  } catch (error) {
+    console.error(error)
+    return latex
+  }
+}
+
+const renderLatexDisplay = (latex: string): string => {
+  try {
+    return katex.renderToString(latex, { throwOnError: false, displayMode: true })
+  } catch (error) {
+    console.error(error)
+    return latex
+  }
+}
+</script>
+
+<style scoped>
+@import '@/assets/styles/main.css';
+
+.tecnicas-muestreo-view {
+  padding: 1rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+  background: var(--gradient-primary);
+  padding: 4rem 2rem;
+  border-radius: 1rem;
+  color: white;
+  box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.2);
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: white;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  opacity: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  background: white;
+  border-radius: 50px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.tab-button {
+  border: none;
+  padding: 0.7rem 1.2rem;
+  background: transparent;
+  color: #666;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+  background: #f0f0f0;
+  color: var(--primary);
+}
+
+.tab-button.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.content-section {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.content-section h2 {
+  color: var(--primary);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid #ecf0f1;
+  padding-bottom: 0.75rem;
+}
+
+.content-section h3 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  margin: 1.5rem 0 0.75rem 0;
+}
+
+.intro-box {
+  background: #e8f4f8;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 5px solid var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+.intro-box h3 {
+  color: var(--primary);
+  margin-top: 0;
+}
+
+.intro-box p {
+  line-height: 1.7;
+  color: #2c3e50;
+}
+
+.analogy-box {
+  background: #fff3cd;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 5px solid #ffc107;
+  margin-bottom: 1.5rem;
+}
+
+.analogy-box h3 {
+  color: #856404;
+  margin-top: 0;
+}
+
+.analogy-box p {
+  line-height: 1.7;
+  color: #533f03;
+}
+
+.comparison-box {
+  background: #e7f3ff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 5px solid #2196f3;
+  margin-bottom: 1.5rem;
+}
+
+.comparison-box h3 {
+  color: #0c5460;
+  margin-top: 0;
+}
+
+.detailed-example {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  border: 1px solid #e9ecef;
+}
+
+.detailed-example h3 {
+  color: var(--primary);
+  font-size: 1.25rem;
+  margin-top: 0;
+}
+
+.step-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 1rem 0;
+  border-left: 4px solid var(--primary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.step-number {
+  background: var(--primary);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.step-content h4 {
+  color: var(--primary);
+  font-size: 1.05rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.step-content p {
+  color: #555;
+  line-height: 1.7;
+  margin: 0.5rem 0;
+}
+
+.step-content ul {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+
+.step-content li {
+  line-height: 1.8;
+  margin: 0.4rem 0;
+  color: #555;
+}
+
+.formula-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  border: 2px solid #e9ecef;
+}
+
+.formula-section h3 {
+  color: var(--primary);
+  margin-top: 0;
+}
+
+.formula-display {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.tip-section {
+  background: #fff8e1;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 5px solid #ffc107;
+  margin: 1.5rem 0;
+}
+
+.tip-section p {
+  color: #533f03;
+  line-height: 1.7;
+  margin: 0.5rem 0;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.comparison-table th {
+  background: var(--primary);
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.comparison-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.comparison-table tr:hover {
+  background: #ecf0f1;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 3rem 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .content-section {
+    padding: 1.5rem;
+  }
+
+  .content-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .tabs {
+    gap: 0.25rem;
+  }
+
+  .tab-button {
+    padding: 0.6rem 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  .step-card {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .step-number {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+}
+</style>

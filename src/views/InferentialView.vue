@@ -116,6 +116,14 @@
         :router-link="'/inferencial/correlacion-regresion'"
       />
 
+      <ContentCard
+        title="Técnicas de Muestreo"
+        content="Cálculos y fórmulas para cada técnica de muestreo probabilístico: aleatorio simple, sistemático, estratificado (asignación proporcional y óptima) y por conglomerados."
+        :show-button="true"
+        button-text="Explorar"
+        :router-link="'/inferencial/tecnicas-muestreo'"
+      />
+
       <!--
       <ContentCard
         title="Análisis de Varianza (ANOVA)"

@@ -112,14 +112,44 @@ const router = createRouter({
       component: () => import('@/views/inferential/DiferenciaProporcionesView.vue'),
     },
     {
-      path: '/inferencial/correlacion-regresion',
-      name: 'correlation-regression',
-      component: () => import('@/views/inferential/CorrelacionRegresionView.vue'),
+      path: '/inferencial/estimacion-parametros',
+      name: 'parameter-estimation',
+      component: () => import('@/views/inferential/EstimacionParametrosView.vue'),
+    },
+    {
+      path: '/inferencial/intervalos-confianza',
+      name: 'confidence-intervals',
+      component: () => import('@/views/inferential/IntervalosConfianzaView.vue'),
+    },
+    {
+      path: '/inferencial/tamano-muestra',
+      name: 'sample-size',
+      component: () => import('@/views/inferential/TamanoMuestraView.vue'),
+    },
+    {
+      path: '/inferencial/factor-correccion',
+      name: 'finite-correction-factor',
+      component: () => import('@/views/inferential/FactorCorreccionView.vue'),
+    },
+    {
+      path: '/inferencial/pruebas-hipotesis',
+      name: 'hypothesis-testing',
+      component: () => import('@/views/inferential/PruebasHipotesisUnaMuestraView.vue'),
     },
     {
       path: '/inferencial/hipotesis-dos-muestras',
       name: 'two-sample-hypothesis-testing',
       component: () => import('@/views/inferential/HipotesisDosMuestrasView.vue'),
+    },
+    {
+      path: '/inferencial/correlacion-regresion',
+      name: 'correlation-regression',
+      component: () => import('@/views/inferential/CorrelacionRegresionView.vue'),
+    },
+    {
+      path: '/inferencial/tecnicas-muestreo',
+      name: 'sampling-techniques',
+      component: () => import('@/views/inferential/TecnicasMuestreoView.vue'),
     },
   ],
 })
